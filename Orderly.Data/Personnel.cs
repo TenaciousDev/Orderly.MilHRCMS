@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 namespace Orderly.Data
 {
     public enum Grade { E1, E2, E3, E4, E5, E6, E7, E8, E9, O1, O2, O3, O4, O5, O6, O7, O8, O9, O10, W1, W2, W3, W4, W5 }
+    public enum BioSex { Male, Female, Other}
+    public enum Gender { }
+    public enum MaritalStatus { NeverMarried, Married, Divorced, Widowed, Estranged, Other}
     public class Personnel
     {
         [Key]
@@ -23,6 +26,8 @@ namespace Orderly.Data
         [Display(Name = "Middle Name / MI")]
         public string MiddleName { get; set; }
         [Required]
+        public BioSex Sex { get; set; }
+        [Required]
         public string SSN { get; set; }
         [Required]
         [Display(Name = "DoD ID")]
@@ -37,6 +42,9 @@ namespace Orderly.Data
                 return DOB - DateTime.Now;
             }
         }
+        [Required]
+        [Display(Name ="Marital Status")]
+        public MaritalStatus MaritalStatus { get; set; }
         [Display(Name = "Created by")]
         public Guid CreatedBy { get; set; }
         [Display(Name = "Last modified by")]
