@@ -39,7 +39,7 @@ namespace Orderly.Data
         {
             get
             {
-                return DOB - DateTime.Now;
+                return DateTime.Now - DOB;
             }
         }
         [Required]

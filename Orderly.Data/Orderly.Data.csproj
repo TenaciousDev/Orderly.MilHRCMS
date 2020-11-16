@@ -68,6 +68,10 @@
     <Compile Include="Migrations\202011161455578_Second.designer.cs">
       <DependentUpon>202011161455578_Second.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011161927229_FixedAgeProperty.cs" />
+    <Compile Include="Migrations\202011161927229_FixedAgeProperty.designer.cs">
+      <DependentUpon>202011161927229_FixedAgeProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Personnel.cs" />
     <Compile Include="Platoon.cs" />
@@ -86,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011161455578_Second.resx">
       <DependentUpon>202011161455578_Second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011161927229_FixedAgeProperty.resx">
+      <DependentUpon>202011161927229_FixedAgeProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

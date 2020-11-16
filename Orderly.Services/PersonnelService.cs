@@ -73,8 +73,8 @@ namespace Orderly.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
-                    ctx.
-                    PersonnelDbSet
+                    ctx
+                    .PersonnelDbSet
                     .Single(e => e.PersonnelId == id);
                 return
                     new PersonnelDetail
