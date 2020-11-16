@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Orderly.WebMVC.Controllers
 {
+    [Authorize]
     public class PersonnelController : Controller
     {
         // GET: Personnel

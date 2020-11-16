@@ -176,6 +176,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PersonnelController.cs" />
+    <Compile Include="Controllers\PlatoonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -346,6 +347,11 @@
     <Content Include="Views\Personnel\Create.cshtml" />
     <Content Include="Views\Personnel\Index.cshtml" />
     <Content Include="Views\Personnel\Details.cshtml" />
+    <Content Include="Views\Personnel\Edit.cshtml" />
+    <Content Include="Views\Platoon\Index.cshtml" />
+    <Content Include="Views\Platoon\Create.cshtml" />
+    <Content Include="Views\Platoon\Details.cshtml" />
+    <Content Include="Views\Platoon\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
