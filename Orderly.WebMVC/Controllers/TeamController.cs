@@ -10,31 +10,31 @@ using System.Web.Mvc;
 namespace Orderly.WebMVC.Controllers
 {
     [Authorize]
-    public class PlatoonController : Controller
+    public class TeamController : Controller
     {
-        // GET: Platoon
+        // GET: Team
         public ActionResult Index()
         {
-            var service = CreatePlatoonService();
-            var model = service.GetPlatoons();
+            var service = CreateTeamService();
+            var model = service.GetTeams();
             return View(model);
         }
-        //GET: Platoon/Create
+        //GET: Team/Create
         public ActionResult Create()
         {
             return View();
         }
-        //POST: Platoon/Create
+        //POST: Team/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PlatoonCreate model)
+        public ActionResult Create(TeamCreate model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var service = CreatePlatoonService();
-            if (service.CreatePlatoon(model))
+            var service = CreateTeamService();
+            if (service.CreateTeam(model))
             {
                 TempData["Save Result"] = "Record created.";
                 return RedirectToAction("Index");
@@ -42,34 +42,32 @@ namespace Orderly.WebMVC.Controllers
             ModelState.AddModelError("", "Unable to create record.");
             return View(model);
         }
-        //GET: Platoon/Details/id
+        //GET: Team/Details/id
         public ActionResult Details(int id)
         {
-            var svc = CreatePlatoonService();
-            var model = svc.GetPlatoonById(id);
+            var svc = CreateTeamService();
+            var model = svc.GetTeamById(id);
             return View(model);
         }
-        //GET: Platoon/Edit/id
+        //GET: Team/Edit/id
         public ActionResult Edit(int id)
         {
-            var svc = CreatePlatoonService();
-            var detail = svc.GetPlatoonById(id);
+            var svc = CreateTeamService();
+            var detail = svc.GetTeamById(id);
             var model =
-                new PlatoonEdit
+                new TeamEdit
                 {
                     Id = detail.Id,
                     Name = detail.Name,
                     Familiar = detail.Familiar,
                     Assigned = detail.Assigned,
-                    Squads = detail.Squads,
-                    Teams = detail.Teams
                 };
             return View(model);
         }
-        //POST: Platoon/Edit/id
+        //POST: Team/Edit/id
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, PlatoonEdit model)
+        public ActionResult Edit(int id, TeamEdit model)
         {
             if (!ModelState.IsValid)
             {
@@ -80,8 +78,8 @@ namespace Orderly.WebMVC.Controllers
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
             }
-            var svc = CreatePlatoonService();
-            if (svc.UpdatePlatoon(model))
+            var svc = CreateTeamService();
+            if (svc.UpdateTeam(model))
             {
                 TempData["SaveResult"] = "Record updated.";
                 return RedirectToAction("Index");
@@ -89,10 +87,10 @@ namespace Orderly.WebMVC.Controllers
             ModelState.AddModelError("", "Unable to update record.");
             return View();
         }
-        private PlatoonService CreatePlatoonService()
+        private TeamService CreateTeamService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new PlatoonService(userId);
+            var service = new TeamService(userId);
             return service;
         }
 
