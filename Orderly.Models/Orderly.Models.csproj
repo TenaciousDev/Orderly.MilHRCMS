@@ -61,6 +61,10 @@
     <Compile Include="Contact.Models\ContactListItem.cs" />
     <Compile Include="Contact.Models\ContactEdit.cs" />
     <Compile Include="Contact.Models\ContactCreate.cs" />
+    <Compile Include="Housing.Models\HousingDetail.cs" />
+    <Compile Include="Housing.Models\HousingEdit.cs" />
+    <Compile Include="Housing.Models\HousingListItem.cs" />
+    <Compile Include="Housing.Models\HousingCreate.cs" />
     <Compile Include="Platoon.Models\PlatoonCreate.cs" />
     <Compile Include="Personnel.Models\PersonnelCreate.cs" />
     <Compile Include="Personnel.Models\PersonnelDetail.cs" />
@@ -91,7 +95,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Housing.Models\" />
     <Folder Include="UnitInfo.Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

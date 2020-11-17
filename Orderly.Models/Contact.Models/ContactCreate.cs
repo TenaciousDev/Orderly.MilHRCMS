@@ -38,6 +38,5 @@ namespace Orderly.Models
         public Guid ModifiedLast { get; set; }
         [Display(Name = "Created on")]
         public DateTimeOffset CreatedUtc { get; set; }
-        [Display(Name = "Modified on")]
     }
 }

@@ -175,6 +175,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HousingController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PersonnelController.cs" />
     <Compile Include="Controllers\PlatoonController.cs" />
@@ -367,6 +368,10 @@
     <Content Include="Views\Contact\Create.cshtml" />
     <Content Include="Views\Contact\Details.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
+    <Content Include="Views\Housing\Index.cshtml" />
+    <Content Include="Views\Housing\Create.cshtml" />
+    <Content Include="Views\Housing\Details.cshtml" />
+    <Content Include="Views\Housing\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

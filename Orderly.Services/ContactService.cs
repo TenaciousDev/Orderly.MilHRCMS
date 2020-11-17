@@ -52,6 +52,9 @@ namespace Orderly.Services
                         e =>
                         new ContactListItem
                         {
+                            Id = e.Id,
+                            PersonnelId = e.PersonnelId,
+                            Personnel = e.Personnel,
                             PhoneNumber = e.PhoneNumber,
                             PersonalEmail = e.PersonalEmail,
                             MilEmail = e.MilEmail,
