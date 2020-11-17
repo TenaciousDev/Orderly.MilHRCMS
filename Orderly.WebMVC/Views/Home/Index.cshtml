@@ -1,7 +1,26 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@if (Request.IsAuthenticated)
+{
+<div class="jumbotron bg-transparent align-top">
+    <div class="container-fluid">
+        <p class="display-1">Orderly</p>
+        <p class="lead pl-4">Leave no servicemember behind.</p>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h5 class="">Orderly is a Human Resources tracking platform.</h5>
+            <span>test</span>
+        </div>
+    </div>
 
+</div>
+}
+else
+{
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
@@ -29,3 +48,4 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+}
