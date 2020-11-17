@@ -76,6 +76,10 @@
     <Compile Include="Migrations\202011171529061_AddedAnnotations.designer.cs">
       <DependentUpon>202011171529061_AddedAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011171639465_AddedAnnotationsToUnitInfo.cs" />
+    <Compile Include="Migrations\202011171639465_AddedAnnotationsToUnitInfo.designer.cs">
+      <DependentUpon>202011171639465_AddedAnnotationsToUnitInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Personnel.cs" />
     <Compile Include="Platoon.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011171529061_AddedAnnotations.resx">
       <DependentUpon>202011171529061_AddedAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011171639465_AddedAnnotationsToUnitInfo.resx">
+      <DependentUpon>202011171639465_AddedAnnotationsToUnitInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

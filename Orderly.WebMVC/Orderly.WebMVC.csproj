@@ -181,6 +181,7 @@
     <Compile Include="Controllers\PlatoonController.cs" />
     <Compile Include="Controllers\SquadController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
+    <Compile Include="Controllers\UnitInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -372,6 +373,10 @@
     <Content Include="Views\Housing\Create.cshtml" />
     <Content Include="Views\Housing\Details.cshtml" />
     <Content Include="Views\Housing\Edit.cshtml" />
+    <Content Include="Views\UnitInfo\Index.cshtml" />
+    <Content Include="Views\UnitInfo\Create.cshtml" />
+    <Content Include="Views\UnitInfo\Details.cshtml" />
+    <Content Include="Views\UnitInfo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
