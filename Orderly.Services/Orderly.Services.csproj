@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactService.cs" />
     <Compile Include="PersonnelService.cs" />
     <Compile Include="PlatoonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

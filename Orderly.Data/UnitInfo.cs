@@ -21,9 +21,13 @@ namespace Orderly.Data
         public string Role { get; set; }
         public DateTimeOffset Arrived { get; set; }
         public string DutyStatus { get; set; }
+        [Display(Name = "Created by")]
         public Guid CreatedBy { get; set; }
+        [Display(Name = "Last modified by")]
         public Guid ModifiedLast { get; set; }
+        [Display(Name = "Created on")]
         public DateTimeOffset CreatedUtc { get; set; }
+        [Display(Name = "Modified on")]
         public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }

@@ -57,6 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contact.Models\ContactDetail.cs" />
+    <Compile Include="Contact.Models\ContactListItem.cs" />
+    <Compile Include="Contact.Models\ContactEdit.cs" />
+    <Compile Include="Contact.Models\ContactCreate.cs" />
     <Compile Include="Platoon.Models\PlatoonCreate.cs" />
     <Compile Include="Personnel.Models\PersonnelCreate.cs" />
     <Compile Include="Personnel.Models\PersonnelDetail.cs" />
@@ -87,7 +91,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contact.Models\" />
     <Folder Include="Housing.Models\" />
     <Folder Include="UnitInfo.Models\" />
   </ItemGroup>

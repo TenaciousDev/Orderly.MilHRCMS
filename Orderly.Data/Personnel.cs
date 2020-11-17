@@ -46,7 +46,7 @@ namespace Orderly.Data
         [Display(Name ="Marital Status")]
         public MaritalStatus MaritalStatus { get; set; }
         [Display(Name = "Created by")]
-        public Guid CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; } // Look into making this Type: ApplicationUser https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuser?view=aspnetcore-1.1
         [Display(Name = "Last modified by")]
         public Guid ModifiedLast { get; set; }
         [Display(Name = "Created on")]
