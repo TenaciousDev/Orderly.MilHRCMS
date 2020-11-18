@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title | Orderly</title>
-    @Styles.Render("~/Content/css")
+    <title>Orderly | @ViewBag.Title</title>
+    @Styles.Render("~/Content/css","~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -17,9 +17,9 @@
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
 
                 <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Dashboard", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    @*<li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -28,9 +28,9 @@
 
     <div class="container body-content mt-4">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year | Orderly | created by Adam S. Metcalf</p>
+        <footer class="modal-footer custom-footer">
+            <hr />
+            <p>&copy; @DateTime.Now.Year | Orderly | created by <a href="https://asmetcalf.github.io/" target="_blank" class="text-body">Adam S. Metcalf</a></p>
         </footer>
     </div>
 

@@ -1,47 +1,54 @@
-﻿@model Orderly.WebMVC.Models.RegisterViewModel
+﻿<link rel="stylesheet" href="@(Url.Content("~/Content/cRegister.css"))" />
+@model Orderly.WebMVC.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Welcome to Orderly";
 }
-
-@*<h2>@ViewBag.Title.</h2>*@
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "joe.snuffy.mil@mail.mil" })
+<div class="text-center">
+    <h1 class="display-3">@ViewBag.Title</h1>
+    <div class="row justify-content-center">
+        <div class="col text-center">
+            <h1 class="h3 mb-1 font-weight-normal">Please create an account</h1>
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-register", role = "form" }))
+            {
+                <hr class="pt-3" />
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col control-label text-left mb-1" })
+                    <div class="col">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "e.g. joe.snuffy.mil@mail.mil" })
+                    </div>
+                </div>
+                @*<div class="form-group">
+                    @Html.LabelFor(m => m.Username, new { @class = "col control-label text-left mb-1" })
+                    <div class="col">
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "e.g. SilentProfessional42" })
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col control-label text-left mb-1" })
+                    <div class="col">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose a strong password" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col control-label text-left mb-1" })
+                    <div class="col">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Must match password above" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col text-">
+                        <input type="submit" class="btn btn-info btn-submit mt-2" value="Register now!" />
+                        <p class="mt-1">
+                            @Html.ActionLink("Already have an account?", "Login", null, new { @class = "text-info text-muted" })
+                        </p>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "SilentProfessional42" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose a strong password" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Must match password above" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-outline-dark" value="Register" />
-        </div>
-    </div>
-}
-
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
