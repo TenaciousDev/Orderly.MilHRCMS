@@ -43,28 +43,26 @@ namespace Orderly.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
-                    ctx
-                    .PersonnelDbSet
-                    .Select(
-                        e =>
-                        new PersonnelListItem
-                        {
-                            PersonnelId = e.PersonnelId,
-                            Rank = e.Rank,
-                            FirstName = e.FirstName,
-                            LastName = e.LastName,
-                            MiddleName = e.MiddleName,
-                            Sex = e.Sex,
-                            SSN = e.SSN,
-                            DOD = e.DOD,
-                            DOB = e.DOB,
-                            MaritalStatus = e.MaritalStatus,
-                            CreatedBy = e.CreatedBy,
-                            ModifiedLast = e.ModifiedLast,
-                            CreatedUtc = e.CreatedUtc,
-                            ModifiedUtc = e.ModifiedUtc
-                        }
-                        );
+                    from p in ctx.PersonnelDbSet
+                    join u in ctx.Users on p.CreatedBy.ToString() equals u.Id
+                    select new PersonnelListItem
+                    {
+                        PersonnelId = p.PersonnelId,
+                        Rank = p.Rank,
+                        FirstName = p.FirstName,
+                        LastName = p.LastName,
+                        MiddleName = p.MiddleName,
+                        Sex = p.Sex,
+                        SSN = p.SSN,
+                        DOD = p.DOD,
+                        DOB = p.DOB,
+                        MaritalStatus = p.MaritalStatus,
+                        CreatedBy = p.CreatedBy,
+                        CreatedByUserName = u.UserName,
+                        ModifiedLast = p.ModifiedLast,
+                        CreatedUtc = p.CreatedUtc,
+                        ModifiedUtc = p.ModifiedUtc
+                    };
                 return query.ToArray();
             }
         }
@@ -72,52 +70,113 @@ namespace Orderly.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .PersonnelDbSet
-                    .Single(e => e.PersonnelId == id);
-                return
-                    new PersonnelDetail
-                    {
-                        PersonnelId = entity.PersonnelId,
-                        Rank = entity.Rank,
-                        FirstName = entity.FirstName,
-                        LastName = entity.LastName,
-                        MiddleName = entity.MiddleName,
-                        Sex = entity.Sex,
-                        SSN = entity.SSN,
-                        DOD = entity.DOD,
-                        DOB = entity.DOB,
-                        MaritalStatus = entity.MaritalStatus,
-                        CreatedBy = entity.CreatedBy,
-                        CreatedUtc = entity.CreatedUtc,
-                        ModifiedLast = entity.ModifiedLast,
-                        ModifiedUtc = entity.ModifiedUtc
-                    };
+                var record = (from entity in ctx.PersonnelDbSet
+                              join u in ctx.Users on entity.CreatedBy.ToString() equals u.Id
+                              where entity.PersonnelId == id
+                              select new PersonnelDetail
+                              {
+                                  PersonnelId = entity.PersonnelId,
+                                  Rank = entity.Rank,
+                                  FirstName = entity.FirstName,
+                                  LastName = entity.LastName,
+                                  MiddleName = entity.MiddleName,
+                                  Sex = entity.Sex,
+                                  SSN = entity.SSN,
+                                  DOD = entity.DOD,
+                                  DOB = entity.DOB,
+                                  MaritalStatus = entity.MaritalStatus,
+                                  CreatedByUserName = u.UserName,
+                                  CreatedUtc = entity.CreatedUtc,
+                                  ModifiedLast = entity.ModifiedLast,
+                                  ModifiedUtc = entity.ModifiedUtc
+                              }).SingleOrDefault();
+                return record;
+                /*                var entity =
+                                    ctx
+                                    .PersonnelDbSet
+                                    .Single(e => e.PersonnelId == id);
+                                return
+                                    new PersonnelDetail
+                                    {
+                                        PersonnelId = entity.PersonnelId,
+                                        Rank = entity.Rank,
+                                        FirstName = entity.FirstName,
+                                        LastName = entity.LastName,
+                                        MiddleName = entity.MiddleName,
+                                        Sex = entity.Sex,
+                                        SSN = entity.SSN,
+                                        DOD = entity.DOD,
+                                        DOB = entity.DOB,
+                                        MaritalStatus = entity.MaritalStatus,
+                                        CreatedBy = entity.CreatedBy,
+                                        CreatedUtc = entity.CreatedUtc,
+                                        ModifiedLast = entity.ModifiedLast,
+                                        ModifiedUtc = entity.ModifiedUtc
+                                    };
+                */
             }
         }
         public bool UpdatePersonnel(PersonnelEdit model)
         {
             using (var ctx = new ApplicationDbContext())
+            /*{
+                var record = (from entity in ctx.PersonnelDbSet
+                 join u in ctx.Users on entity.ModifiedLast.ToString() equals u.Id
+                 where entity.PersonnelId == model.PersonnelId
+                 select new PersonnelEdit
+                 {
+                     PersonnelId = entity.PersonnelId,
+                     Rank = entity.Rank,
+                     FirstName = entity.FirstName,
+                     LastName = entity.LastName,
+                     MiddleName = entity.MiddleName,
+                     Sex = entity.Sex,
+                     SSN = entity.SSN,
+                     DOD = entity.DOD,
+                     DOB = entity.DOB,
+                     MaritalStatus = entity.MaritalStatus,
+                     CreatedBy = entity.CreatedBy,
+                     CreatedUtc = entity.CreatedUtc,
+                     ModifiedLast = entity.ModifiedLast,
+                     ModifiedByUserName = u.UserName,
+                     ModifiedUtc = DateTimeOffset.Now
+                 }).Single();
+                return ctx.SaveChanges() == 1;*/
             {
                 var entity =
                     ctx
                     .PersonnelDbSet
-                    .Single(e => e.PersonnelId == model.PersonnelId);
-                entity.Rank = model.Rank;
-                entity.FirstName = model.FirstName;
-                entity.LastName = model.LastName;
-                entity.MiddleName = model.MiddleName;
-                entity.Sex = model.Sex;
-                entity.SSN = model.SSN;
-                entity.DOD = model.DOD;
-                entity.DOB = model.DOB;
-                entity.MaritalStatus = model.MaritalStatus;
-                entity.CreatedBy = model.CreatedBy;
-                entity.CreatedUtc = model.CreatedUtc;
-                entity.ModifiedLast = _userId;
-                entity.ModifiedUtc = DateTimeOffset.Now;
-                return ctx.SaveChanges() == 1;
+                    .Join(ctx.Users, e => e.ModifiedLast.ToString(), u => u.Id, (e, u) => new PersonnelEdit
+                    {
+                        PersonnelId = e.PersonnelId,
+                        Rank = e.Rank,
+                        FirstName = e.FirstName,
+                        LastName = e.LastName,
+                        MiddleName = e.MiddleName,
+                        Sex = e.Sex,
+                        SSN = e.SSN,
+                        DOD = e.DOD,
+                        DOB = e.DOB,
+                        MaritalStatus = e.MaritalStatus,
+                        CreatedBy = e.CreatedBy,
+                        CreatedUtc = e.CreatedUtc,
+                        ModifiedLast = e.ModifiedLast,
+                        ModifiedByUserName = u.UserName,
+                        ModifiedUtc = DateTimeOffset.Now
+                    });
+                                    //.Single(e => e.PersonnelId == model.PersonnelId);
+/*                                entity.Rank = model.Rank;
+                                entity.FirstName = model.FirstName;
+                                entity.LastName = model.LastName;
+                                entity.MiddleName = model.MiddleName;
+                                entity.Sex = model.Sex;
+                                entity.SSN = model.SSN;
+                                entity.DOD = model.DOD;
+                                entity.DOB = model.DOB;
+                                entity.MaritalStatus = model.MaritalStatus;
+                                entity.ModifiedLast = _userId;
+                                entity.ModifiedUtc = DateTimeOffset.Now;
+*/                                return ctx.SaveChanges() == 1;
             }
         }
     }

@@ -84,6 +84,10 @@
     <Compile Include="Migrations\202011182029595_MessedAroundWithRankInPersonnel.designer.cs">
       <DependentUpon>202011182029595_MessedAroundWithRankInPersonnel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011191643120_AddedStringsToHoldApplicationUserName.cs" />
+    <Compile Include="Migrations\202011191643120_AddedStringsToHoldApplicationUserName.designer.cs">
+      <DependentUpon>202011191643120_AddedStringsToHoldApplicationUserName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Personnel.cs" />
     <Compile Include="Platoon.cs" />
@@ -114,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011182029595_MessedAroundWithRankInPersonnel.resx">
       <DependentUpon>202011182029595_MessedAroundWithRankInPersonnel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011191643120_AddedStringsToHoldApplicationUserName.resx">
+      <DependentUpon>202011191643120_AddedStringsToHoldApplicationUserName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

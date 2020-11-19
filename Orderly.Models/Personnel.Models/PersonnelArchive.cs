@@ -23,13 +23,14 @@ namespace Orderly.Models
         [Display(Name = "DoD ID")]
         public string DOD { get; set; }
         [Display(Name = "Created by")]
+        public string CreatedByUserName { get; set; }
         public Guid CreatedBy { get; set; }
-        [Display(Name = "Archived by")]
+        [Display(Name = "Last modified by")]
+        public string ModifiedByUserName { get; set; }
         public Guid ModifiedLast { get; set; }
         [Display(Name = "Created on")]
         public DateTimeOffset CreatedUtc { get; set; }
-        [Display(Name = "Archived on")]
+        [Display(Name = "Modified on")]
         public DateTimeOffset? ModifiedUtc { get; set; }
-
     }
 }

@@ -15,8 +15,10 @@ namespace Orderly.Models
         public string Address { get; set; }
         public string Room { get; set; }
         [Display(Name = "Created by")]
+        public string CreatedByUserName { get; set; }
         public Guid CreatedBy { get; set; }
         [Display(Name = "Last modified by")]
+        public string ModifiedByUserName { get; set; }
         public Guid ModifiedLast { get; set; }
         [Display(Name = "Created on")]
         public DateTimeOffset CreatedUtc { get; set; }
