@@ -1,0 +1,208 @@
+﻿@model IEnumerable<Orderly.Models.RecordListItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutRecord.cshtml";
+}
+
+<h2>Main</h2>
+<div class="table-outer">
+    <table class="table table-sm table-hover table-fixed"
+           id="table"
+           data-toggle="table"
+           data-height="600"
+           data-card-view="true">
+        <thead class="thead-dark overflow-auto">
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rank)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MiddleName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SSN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DOD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DOB)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ContactId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PersonalEmail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MilEmail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HasDriversLicense)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VehicleMake)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VehicleModel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VehicleColor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VehiclePlate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VehicleYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VehicleInspected)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HousingId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Room)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitInfoId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TeamId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Arrived)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LossDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DutyStatus)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.PersonnelId })
+                </td>
+                <td>
+                    @{
+                        string rank = item.Rank.ToString();
+                    }
+                    @Html.DisplayFor(modelItem => rank)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SSN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonalEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MilEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HasDriversLicense)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleMake)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleColor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehiclePlate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleInspected)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HousingId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitInfoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeamId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Arrived)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LossDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DutyStatus)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PersonnelId }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ContactService.cs" />
     <Compile Include="HousingService.cs" />
+    <Compile Include="RecordService.cs" />
     <Compile Include="PersonnelService.cs" />
     <Compile Include="PlatoonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

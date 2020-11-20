@@ -179,6 +179,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PersonnelController.cs" />
     <Compile Include="Controllers\PlatoonController.cs" />
+    <Compile Include="Controllers\RecordController.cs" />
     <Compile Include="Controllers\SquadController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UnitInfoController.cs" />
@@ -379,7 +380,9 @@
     <Content Include="Views\UnitInfo\Create.cshtml" />
     <Content Include="Views\UnitInfo\Details.cshtml" />
     <Content Include="Views\UnitInfo\Edit.cshtml" />
-    <Content Include="Views\Main\View.cshtml" />
+    <Content Include="Views\Shared\_LayoutRecord.cshtml" />
+    <Content Include="Views\Record\Index.cshtml" />
+    <Content Include="Views\Record\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

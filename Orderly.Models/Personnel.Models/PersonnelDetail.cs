@@ -16,7 +16,7 @@ namespace Orderly.Models
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Display(Name = "Middle Name / MI")]
+        [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
         public BioSex Sex { get; set; }
         public string SSN { get; set; }

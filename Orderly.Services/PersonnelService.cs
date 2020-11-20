@@ -92,29 +92,6 @@ namespace Orderly.Services
                                   ModifiedUtc = entity.ModifiedUtc
                               }).SingleOrDefault();
                 return record;
-                /*                var entity =
-                                    ctx
-                                    .PersonnelDbSet
-                                    .Single(e => e.PersonnelId == id);
-                                return
-                                    new PersonnelDetail
-                                    {
-                                        PersonnelId = entity.PersonnelId,
-                                        Rank = entity.Rank,
-                                        FirstName = entity.FirstName,
-                                        LastName = entity.LastName,
-                                        MiddleName = entity.MiddleName,
-                                        Sex = entity.Sex,
-                                        SSN = entity.SSN,
-                                        DOD = entity.DOD,
-                                        DOB = entity.DOB,
-                                        MaritalStatus = entity.MaritalStatus,
-                                        CreatedBy = entity.CreatedBy,
-                                        CreatedUtc = entity.CreatedUtc,
-                                        ModifiedLast = entity.ModifiedLast,
-                                        ModifiedUtc = entity.ModifiedUtc
-                                    };
-                */
             }
         }
         public bool UpdatePersonnel(PersonnelEdit model)

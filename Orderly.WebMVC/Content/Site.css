@@ -8,8 +8,15 @@ body {
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
+/* Layout for regular View content */
 .body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+}
+
+/* Layout for data-oriented View content */
+.body-content-data {
     padding-left: 15px;
     padding-right: 15px;
     margin: inherit;
