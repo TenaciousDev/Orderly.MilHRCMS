@@ -60,6 +60,7 @@ namespace Orderly.Services
                         CreatedBy = p.CreatedBy,
                         CreatedByUserName = u.UserName,
                         ModifiedLast = p.ModifiedLast,
+                        ModifiedByUserName = p.ModifiedByUserName,
                         CreatedUtc = p.CreatedUtc,
                         ModifiedUtc = p.ModifiedUtc
                     };
@@ -119,64 +120,26 @@ namespace Orderly.Services
         public bool UpdatePersonnel(PersonnelEdit model)
         {
             using (var ctx = new ApplicationDbContext())
-            /*{
-                var record = (from entity in ctx.PersonnelDbSet
-                 join u in ctx.Users on entity.ModifiedLast.ToString() equals u.Id
-                 where entity.PersonnelId == model.PersonnelId
-                 select new PersonnelEdit
-                 {
-                     PersonnelId = entity.PersonnelId,
-                     Rank = entity.Rank,
-                     FirstName = entity.FirstName,
-                     LastName = entity.LastName,
-                     MiddleName = entity.MiddleName,
-                     Sex = entity.Sex,
-                     SSN = entity.SSN,
-                     DOD = entity.DOD,
-                     DOB = entity.DOB,
-                     MaritalStatus = entity.MaritalStatus,
-                     CreatedBy = entity.CreatedBy,
-                     CreatedUtc = entity.CreatedUtc,
-                     ModifiedLast = entity.ModifiedLast,
-                     ModifiedByUserName = u.UserName,
-                     ModifiedUtc = DateTimeOffset.Now
-                 }).Single();
-                return ctx.SaveChanges() == 1;*/
             {
+                var user = ctx.Users.Find(_userId.ToString());
+                var userName = user.UserName;
                 var entity =
                     ctx
                     .PersonnelDbSet
-                    .Join(ctx.Users, e => e.ModifiedLast.ToString(), u => u.Id, (e, u) => new PersonnelEdit
-                    {
-                        PersonnelId = e.PersonnelId,
-                        Rank = e.Rank,
-                        FirstName = e.FirstName,
-                        LastName = e.LastName,
-                        MiddleName = e.MiddleName,
-                        Sex = e.Sex,
-                        SSN = e.SSN,
-                        DOD = e.DOD,
-                        DOB = e.DOB,
-                        MaritalStatus = e.MaritalStatus,
-                        CreatedBy = e.CreatedBy,
-                        CreatedUtc = e.CreatedUtc,
-                        ModifiedLast = e.ModifiedLast,
-                        ModifiedByUserName = u.UserName,
-                        ModifiedUtc = DateTimeOffset.Now
-                    });
-                                    //.Single(e => e.PersonnelId == model.PersonnelId);
-/*                                entity.Rank = model.Rank;
-                                entity.FirstName = model.FirstName;
-                                entity.LastName = model.LastName;
-                                entity.MiddleName = model.MiddleName;
-                                entity.Sex = model.Sex;
-                                entity.SSN = model.SSN;
-                                entity.DOD = model.DOD;
-                                entity.DOB = model.DOB;
-                                entity.MaritalStatus = model.MaritalStatus;
-                                entity.ModifiedLast = _userId;
-                                entity.ModifiedUtc = DateTimeOffset.Now;
-*/                                return ctx.SaveChanges() == 1;
+                    .Single(e => e.PersonnelId == model.PersonnelId);
+                entity.Rank = model.Rank;
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
+                entity.MiddleName = model.MiddleName;
+                entity.Sex = model.Sex;
+                entity.SSN = model.SSN;
+                entity.DOD = model.DOD;
+                entity.DOB = model.DOB;
+                entity.MaritalStatus = model.MaritalStatus;
+                entity.ModifiedLast = _userId;
+                entity.ModifiedByUserName = userName;
+                entity.ModifiedUtc = DateTimeOffset.Now;
+                return ctx.SaveChanges() == 1;
             }
         }
     }
