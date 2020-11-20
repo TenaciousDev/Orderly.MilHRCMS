@@ -46,31 +46,32 @@ namespace Orderly.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
-                    ctx
-                    .ContactDbSet
-                    .Select(
-                        e =>
-                        new ContactListItem
-                        {
-                            Id = e.Id,
-                            PersonnelId = e.PersonnelId,
-                            Personnel = e.Personnel,
-                            PhoneNumber = e.PhoneNumber,
-                            PersonalEmail = e.PersonalEmail,
-                            MilEmail = e.MilEmail,
-                            HasDriversLicense = e.HasDriversLicense,
-                            VehicleMake = e.VehicleMake,
-                            VehicleModel = e.VehicleModel,
-                            VehicleColor = e.VehicleColor,
-                            VehiclePlate = e.VehiclePlate,
-                            VehicleYear = e.VehicleYear,
-                            VehicleInspected = e.VehicleInspected,
-                            CreatedBy = e.CreatedBy,
-                            CreatedUtc = e.CreatedUtc,
-                            ModifiedLast = e.ModifiedLast,
-                            ModifiedUtc = e.ModifiedUtc
-                        }
-                        );
+                    from e in ctx.ContactDbSet
+                    join u in ctx.Users on
+                    e.CreatedBy.ToString() equals u.Id
+                    //ctx
+                    //.ContactDbSet
+                    select new ContactListItem
+                    {
+                        Id = e.Id,
+                        PersonnelId = e.PersonnelId,
+                        Personnel = e.Personnel,
+                        PhoneNumber = e.PhoneNumber,
+                        PersonalEmail = e.PersonalEmail,
+                        MilEmail = e.MilEmail,
+                        HasDriversLicense = e.HasDriversLicense,
+                        VehicleMake = e.VehicleMake,
+                        VehicleModel = e.VehicleModel,
+                        VehicleColor = e.VehicleColor,
+                        VehiclePlate = e.VehiclePlate,
+                        VehicleYear = e.VehicleYear,
+                        VehicleInspected = e.VehicleInspected,
+                        CreatedByUserName = u.UserName,
+                        CreatedBy = e.CreatedBy,
+                        CreatedUtc = e.CreatedUtc,
+                        ModifiedLast = e.ModifiedLast,
+                        ModifiedUtc = e.ModifiedUtc
+                    };
                 return query.ToArray();
             }
         }
@@ -78,12 +79,18 @@ namespace Orderly.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .ContactDbSet
-                    .Single(e => e.PersonnelId == id);
-                return
-                    new ContactDetail
+                var record = (
+                    from entity
+                    in ctx.ContactDbSet
+                    join u in ctx.Users
+                    on entity.CreatedBy.ToString()
+                    equals u.Id
+                    where entity.PersonnelId == id
+                    //ctx
+                    //.ContactDbSet
+                    //.Single(e => e.PersonnelId == id);
+                    //return
+                    select new ContactDetail
                     {
                         Id = entity.Id,
                         PersonnelId = entity.PersonnelId,
@@ -98,11 +105,13 @@ namespace Orderly.Services
                         VehiclePlate = entity.VehiclePlate,
                         VehicleYear = entity.VehicleYear,
                         VehicleInspected = entity.VehicleInspected,
+                        CreatedByUserName = u.UserName,
                         CreatedBy = entity.CreatedBy,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedLast = entity.ModifiedLast,
                         ModifiedUtc = entity.ModifiedUtc
-                    };
+                    }).SingleOrDefault();
+                return record;
             }
         }
         public bool UpdateContact(ContactEdit model)
