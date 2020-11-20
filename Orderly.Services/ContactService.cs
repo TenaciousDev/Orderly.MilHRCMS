@@ -118,6 +118,8 @@ namespace Orderly.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var user = ctx.Users.Find(_userId.ToString());
+                var userName = user.UserName;
                 var entity =
                     ctx
                     .ContactDbSet
@@ -133,8 +135,7 @@ namespace Orderly.Services
                 entity.VehicleColor = model.VehicleColor;
                 entity.VehicleYear = model.VehicleYear;
                 entity.VehicleInspected = model.VehicleInspected;
-                entity.CreatedBy = model.CreatedBy;
-                entity.CreatedUtc = model.CreatedUtc;
+                entity.ModifiedByUserName = userName;
                 entity.ModifiedLast = _userId;
                 entity.ModifiedUtc = DateTimeOffset.Now;
                 return ctx.SaveChanges() == 1;

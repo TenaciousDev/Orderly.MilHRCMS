@@ -62,8 +62,8 @@ namespace Orderly.WebMVC.Controllers
                     Personnel = detail.Personnel,
                     Address = detail.Address,
                     Room = detail.Room,
-                    CreatedBy = detail.CreatedBy,
-                    CreatedUtc = detail.CreatedUtc,
+                    //CreatedBy = detail.CreatedBy,
+                    //CreatedUtc = detail.CreatedUtc,
                     ModifiedLast = detail.ModifiedLast,
                     ModifiedUtc = detail.ModifiedUtc
                 };

@@ -42,27 +42,29 @@ namespace Orderly.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
-                    ctx
-                    .UnitInfoDbSet
-                    .Select(
-                        e =>
-                        new UnitInfoListItem
-                        {
-                            Id = e.Id,
-                            PersonnelId = e.PersonnelId,
-                            Personnel = e.Personnel,
-                            TeamId = e.TeamId,
-                            Team = e.Team,
-                            Role = e.Role,
-                            Arrived = e.Arrived,
-                            LossDate = e.LossDate,
-                            DutyStatus = e.DutyStatus,
-                            CreatedBy = e.CreatedBy,
-                            CreatedUtc = e.CreatedUtc,
-                            ModifiedLast = e.ModifiedLast,
-                            ModifiedUtc = e.ModifiedUtc
-                        }
-                        );
+                    from e in ctx.UnitInfoDbSet
+                    join u in ctx.Users
+                    on e.CreatedBy.ToString() equals u.Id
+                    join m in ctx.Users
+                    on e.ModifiedLast.ToString() equals m.Id
+                    select new UnitInfoListItem
+                    {
+                        Id = e.Id,
+                        PersonnelId = e.PersonnelId,
+                        Personnel = e.Personnel,
+                        TeamId = e.TeamId,
+                        Team = e.Team,
+                        Role = e.Role,
+                        Arrived = e.Arrived,
+                        LossDate = e.LossDate,
+                        DutyStatus = e.DutyStatus,
+                        CreatedByUserName = u.UserName,
+                        CreatedBy = e.CreatedBy,
+                        CreatedUtc = e.CreatedUtc,
+                        ModifiedByUserName = m.UserName,
+                        ModifiedLast = e.ModifiedLast,
+                        ModifiedUtc = e.ModifiedUtc
+                    };
                 return query.ToArray();
             }
         }
@@ -70,12 +72,14 @@ namespace Orderly.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .UnitInfoDbSet
-                    .Single(e => e.PersonnelId == id);
-                return
-                    new UnitInfoDetail
+                var record = (
+                    from entity in ctx.UnitInfoDbSet
+                    join u in ctx.Users
+                    on entity.CreatedBy.ToString() equals u.Id
+                    join m in ctx.Users
+                    on entity.ModifiedLast.ToString() equals m.Id
+                    where entity.PersonnelId == id
+                    select new UnitInfoDetail
                     {
                         Id = entity.Id,
                         PersonnelId = entity.PersonnelId,
@@ -86,17 +90,22 @@ namespace Orderly.Services
                         Arrived = entity.Arrived,
                         LossDate = entity.LossDate,
                         DutyStatus = entity.DutyStatus,
+                        CreatedByUserName = u.UserName,
                         CreatedBy = entity.CreatedBy,
                         CreatedUtc = entity.CreatedUtc,
+                        ModifiedByUserName = m.UserName,
                         ModifiedLast = entity.ModifiedLast,
                         ModifiedUtc = entity.ModifiedUtc
-                    };
+                    }).SingleOrDefault();
+                return record;
             }
         }
         public bool UpdateUnitInfo(UnitInfoEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var user = ctx.Users.Find(_userId.ToString());
+                var userName = user.UserName;
                 var entity =
                     ctx
                     .UnitInfoDbSet
@@ -109,8 +118,7 @@ namespace Orderly.Services
                 entity.Arrived = model.Arrived;
                 entity.LossDate = model.LossDate;
                 entity.DutyStatus = model.DutyStatus;
-                entity.CreatedBy = model.CreatedBy;
-                entity.CreatedUtc = model.CreatedUtc;
+                entity.ModifiedByUserName = userName;
                 entity.ModifiedLast = _userId;
                 entity.ModifiedUtc = DateTimeOffset.Now;
                 return ctx.SaveChanges() == 1;

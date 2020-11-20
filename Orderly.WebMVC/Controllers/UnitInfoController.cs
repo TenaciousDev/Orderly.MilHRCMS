@@ -66,8 +66,8 @@ namespace Orderly.WebMVC.Controllers
                     Arrived = detail.Arrived,
                     LossDate = detail.LossDate,
                     DutyStatus = detail.DutyStatus,
-                    CreatedBy = detail.CreatedBy,
-                    CreatedUtc = detail.CreatedUtc,
+                    //CreatedBy = detail.CreatedBy,
+                    //CreatedUtc = detail.CreatedUtc,
                     ModifiedLast = detail.ModifiedLast,
                     ModifiedUtc = detail.ModifiedUtc
                 };

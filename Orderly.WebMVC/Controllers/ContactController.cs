@@ -70,8 +70,8 @@ namespace Orderly.WebMVC.Controllers
                     VehiclePlate = detail.VehiclePlate,
                     VehicleYear = detail.VehicleYear,
                     VehicleInspected = detail.VehicleInspected,
-                    CreatedBy = detail.CreatedBy,
-                    CreatedUtc = detail.CreatedUtc,
+                    //CreatedBy = detail.CreatedBy,
+                    //CreatedUtc = detail.CreatedUtc,
                     ModifiedLast = detail.ModifiedLast,
                     ModifiedUtc = detail.ModifiedUtc
                 };

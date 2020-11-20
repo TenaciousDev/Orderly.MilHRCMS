@@ -26,12 +26,9 @@
            data-toggle="table"
            data-height="600"
            data-card-view="true">
-        <thead class="thead-dark">
+        <thead class="thead-dark overflow-auto">
             <tr>
                 <th></th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PersonnelId)
-                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Rank)
                 </th>
@@ -83,9 +80,6 @@
                     @{ 
                         string rank = item.Rank.ToString();
                     }
-                    @Html.DisplayFor(modelItem => item.PersonnelId)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => rank)
                 </td>
                 <td>

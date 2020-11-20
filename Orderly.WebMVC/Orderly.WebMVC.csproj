@@ -379,6 +379,7 @@
     <Content Include="Views\UnitInfo\Create.cshtml" />
     <Content Include="Views\UnitInfo\Details.cshtml" />
     <Content Include="Views\UnitInfo\Edit.cshtml" />
+    <Content Include="Views\Main\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

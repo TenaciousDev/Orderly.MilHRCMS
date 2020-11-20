@@ -57,8 +57,8 @@ namespace Orderly.Services
                         DOD = p.DOD,
                         DOB = p.DOB,
                         MaritalStatus = p.MaritalStatus,
-                        CreatedBy = p.CreatedBy,
                         CreatedByUserName = u.UserName,
+                        CreatedBy = p.CreatedBy,
                         ModifiedLast = p.ModifiedLast,
                         ModifiedByUserName = p.ModifiedByUserName,
                         CreatedUtc = p.CreatedUtc,
@@ -136,8 +136,8 @@ namespace Orderly.Services
                 entity.DOD = model.DOD;
                 entity.DOB = model.DOB;
                 entity.MaritalStatus = model.MaritalStatus;
-                entity.ModifiedLast = _userId;
                 entity.ModifiedByUserName = userName;
+                entity.ModifiedLast = _userId;
                 entity.ModifiedUtc = DateTimeOffset.Now;
                 return ctx.SaveChanges() == 1;
             }
