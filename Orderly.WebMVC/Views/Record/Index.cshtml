@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutRecord.cshtml";
 }
 
-<h2>Main</h2>
+<h1 class="h2 font-weight-normal">All Records</h1>
 <div class="table-outer">
     <table class="table table-sm table-hover table-fixed"
            id="table"
@@ -195,11 +195,6 @@
                 </td>
                 <td class="fit">
                     @Html.DisplayFor(modelItem => item.DutyStatus)
-                </td>
-                <td class="fit">
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PersonnelId }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>
         }

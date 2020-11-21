@@ -39,8 +39,8 @@ textarea {
     position: absolute;
     bottom: 0;
     width: 80%;
-    height: 10%; /* Sets the fixed height of the footer */
-    line-height: 10%; /* Vertically centers the text*/
+    height: 7%; /* Sets the fixed height of the footer */
+    line-height:7%; /* Vertically centers the text*/
 }
 
 table {
@@ -52,7 +52,7 @@ table {
 }*/
 
 .table-outer {
-    height: 70vh;
+    height: 80vh;
     width: 98vw;
     overflow: auto;
 }
@@ -62,4 +62,8 @@ table {
     white-space: nowrap;
     width: 1%;
     min-width: 7rem;
+}
+
+.go-back {
+    margin-left: -5vw;
 }

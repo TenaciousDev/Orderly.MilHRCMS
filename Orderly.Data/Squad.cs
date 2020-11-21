@@ -16,6 +16,7 @@ namespace Orderly.Data
         [ForeignKey(nameof(PlatoonId))]
         public virtual Platoon Platoon { get; set; }
         [Required]
+        [Display(Name = "Squad")]
         public string Name { get; set; }
         public string Familiar { get; set; }
         [Display(Name = "Personnel Assigned")]

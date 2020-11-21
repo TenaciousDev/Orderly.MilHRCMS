@@ -24,6 +24,8 @@ namespace Orderly.Services
                     join c in ctx.ContactDbSet on p.PersonnelId equals c.PersonnelId
                     join ui in ctx.UnitInfoDbSet on p.PersonnelId equals ui.PersonnelId
                     join h in ctx.HousingDbSet on p.PersonnelId equals h.PersonnelId
+                    join sqd in ctx.SquadDbSet on ui.Team.Squad.Id equals sqd.Id
+                    join plt in ctx.PlatoonDbSet on ui.Team.Squad.Platoon.Id equals plt.Id
                     select new RecordListItem
                     {
                     //Personnel
@@ -56,6 +58,10 @@ namespace Orderly.Services
                         //UnitInfo
                         TeamId = ui.TeamId,
                         Team = ui.Team,
+                        SquadId = sqd.Id,
+                        Squad = sqd,
+                        PlatoonId = plt.Id,
+                        Platoon = plt,
                         Role = ui.Role,
                         Arrived = ui.Arrived,
                         LossDate = ui.LossDate,
@@ -73,6 +79,8 @@ namespace Orderly.Services
                     join c in ctx.ContactDbSet on p.PersonnelId equals c.PersonnelId
                     join ui in ctx.UnitInfoDbSet on p.PersonnelId equals ui.PersonnelId
                     join h in ctx.HousingDbSet on p.PersonnelId equals h.PersonnelId
+                    join sqd in ctx.SquadDbSet on ui.Team.Squad.Id equals sqd.Id
+                    join plt in ctx.PlatoonDbSet on ui.Team.Squad.Platoon.Id equals plt.Id
                     where p.PersonnelId == id
                     select new RecordDetail
                     {
@@ -106,6 +114,10 @@ namespace Orderly.Services
                         //UnitInfo
                         TeamId = ui.TeamId,
                         Team = ui.Team,
+                        SquadId = sqd.Id,
+                        Squad = sqd,
+                        PlatoonId = plt.Id,
+                        Platoon = plt,
                         Role = ui.Role,
                         Arrived = ui.Arrived,
                         LossDate = ui.LossDate,

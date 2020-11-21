@@ -16,6 +16,7 @@ namespace Orderly.Data
         [ForeignKey(nameof(SquadId))]
         public virtual Squad Squad { get; set; }
         [Required]
+        [Display(Name = "Team")]
         public string Name { get; set; }
         public string Familiar { get; set; }
         public List<Personnel> Assigned { get; set; } = new List<Personnel>();

@@ -14,6 +14,10 @@ namespace Orderly.Models
         public virtual Personnel Personnel { get; set; }
         public int TeamId { get; set; }
         public virtual Team Team { get; set; }
+        public int SquadId { get; set; }
+        public virtual Squad Squad { get; set; }
+        public int PlatoonId { get; set; }
+        public virtual Platoon Platoon { get; set; }
         public string Role { get; set; }
         [Display(Name = "Arrival Date")]
         public DateTimeOffset Arrived { get; set; }

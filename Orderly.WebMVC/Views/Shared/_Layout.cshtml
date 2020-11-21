@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orderly | @ViewBag.Title</title>
-    @Styles.Render("~/Content/css","~/Content/Site.css")
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -28,7 +28,7 @@
 
     <div class="container body-content mt-4">
         @RenderBody()
-        <footer class="modal-footer custom-footer">
+        <footer class="custom-footer">
             <hr />
             <p>&copy; @DateTime.Now.Year | Orderly | created by <a href="https://asmetcalf.github.io/" target="_blank" class="text-body">Adam S. Metcalf</a></p>
         </footer>

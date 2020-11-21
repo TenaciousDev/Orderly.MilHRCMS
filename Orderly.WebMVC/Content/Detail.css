@@ -1,4 +1,45 @@
-﻿body {
+﻿html {
+    position: relative;
+    min-height: 100%;
 }
 
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
 
+/* Layout for regular View content */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+}
+
+/* Layout for data-oriented View content */
+.body-content-data {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: inherit;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.custom-footer {
+    position: absolute;
+    bottom: 0;
+    width: 30%;
+    height: 1%;
+    line-height: 1%;
+}

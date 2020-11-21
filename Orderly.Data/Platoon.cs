@@ -12,6 +12,7 @@ namespace Orderly.Data
         [Key]
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Platoon")]
         public string Name { get; set; }
         public string Familiar { get; set; }
         [Display(Name = "Personnel Assigned")]

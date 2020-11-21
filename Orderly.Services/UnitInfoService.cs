@@ -47,6 +47,8 @@ namespace Orderly.Services
                     on e.CreatedBy.ToString() equals u.Id
                     join m in ctx.Users
                     on e.ModifiedLast.ToString() equals m.Id
+                    join sq in ctx.UnitInfoDbSet on e.Team.Squad.Id equals sq.Id
+                    join plt in ctx.UnitInfoDbSet on e.Team.Squad.Platoon.Id equals plt.Id
                     select new UnitInfoListItem
                     {
                         Id = e.Id,
@@ -78,6 +80,8 @@ namespace Orderly.Services
                     on entity.CreatedBy.ToString() equals u.Id
                     join m in ctx.Users
                     on entity.ModifiedLast.ToString() equals m.Id
+                    join sq in ctx.UnitInfoDbSet on entity.Team.Squad.Id equals sq.Id
+                    join plt in ctx.UnitInfoDbSet on entity.Team.Squad.Platoon.Id equals plt.Id
                     where entity.PersonnelId == id
                     select new UnitInfoDetail
                     {
@@ -104,6 +108,10 @@ namespace Orderly.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var linkedSquad = ctx.UnitInfoDbSet.Find(model.Team.Squad);
+                var sqd = ctx.SquadDbSet.Find(linkedSquad.Id);
+                var linkedPlatoon = ctx.UnitInfoDbSet.Find(model.Team.Squad.Platoon);
+                var plt = ctx.PlatoonDbSet.Find(linkedPlatoon.Id);
                 var user = ctx.Users.Find(_userId.ToString());
                 var userName = user.UserName;
                 var entity =
@@ -114,6 +122,8 @@ namespace Orderly.Services
                 entity.Personnel = model.Personnel;
                 entity.TeamId = model.TeamId;
                 entity.Team = model.Team;
+                entity.Team.Squad.Id = sqd.Id;
+                entity.Team.Squad.Platoon.Id = plt.Id;
                 entity.Role = model.Role;
                 entity.Arrived = model.Arrived;
                 entity.LossDate = model.LossDate;
