@@ -49,7 +49,7 @@ namespace Orderly.Models
         public string PersonalEmail { get; set; }
         [Display(Name = ".mil Email")]
         public string MilEmail { get; set; }
-        [Display(Name = "Does SM have Drivers License?")]
+        [Display(Name = "Drivers License?")]
         public bool HasDriversLicense { get; set; }
         [Display(Name = "Vehicle Make")]
         public string VehicleMake { get; set; }

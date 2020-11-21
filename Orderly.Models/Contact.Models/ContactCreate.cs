@@ -24,9 +24,9 @@ namespace Orderly.Models
         public string VehicleMake { get; set; }
         [Display(Name = "Vehicle Model")]
         public string VehicleModel { get; set; }
-        [Display(Name = "Vehicle Model")]
-        public string VehicleColor { get; set; }
         [Display(Name = "Vehicle Color")]
+        public string VehicleColor { get; set; }
+        [Display(Name = "Vehicle Plate")]
         public string VehiclePlate { get; set; }
         [Display(Name = "Vehicle Year")]
         public int VehicleYear { get; set; }

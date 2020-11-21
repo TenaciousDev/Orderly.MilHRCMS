@@ -61,4 +61,5 @@ table {
 .table th.fit {
     white-space: nowrap;
     width: 1%;
+    min-width: 7rem;
 }

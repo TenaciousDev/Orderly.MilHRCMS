@@ -19,15 +19,15 @@ namespace Orderly.Models
         public string PersonalEmail { get; set; }
         [Display(Name = ".mil Email")]
         public string MilEmail { get; set; }
-        [Display(Name = "Does SM have Drivers License?")]
+        [Display(Name = "Drivers License?")]
         public bool HasDriversLicense { get; set; }
         [Display(Name = "Vehicle Make")]
         public string VehicleMake { get; set; }
         [Display(Name = "Vehicle Model")]
         public string VehicleModel { get; set; }
-        [Display(Name = "Vehicle Model")]
-        public string VehicleColor { get; set; }
         [Display(Name = "Vehicle Color")]
+        public string VehicleColor { get; set; }
+        [Display(Name = "Vehicle Plate")]
         public string VehiclePlate { get; set; }
         [Display(Name = "Vehicle Year")]
         public int VehicleYear { get; set; }
