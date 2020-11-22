@@ -51,11 +51,13 @@ namespace Orderly.Data
         [Required]
         [Display(Name = "Date of Birth")]
         public DateTimeOffset DOB { get; set; }
-        public TimeSpan Age
+        public int Age
         {
             get
             {
-                return DateTime.Now - DOB;
+                var age = DateTime.Now.Year - DOB.Year;
+                if (DOB.Date > DateTime.Now.AddYears(-age)) age--;
+                return age;
             }
         }
         [Required]

@@ -88,6 +88,10 @@
     <Compile Include="Migrations\202011191643120_AddedStringsToHoldApplicationUserName.designer.cs">
       <DependentUpon>202011191643120_AddedStringsToHoldApplicationUserName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011221416136_AlteredMathOnBirthdaysAndAge.cs" />
+    <Compile Include="Migrations\202011221416136_AlteredMathOnBirthdaysAndAge.designer.cs">
+      <DependentUpon>202011221416136_AlteredMathOnBirthdaysAndAge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Personnel.cs" />
     <Compile Include="Platoon.cs" />
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011191643120_AddedStringsToHoldApplicationUserName.resx">
       <DependentUpon>202011191643120_AddedStringsToHoldApplicationUserName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011221416136_AlteredMathOnBirthdaysAndAge.resx">
+      <DependentUpon>202011221416136_AlteredMathOnBirthdaysAndAge.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

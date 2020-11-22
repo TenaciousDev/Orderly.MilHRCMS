@@ -5,7 +5,33 @@
     Layout = "~/Views/Shared/_LayoutRecord.cshtml";
 }
 
-<h1 class="h2 font-weight-normal">All Records</h1>
+@*<div class="row">
+    <div class="col">
+        <h1 class="h2 font-weight-normal">All Records</h1>
+    </div>
+</div>*@
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <a class="navbar-brand btn btn-sm btn-info text-white" href=@Url.Action("Create","Personnel")>Add New Record</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Filter 1<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#">Platoon</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Filter 3</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Filter 4</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="table-outer">
     <table class="table table-sm table-hover table-fixed"
            id="table"
@@ -40,9 +66,6 @@
                     @Html.DisplayNameFor(model => model.Age)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ContactId)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.PhoneNumber)
                 </th>
                 <th>
@@ -73,19 +96,19 @@
                     @Html.DisplayNameFor(model => model.VehicleInspected)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.HousingId)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Address)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Room)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.UnitInfoId)
+                    @Html.DisplayNameFor(model => model.Platoon.Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TeamId)
+                    @Html.DisplayNameFor(model => model.Squad.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Team.Name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Role)
@@ -107,7 +130,7 @@
         {
             <tr>
                 <td class="border-0 m-auto pr-2">
-                    <a href="@Url.Action("Details","Record", new { id = item.PersonnelId })" class="btn btn-outline-dark">Details</a>
+                    <a href="@Url.Action("Details","Record", new { id = item.PersonnelId })" class="btn btn-sm btn-outline-dark">Details</a>
                 </td>
                 <td class="fit">
                     @{
@@ -131,13 +154,13 @@
                     @Html.DisplayFor(modelItem => item.DOD)
                 </td>
                 <td class="fit">
-                    @Html.DisplayFor(modelItem => item.DOB)
+                    @{
+                        string dob = item.DOB.ToString("MM/dd/yyyy");
+                    }
+                    @Html.DisplayFor(modelItem => dob)
                 </td>
                 <td class="fit">
                     @Html.DisplayFor(modelItem => item.Age)
-                </td>
-                <td class="fit">
-                    @Html.DisplayFor(modelItem => item.ContactId)
                 </td>
                 <td class="fit">
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
@@ -170,19 +193,19 @@
                     @Html.DisplayFor(modelItem => item.VehicleInspected)
                 </td>
                 <td class="fit">
-                    @Html.DisplayFor(modelItem => item.HousingId)
-                </td>
-                <td class="fit">
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td class="fit">
                     @Html.DisplayFor(modelItem => item.Room)
                 </td>
                 <td class="fit">
-                    @Html.DisplayFor(modelItem => item.UnitInfoId)
+                    @Html.DisplayFor(modelItem => item.Platoon.Name)
                 </td>
                 <td class="fit">
-                    @Html.DisplayFor(modelItem => item.TeamId)
+                    @Html.DisplayFor(modelItem => item.Squad.Name)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.Team.Name)
                 </td>
                 <td class="fit">
                     @Html.DisplayFor(modelItem => item.Role)

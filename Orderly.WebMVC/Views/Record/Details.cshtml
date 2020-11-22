@@ -7,10 +7,14 @@
 @{
     string rank = Model.Rank.ToString();
     string license = Model.HasDriversLicense ? "Yes" : "No";
+    string dob = Model.DOB.ToString("MM/dd/yyyy");
+    string arrival = Model.Arrived.ToString("MM/dd/yyyy");
+    string loss = Model.LossDate.GetValueOrDefault().ToString("MM/dd/yyyy");
+    string blank = "";
 }
 <div class="jumbotron jumbotron-fluid pl-4 bg-transparent mb-0 pb-1">
-    <a class="btn go-back mb-2 text-info text-decoration-none" href=@Url.Action("Index","Record")><i class="fa fa-2x fa-backward pt-2"></i></a>
-    <h1 class="mb-2">Personnel Record</h1>
+    <a class="btn mb-2 text-primary text-decoration-none" href=@Url.Action("Index","Record")><i class="fa fa-2x fa-backward pt-2 fa-align-center"></i><span class="h4 font-weight-normal ml-3">Go Back</span></a>
+    <br />
     <i class="fa fa-2x fa-user pr-2"></i><h2 class="pl-2 d-inline">@Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => rank)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => model.Role)</h2>
     <hr class="" />
 </div>
@@ -33,68 +37,68 @@
             <div class="col card-body py-1">
                 <div class="row">
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.Rank)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => rank)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.LastName)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.LastName)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.FirstName)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.FirstName)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.MiddleName)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.MiddleName)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.SSN)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.SSN)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.DOD)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.DOD)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.DOB)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.DOB)
-                        </dd>
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => dob)
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.Age)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.Age)
-                        </dd>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -116,68 +120,68 @@
             <div class="col card-body py-1">
                 <div class="row">
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.PhoneNumber)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.PhoneNumber)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.MilEmail)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.MilEmail)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.PersonalEmail)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.PersonalEmail)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.HasDriversLicense)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => license)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.VehicleMake)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.VehicleMake)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.VehicleModel)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.VehicleModel)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.VehicleColor)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.VehicleColor)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.VehiclePlate)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.VehiclePlate)
-                        </dd>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -199,20 +203,20 @@
             <div class="card-body py-1">
                 <div class="row">
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.Address)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.Address)
-                        </dd>
+                        </p>
                     </div>
                     <div class="col-md">
-                        <dt>
+                        <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.Room)
-                        </dt>
-                        <dd>
+                        </h6>
+                        <p>
                             @Html.DisplayFor(model => model.Room)
-                        </dd>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -279,7 +283,7 @@
                             @Html.DisplayNameFor(model => model.Arrived)
                         </h6>
                         <p>
-                            @Html.DisplayFor(model => model.Arrived)
+                            @Html.DisplayFor(model => arrival)
                         </p>
                     </div>
                     <div class="col-md">
@@ -287,7 +291,11 @@
                             @Html.DisplayNameFor(model => model.LossDate)
                         </h6>
                         <p>
-                            @Html.DisplayFor(model => model.LossDate)
+                            @if (Model.LossDate != null)
+                            {
+                                Html.DisplayFor(model => loss);
+                            }
+                            @Html.DisplayFor(model => blank) 
                         </p>
                     </div>
                     <div class="col-md">

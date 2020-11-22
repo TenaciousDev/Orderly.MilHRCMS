@@ -31,11 +31,13 @@ namespace Orderly.Models
         public string DOD { get; set; }
         [Display(Name = "Date of Birth")]
         public DateTimeOffset DOB { get; set; }
-        public TimeSpan Age
+        public int Age
         {
             get
             {
-                return DOB - DateTime.Now;
+                var age = DateTime.Today.Year - DOB.Year;
+                if (DOB.Date > DateTime.Today.AddYears(-age)) age--;
+                return age;
             }
         }
         [Display(Name = "Marital Status")]
