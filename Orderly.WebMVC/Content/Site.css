@@ -8,10 +8,11 @@ body {
     padding-bottom: 20px;
 }
 
-/* Layout for regular View content */
+/* Layout for standard View content */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 15vh;
     margin: auto;
 }
 
@@ -20,6 +21,13 @@ body {
     padding-left: 15px;
     padding-right: 15px;
     margin: inherit;
+}
+
+/* Layout for detail-oriented View content */
+.body-content-detail {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    margin: auto;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -34,13 +42,6 @@ input,
 select,
 textarea {
     max-width: 280px;
-}
-.custom-footer {
-    position: absolute;
-    bottom: 0;
-    width: 80%;
-    height: 7%; /* Sets the fixed height of the footer */
-    line-height:7%; /* Vertically centers the text*/
 }
 
 table {

@@ -3,11 +3,12 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
 }
 @{
     string rank = Model.Rank.ToString();
-    string license = Model.HasDriversLicense ? "Yes" : "No";
     string dob = Model.DOB.ToString("MM/dd/yyyy");
+    string license = Model.HasDriversLicense ? "Yes" : "No";
     string arrival = Model.Arrived.ToString("MM/dd/yyyy");
     string loss = Model.LossDate.GetValueOrDefault().ToString("MM/dd/yyyy");
     string blank = "";
@@ -22,7 +23,7 @@
     <div class="row my-3 ml-lg-2">
         <div class="card col p-0">
             <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
-                <a class="btn btn-sm" href="@Url.Action("Details","Personnel", new { id = Model.PersonnelId })">
+                <a class="btn btn-sm" href="@Url.Action("Details","Personnel",new { id = Model.PersonnelId })">
                     <span class="text-muted" data-toggle="tooltip" data-placement="top" title="View Record"><i class="fa fa-2x fa-address-book text-hover"></i></span>
                 </a>
                 <a class="btn btn-sm" href="@Url.Action("Edit","Personnel", new { id = Model.PersonnelId })">

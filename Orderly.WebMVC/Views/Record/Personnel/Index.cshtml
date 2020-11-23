@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Orderly.Models.PersonnelListItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutRecord.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+<div class="table-outer">
+    <table
+           class="table table-sm table-hover table-fixed"
+           id="table"
+           data-toggle="table"
+           data-height="600"
+           data-card-view="true">
+        <thead class="thead-dark overflow-auto">
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rank)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MiddleName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SSN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DOD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DOB)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedByUserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedByUserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedUtc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedUtc)
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.PersonnelId }) |*@
+                    @Html.ActionLink("Details", "Details", new { id = item.PersonnelId })
+                    @*                @Html.ActionLink("Delete", "Delete", new { id=item.PersonnelId })
+                    *@
+                </td>
+                <td>
+                    @{ 
+                        string rank = item.Rank.ToString();
+                    }
+                    @Html.DisplayFor(modelItem => rank)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SSN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedByUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedByUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedUtc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedUtc)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
