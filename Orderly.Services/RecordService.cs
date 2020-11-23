@@ -28,7 +28,7 @@ namespace Orderly.Services
                     join plt in ctx.PlatoonDbSet on ui.Team.Squad.Platoon.Id equals plt.Id
                     select new RecordListItem
                     {
-                    //Personnel
+                        //Personnel
                         PersonnelId = p.PersonnelId,
                         Rank = p.Rank,
                         FirstName = p.FirstName,
@@ -39,7 +39,7 @@ namespace Orderly.Services
                         DOD = p.DOD,
                         DOB = p.DOB,
                         MaritalStatus = p.MaritalStatus,
-                    //Contact
+                        //Contact
                         ContactId = c.Id,
                         //Personnel = c.Personnel,
                         PhoneNumber = c.PhoneNumber,
@@ -76,6 +76,7 @@ namespace Orderly.Services
             {
                 var record = (
                     from p in ctx.PersonnelDbSet
+                    join u in ctx.Users on p.CreatedBy.ToString() equals u.Id
                     join c in ctx.ContactDbSet on p.PersonnelId equals c.PersonnelId
                     join ui in ctx.UnitInfoDbSet on p.PersonnelId equals ui.PersonnelId
                     join h in ctx.HousingDbSet on p.PersonnelId equals h.PersonnelId
@@ -121,10 +122,86 @@ namespace Orderly.Services
                         Role = ui.Role,
                         Arrived = ui.Arrived,
                         LossDate = ui.LossDate,
-                        DutyStatus = ui.DutyStatus
+                        DutyStatus = ui.DutyStatus,
+                        CreatedBy = p.CreatedBy,
+                        CreatedByUserName = u.UserName,
+                        CreatedUtc = p.CreatedUtc,
+                        ModifiedLast = p.ModifiedLast,
+                        ModifiedByUserName = p.ModifiedByUserName,
+                        ModifiedUtc = p.ModifiedUtc
                     }
                     ).SingleOrDefault();
                 return record;
+            }
+        }
+        public bool UpdateRecord(RecordEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var linkedSquad = ctx.UnitInfoDbSet.Find(model.Team.Squad);
+                var sqd = ctx.SquadDbSet.Find(linkedSquad.Id);
+                var linkedPlatoon = ctx.UnitInfoDbSet.Find(model.Team.Squad.Platoon);
+                var plt = ctx.PlatoonDbSet.Find(linkedPlatoon.Id);
+                var user = ctx.Users.Find(_userId.ToString());
+                var contact = ctx.ContactDbSet.Find(model.ContactId);
+                var housing = ctx.HousingDbSet.Find(model.HousingId);
+                var unitInfo = ctx.UnitInfoDbSet.Find(model.UnitInfoId);
+                var entity =
+                    ctx
+                    .PersonnelDbSet
+                    .Single(e => e.PersonnelId == model.PersonnelId);
+                //Personnel
+                entity.PersonnelId = model.PersonnelId;
+                entity.Rank = model.Rank;
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
+                entity.MiddleName = model.MiddleName;
+                entity.Sex = model.Sex;
+                entity.SSN = model.SSN;
+                entity.DOD = model.DOD;
+                entity.DOB = model.DOB;
+                entity.MaritalStatus = model.MaritalStatus;
+                entity.ModifiedByUserName = user.UserName;
+                entity.ModifiedLast = _userId;
+                entity.ModifiedUtc = DateTimeOffset.Now;
+                //Contact
+                contact.PersonnelId = model.PersonnelId;
+                contact.Personnel = model.Personnel;
+                contact.PhoneNumber = model.PhoneNumber;
+                contact.PersonalEmail = model.PersonalEmail;
+                contact.MilEmail = model.MilEmail;
+                contact.HasDriversLicense = model.HasDriversLicense;
+                contact.VehicleMake = model.VehicleMake;
+                contact.VehicleModel = model.VehicleModel;
+                contact.VehicleColor = model.VehicleColor;
+                contact.VehicleYear = model.VehicleYear;
+                contact.VehicleInspected = model.VehicleInspected;
+                contact.ModifiedByUserName = user.UserName;
+                contact.ModifiedLast = _userId;
+                contact.ModifiedUtc = DateTimeOffset.Now;
+                //Housing
+                housing.PersonnelId = model.PersonnelId;
+                housing.Personnel = model.Personnel;
+                housing.Address = model.Address;
+                housing.Room = model.Room;
+                housing.ModifiedByUserName = user.UserName;
+                housing.ModifiedLast = _userId;
+                housing.ModifiedUtc = DateTimeOffset.Now;
+                //UnitInfo
+                unitInfo.PersonnelId = model.PersonnelId;
+                unitInfo.Personnel = model.Personnel;
+                unitInfo.TeamId = model.TeamId;
+                unitInfo.Team = model.Team;
+                unitInfo.Team.Squad.Id = sqd.Id;
+                unitInfo.Team.Squad.Platoon.Id = plt.Id;
+                unitInfo.Role = model.Role;
+                unitInfo.Arrived = model.Arrived;
+                unitInfo.LossDate = model.LossDate;
+                unitInfo.DutyStatus = model.DutyStatus;
+                unitInfo.ModifiedByUserName = user.UserName;
+                unitInfo.ModifiedLast = _userId;
+                unitInfo.ModifiedUtc = DateTimeOffset.Now;
+                return ctx.SaveChanges() >= 1;
             }
         }
     }

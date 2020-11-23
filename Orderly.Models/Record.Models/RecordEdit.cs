@@ -8,16 +8,11 @@ using System.Threading.Tasks;
 
 namespace Orderly.Models
 {
-    public class RecordDetail
+    public class RecordEdit
     {
-        //Summary:
-        //This item collects all properties related to personnel records.
-        //It draws from the following classes: Personnel, Housing, Contact, and UnitInfo
-        //A RecordDetail is used to display all data associated with a human being
-        //from within a single View.
-
         //PERSONNEL
         public int PersonnelId { get; set; }
+        public virtual Personnel Personnel { get; set; }
         public Grade Rank { get; set; }
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -45,6 +40,8 @@ namespace Orderly.Models
 
         //CONTACT
         public int ContactId { get; set; }
+        public virtual Contact Contact { get; set; }
+
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         [Display(Name = "Personal Email")]
@@ -68,6 +65,7 @@ namespace Orderly.Models
 
         //HOUSING
         public int HousingId { get; set; }
+        public virtual Housing Housing { get; set; }
         [Display(Name = "Street Address")]
         public string Address { get; set; }
         [Display(Name = "Room #")]
@@ -75,6 +73,7 @@ namespace Orderly.Models
 
         //UNITINFO
         public int UnitInfoId { get; set; }
+        public virtual UnitInfo UnitInfo { get; set; }
         public int TeamId { get; set; }
         public virtual Team Team { get; set; }
         public int SquadId { get; set; }

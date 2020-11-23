@@ -36,6 +36,10 @@ textarea {
     max-width: 280px;
 }
 
+.text-hover:hover {
+    color: #343a40;
+}
+
 .custom-footer {
     position: absolute;
     bottom: 0;
