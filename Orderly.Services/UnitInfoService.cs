@@ -75,11 +75,14 @@ namespace Orderly.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var record = (
-                    from entity in ctx.UnitInfoDbSet
+                    from entity
+                    in ctx.UnitInfoDbSet
                     join u in ctx.Users
-                    on entity.CreatedBy.ToString() equals u.Id
+                    on entity.CreatedBy.ToString()
+                    equals u.Id
                     join m in ctx.Users
-                    on entity.ModifiedLast.ToString() equals m.Id
+                    on entity.ModifiedLast.ToString()
+                    equals m.Id
                     join sq in ctx.UnitInfoDbSet on entity.Team.Squad.Id equals sq.Id
                     join plt in ctx.UnitInfoDbSet on entity.Team.Squad.Platoon.Id equals plt.Id
                     where entity.PersonnelId == id

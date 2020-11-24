@@ -438,6 +438,10 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Shared\_LayoutDetail.cshtml" />
     <Content Include="Views\Record\Edit.cshtml" />
+    <Content Include="Views\Record\EditPersonnel.cshtml" />
+    <Content Include="Views\Record\EditContact.cshtml" />
+    <Content Include="Views\Record\EditHousing.cshtml" />
+    <Content Include="Views\Record\EditUnitInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

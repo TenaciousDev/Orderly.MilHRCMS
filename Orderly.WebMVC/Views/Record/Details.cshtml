@@ -18,17 +18,14 @@
 <div class="jumbotron jumbotron-fluid pl-4 bg-transparent mb-0 pb-1">
     <a class="btn mb-2 text-primary text-decoration-none" href=@Url.Action("Index","Record")><i class="fa fa-2x fa-backward pt-2 fa-align-center"></i><span class="h4 font-weight-normal ml-3">Go Back</span></a>
     <br />
-    <i class="fa fa-2x fa-user pr-2"></i><h2 class="pl-2 d-inline">@Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => rank)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => model.Role)</h2>
+    <i class="fa fa-2x fa-address-card pr-2"></i><h2 class="pl-2 d-inline">@Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => rank)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => model.Role)</h2>
     <hr class="" />
 </div>
 <div class="container">
     <div class="row my-3 ml-lg-2">
         <div class="card col p-0">
             <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
-                <a class="btn btn-sm" href="@Url.Action("Details","Record", new { id = Model.PersonnelId })">
-                    <span class="text-muted" data-toggle="tooltip" data-placement="top" title="View Record"><i class="fa fa-2x fa-address-book text-hover"></i></span>
-                </a>
-                <a class="btn btn-sm" href="@Url.Action("Edit","Record", new { id = Model.PersonnelId })">
+                <a class="btn btn-sm" href="@Url.Action("EditPersonnel","Record", new { id = Model.PersonnelId })">
                     <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
                 </a>
             </div>
@@ -110,10 +107,7 @@
     <div class="row my-3 ml-lg-2">
         <div class="card col p-0">
             <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
-                <a class="btn btn-sm" href="@Url.Action("Details","Contact", new { id = Model.PersonnelId })">
-                    <span class="text-muted" data-toggle="tooltip" data-placement="top" title="View Record"><i class="fa fa-2x fa-address-book text-hover"></i></span>
-                </a>
-                <a class="btn btn-sm" href="@Url.Action("Edit","Contact", new { id = Model.PersonnelId })">
+                <a class="btn btn-sm" href="@Url.Action("EditContact","Record", new { id = Model.PersonnelId })">
                     <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
                 </a>
             </div>
@@ -193,10 +187,7 @@
     <div class="row my-3 ml-lg-2">
         <div class="card col-4 p-0">
             <div class="btn-group d-none d-md-flex align-self-end position-absolute pt-2" role="group">
-                <a class="btn btn-sm" href="@Url.Action("Detail","Housing", new { id = Model.PersonnelId })">
-                    <span class="text-muted" data-toggle="tooltip" data-placement="top" title="View Record"><i class="fa fa-2x fa-address-book text-hover"></i></span>
-                </a>
-                <a class="btn btn-sm" href="@Url.Action("Edit","Housing", new { id = Model.PersonnelId })">
+                <a class="btn btn-sm" href="@Url.Action("EditHousing","Record", new { id = Model.PersonnelId })">
                     <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
                 </a>
             </div>
@@ -225,19 +216,13 @@
             </div>
             <div class="d-md-none pr-2 text-right">
                 <p class="m-0">
-                    <a class="card-link" href="@Url.Action("Detail","Housing", new { id = Model.PersonnelId })">View</a>
-                </p>
-                <p class="m-0">
-                    <a class="card-link" href="@Url.Action("Edit","Housing", new { id = Model.PersonnelId })">Edit</a>
+                    <a class="card-link" href="@Url.Action("EditHousing","Record", new { id = Model.PersonnelId })">Edit</a>
                 </p>
             </div>
         </div>
         <div class="card col ml-2 p-0">
             <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
-                <a class="btn btn-sm" href="@Url.Action("Detail","UnitInfo", new { id = Model.PersonnelId })">
-                    <span class="text-muted" data-toggle="tooltip" data-placement="top" title="View Record"><i class="fa fa-2x fa-address-book text-hover"></i></span>
-                </a>
-                <a class="btn btn-sm" href="@Url.Action("Edit","UnitInfo", new { id = Model.PersonnelId })">
+                <a class="btn btn-sm" href="@Url.Action("EditUnitInfo","Record", new { id = Model.PersonnelId })">
                     <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
                 </a>
             </div>

@@ -74,7 +74,7 @@ namespace Orderly.WebMVC.Controllers
             return View(model);
         }
         //GET: Record/Edit/Personnel/id
-        [Route("Personnel/Edit/{id}")]
+        //[Route("Personnel/Edit/{id}")]
         public ActionResult EditPersonnel(int id)
         {
             var svc = CreatePersonnelService();
@@ -99,7 +99,6 @@ namespace Orderly.WebMVC.Controllers
             return View(model);
         }
         //POST: Record/Edit/Personnel/id
-        [Route("Personnel/Edit/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditPersonnel(int id, PersonnelEdit model)
@@ -117,13 +116,12 @@ namespace Orderly.WebMVC.Controllers
             if (svc.UpdatePersonnel(model))
             {
                 TempData["SaveResult"] = "Record updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = model.PersonnelId });
             }
             ModelState.AddModelError("", "Unable to update record.");
             return View();
         }
         //GET: Contact/Edit/id
-        [Route("Contact/Edit/{id}")]
         public ActionResult EditContact(int id)
         {
             var svc = CreateContactService();
@@ -152,7 +150,6 @@ namespace Orderly.WebMVC.Controllers
             return View(model);
         }
         //POST: Contact/Edit/id
-        [Route("Contact/Edit/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditContact(int id, ContactEdit model)
@@ -176,7 +173,6 @@ namespace Orderly.WebMVC.Controllers
             return View();
         }
         //GET: Housing/Edit/id
-        [Route("Housing/Edit/{id}")]
         public ActionResult EditHousing(int id)
         {
             var svc = CreateHousingService();
@@ -197,7 +193,6 @@ namespace Orderly.WebMVC.Controllers
             return View(model);
         }
         //POST: Housing/Edit/id
-        [Route("Housing/Edit/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditHousing(int id, HousingEdit model)
@@ -221,7 +216,6 @@ namespace Orderly.WebMVC.Controllers
             return View();
         }
         //GET: UnitInfo/Edit/id
-        [Route("UnitInfo/Edit/{id}")]
         public ActionResult EditUnitInfo(int id)
         {
             var svc = CreateUnitInfoService();
@@ -246,7 +240,6 @@ namespace Orderly.WebMVC.Controllers
             return View(model);
         }
         //POST: UnitInfo/Edit/id
-        [Route("UnitInfo/Edit/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditUnitInfo(int id, UnitInfoEdit model)
