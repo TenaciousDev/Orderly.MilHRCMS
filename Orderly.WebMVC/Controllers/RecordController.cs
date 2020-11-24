@@ -27,6 +27,35 @@ namespace Orderly.WebMVC.Controllers
             var model = svc.GetRecordByPersonnelId(id);
             return View(model);
         }
+        //GET: Record/UpdatePersonal/id
+        public ActionResult UpdatePersonal(int id)
+        {
+            var svc = CreateRecordService();
+            var model = svc.GetRecordByPersonnelId(id);
+            return View(model);
+        }
+        //GET: Record/UpdateContact/id
+        public ActionResult UpdateContact(int id)
+        {
+            var svc = CreateRecordService();
+            var model = svc.GetRecordByPersonnelId(id);
+            return View(model);
+        }
+        //GET: Record/UpdateHousing/id
+        public ActionResult UpdateHousing(int id)
+        {
+            var svc = CreateRecordService();
+            var model = svc.GetRecordByPersonnelId(id);
+            return View(model);
+        }
+        //GET: Record/UpdateOrganization/id
+        public ActionResult UpdateOrganization(int id)
+        {
+            var svc = CreateRecordService();
+            var model = svc.GetRecordByPersonnelId(id);
+            return View(model);
+        }
+
         //GET: Record/Edit/id
         public ActionResult Edit(int id)
         {
@@ -167,7 +196,7 @@ namespace Orderly.WebMVC.Controllers
             if (svc.UpdateContact(model))
             {
                 TempData["SaveResult"] = "Record updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = model.PersonnelId });
             }
             ModelState.AddModelError("", "Unable to update record.");
             return View();
@@ -210,7 +239,7 @@ namespace Orderly.WebMVC.Controllers
             if (svc.UpdateHousing(model))
             {
                 TempData["SaveResult"] = "Record updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = model.PersonnelId });
             }
             ModelState.AddModelError("", "Unable to update record.");
             return View();
@@ -257,7 +286,7 @@ namespace Orderly.WebMVC.Controllers
             if (svc.UpdateUnitInfo(model))
             {
                 TempData["SaveResult"] = "Record updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = model.PersonnelId });
             }
             ModelState.AddModelError("", "Unable to update record.");
             return View();

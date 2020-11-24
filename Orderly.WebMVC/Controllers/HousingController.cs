@@ -87,7 +87,7 @@ namespace Orderly.WebMVC.Controllers
             if (svc.UpdateHousing(model))
             {
                 TempData["SaveResult"] = "Record updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = model.PersonnelId });
             }
             ModelState.AddModelError("", "Unable to update record.");
             return View();

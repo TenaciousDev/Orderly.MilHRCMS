@@ -437,11 +437,15 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Shared\_LayoutDetail.cshtml" />
-    <Content Include="Views\Record\Edit.cshtml" />
-    <Content Include="Views\Record\EditPersonnel.cshtml" />
-    <Content Include="Views\Record\EditContact.cshtml" />
-    <Content Include="Views\Record\EditHousing.cshtml" />
-    <Content Include="Views\Record\EditUnitInfo.cshtml" />
+    <Content Include="Views\Record\_EditPersonnel.cshtml" />
+    <Content Include="Views\Record\_EditContact.cshtml" />
+    <Content Include="Views\Record\_EditHousing.cshtml" />
+    <Content Include="Views\Record\_EditUnitInfo.cshtml" />
+    <Content Include="Views\Record\_HeaderPartial.cshtml" />
+    <Content Include="Views\Record\UpdatePersonal.cshtml" />
+    <Content Include="Views\Record\UpdateContact.cshtml" />
+    <Content Include="Views\Record\UpdateHousing.cshtml" />
+    <Content Include="Views\Record\UpdateOrganization.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

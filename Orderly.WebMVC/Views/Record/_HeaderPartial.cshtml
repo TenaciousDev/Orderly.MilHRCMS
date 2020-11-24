@@ -1,0 +1,13 @@
+﻿@model Orderly.Models.RecordDetail
+
+@{
+    string rank = Model.Rank.ToString();
+    string first = Model.FirstName;
+    string last = Model.LastName;
+}
+
+<br />
+<i class="fa fa-2x fa-address-card pr-2"></i>
+<h2 class="pl-2 d-inline">@Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => rank)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => model.Role)</h2>
+<hr class="" />
+

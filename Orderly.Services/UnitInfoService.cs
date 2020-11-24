@@ -131,10 +131,10 @@ namespace Orderly.Services
                     .Single(e => e.Id == model.Id);
                 entity.PersonnelId = model.PersonnelId;
                 entity.Personnel = model.Personnel;
-                entity.TeamId = model.TeamId;
-                entity.Team = model.Team;
-                entity.Team.Squad.Id = sqd.Id;
-                entity.Team.Squad.Platoon.Id = plt.Id;
+
+
+
+
                 entity.Role = model.Role;
                 entity.Arrived = model.Arrived;
                 entity.LossDate = model.LossDate;

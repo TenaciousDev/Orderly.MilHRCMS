@@ -25,7 +25,7 @@
     <div class="row my-3 ml-lg-2">
         <div class="card col p-0">
             <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
-                <a class="btn btn-sm" href="@Url.Action("EditPersonnel","Record", new { id = Model.PersonnelId })">
+                <a class="btn btn-sm" href="@Url.Action("UpdatePersonal","Record", new { id = Model.PersonnelId })">
                     <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
                 </a>
             </div>
@@ -107,7 +107,7 @@
     <div class="row my-3 ml-lg-2">
         <div class="card col p-0">
             <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
-                <a class="btn btn-sm" href="@Url.Action("EditContact","Record", new { id = Model.PersonnelId })">
+                <a class="btn btn-sm" href="@Url.Action("UpdateContact","Record", new { id = Model.PersonnelId })">
                     <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
                 </a>
             </div>
@@ -187,7 +187,7 @@
     <div class="row my-3 ml-lg-2">
         <div class="card col-4 p-0">
             <div class="btn-group d-none d-md-flex align-self-end position-absolute pt-2" role="group">
-                <a class="btn btn-sm" href="@Url.Action("EditHousing","Record", new { id = Model.PersonnelId })">
+                <a class="btn btn-sm" href="@Url.Action("UpdateHousing","Record", new { id = Model.PersonnelId })">
                     <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
                 </a>
             </div>
@@ -216,13 +216,13 @@
             </div>
             <div class="d-md-none pr-2 text-right">
                 <p class="m-0">
-                    <a class="card-link" href="@Url.Action("EditHousing","Record", new { id = Model.PersonnelId })">Edit</a>
+                    <a class="card-link" href="@Url.Action("UpdateHousing","Record", new { id = Model.PersonnelId })">Edit</a>
                 </p>
             </div>
         </div>
         <div class="card col ml-2 p-0">
             <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
-                <a class="btn btn-sm" href="@Url.Action("EditUnitInfo","Record", new { id = Model.PersonnelId })">
+                <a class="btn btn-sm" href="@Url.Action("UpdateOrganization","Record", new { id = Model.PersonnelId })">
                     <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
                 </a>
             </div>

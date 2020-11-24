@@ -2,14 +2,11 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
 }
 
 @{
     string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
     string modified = Model.ModifiedUtc.HasValue ? Model.ModifiedUtc.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
-    string blank = "";
-
 }
 
 
@@ -18,12 +15,6 @@
     @Html.AntiForgeryToken()
 
     <form>
-        <div class="jumbotron jumbotron-fluid pl-4 bg-transparent mb-0 pb-1">
-            <a class="btn mb-2 text-primary text-decoration-none" href="@Url.Action("Details","Record",new { id = Model.PersonnelId })"><i class="fa fa-2x fa-backward pt-2 fa-align-center"></i><span class="h4 font-weight-normal ml-3">Go Back</span></a>
-            <br />
-            <i class="fa fa-2x fa-phone-square pr-2"></i><h2 class="pl-2 d-inline">@*@Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => rank)*@ Placeholder Bullshit</h2>
-            <hr class="" />
-        </div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.PersonnelId)
         <div class="form-group">
