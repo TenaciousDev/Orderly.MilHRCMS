@@ -15,6 +15,9 @@ namespace Orderly.Services
         {
             _userId = userId;
         }
+        public List<Platoon> Platoons = new List<Platoon>();
+        public List<Squad> Squads = new List<Squad>();
+        public List<Team> Teams = new List<Team>();
         public bool CreateUnitInfo(UnitInfoCreate model)
         {
             var entity = new UnitInfo()
@@ -74,16 +77,17 @@ namespace Orderly.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var mod = ctx.Users.Find(_userId.ToString());
                 var record = (
                     from entity
                     in ctx.UnitInfoDbSet
                     join u in ctx.Users
                     on entity.CreatedBy.ToString()
                     equals u.Id
-                    join m in ctx.Users
+/*                    join m in ctx.Users
                     on entity.ModifiedLast.ToString()
                     equals m.Id
-                    join sq in ctx.UnitInfoDbSet on entity.Team.Squad.Id equals sq.Id
+*/                    join sq in ctx.UnitInfoDbSet on entity.Team.Squad.Id equals sq.Id
                     join plt in ctx.UnitInfoDbSet on entity.Team.Squad.Platoon.Id equals plt.Id
                     where entity.PersonnelId == id
                     select new UnitInfoDetail
@@ -93,6 +97,10 @@ namespace Orderly.Services
                         Personnel = entity.Personnel,
                         TeamId = entity.TeamId,
                         Team = entity.Team,
+                        Squad = entity.Team.Squad,
+                        SquadId = entity.Team.Squad.Id,
+                        Platoon = entity.Team.Squad.Platoon,
+                        PlatoonId = entity.Team.Squad.Platoon.Id,
                         Role = entity.Role,
                         Arrived = entity.Arrived,
                         LossDate = entity.LossDate,
@@ -100,7 +108,7 @@ namespace Orderly.Services
                         CreatedByUserName = u.UserName,
                         CreatedBy = entity.CreatedBy,
                         CreatedUtc = entity.CreatedUtc,
-                        ModifiedByUserName = m.UserName,
+                        ModifiedByUserName = entity.ModifiedByUserName,
                         ModifiedLast = entity.ModifiedLast,
                         ModifiedUtc = entity.ModifiedUtc
                     }).SingleOrDefault();
