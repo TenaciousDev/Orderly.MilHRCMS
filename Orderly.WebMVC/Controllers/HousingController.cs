@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Orderly.Data;
 using Orderly.Models;
 using Orderly.Services;
 using System;
@@ -27,17 +28,22 @@ namespace Orderly.WebMVC.Controllers
         //POST: Housing/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HousingCreate model)
+        public ActionResult Create(HousingCreate model, int id)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             var service = CreateHousingService();
-            if (service.CreateHousing(model))
+            if (service.CreateHousing(model, id))
             {
-                TempData["Save Result"] = "Record created.";
-                return RedirectToAction("Index");
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var count = ctx.PersonnelDbSet.Count();
+                    //TempData["Key Value"] = count;
+                    TempData["Save Result"] = "Record created.";
+                    return RedirectToAction("Details", "Record", new { id = count});
+                }
             };
             ModelState.AddModelError("", "Unable to create record.");
             return View(model);

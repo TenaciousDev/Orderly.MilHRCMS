@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Orderly.Data;
 using Orderly.Models;
 using Orderly.Services;
 using System;
@@ -36,8 +37,13 @@ namespace Orderly.WebMVC.Controllers
             var service = CreateContactService();
             if (service.CreateContact(model))
             {
-                TempData["Save Result"] = "Record created.";
-                return RedirectToAction("Index");
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var lastInsert = ctx.PersonnelDbSet.Last();
+                    TempData["Key Value"] = lastInsert.PersonnelId;
+                    TempData["Save Result"] = "Record created.";
+                    return RedirectToAction("CreateHousingRecord", "Record");
+                }
             };
             ModelState.AddModelError("", "Unable to create record.");
             return View(model);

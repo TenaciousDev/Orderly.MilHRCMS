@@ -446,6 +446,13 @@
     <Content Include="Views\Record\UpdateContact.cshtml" />
     <Content Include="Views\Record\UpdateHousing.cshtml" />
     <Content Include="Views\Record\UpdateOrganization.cshtml" />
+    <Content Include="Views\Record\CreatePersonnelRecord.cshtml" />
+    <Content Include="Views\Record\_CreatePersonnel.cshtml" />
+    <Content Include="Views\Record\_CreateContact.cshtml" />
+    <Content Include="Views\Record\_CreateHousing.cshtml" />
+    <Content Include="Views\Record\CreateContactRecord.cshtml" />
+    <Content Include="Views\Record\CreateHousingRecord.cshtml" />
+    <Content Include="Views\Record\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

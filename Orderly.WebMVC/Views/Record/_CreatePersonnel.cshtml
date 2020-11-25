@@ -1,0 +1,100 @@
+﻿@model Orderly.Models.PersonnelCreate
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@{
+    string rank = Model.Rank.ToString();
+    string dob = Model.DOB.ToString("MM/dd/yyyy");
+}
+
+@using (Html.BeginForm("Create", "Personnel", new { id = Model.PersonnelId }))
+{
+    @Html.AntiForgeryToken()
+
+    <form>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+        </div>
+
+        <div class="container">
+            <div class="row my-3 ml-lg-2">
+            </div>
+            <div class="card col p-0 border-success">
+                <div class="card-header mb-3">
+                    <h4 class="card-title mb-1">
+                        Create Personal Record
+                    </h4>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-1 mr-md-2 mr-lg-0">
+                        @Html.LabelFor(model => model.Rank, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                        <div class="col">
+                            @Html.EnumDropDownListFor(model => model.Rank, new { htmlAttributes = new { @class = "form-control-lg" } })
+                            @Html.ValidationMessageFor(model => model.Rank, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.SSN, htmlAttributes: new { @class = "control-label col-md font-weight-bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SSN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SSN, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.DOD, htmlAttributes: new { @class = "control-label col-md font-weight-bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DOD, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DOD, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md font-weight-bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => dob, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save & Continue" class="btn btn-outline-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

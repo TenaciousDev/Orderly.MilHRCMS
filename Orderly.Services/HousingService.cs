@@ -15,11 +15,11 @@ namespace Orderly.Services
         {
             _userId = userId;
         }
-        public bool CreateHousing(HousingCreate model)
+        public bool CreateHousing(HousingCreate model, int id)
         {
             var entity = new Housing()
             {
-                PersonnelId = model.PersonnelId,
+                PersonnelId = id,
                 Personnel = model.Personnel,
                 Address = model.Address,
                 Room = model.Room,

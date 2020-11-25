@@ -11,6 +11,7 @@ namespace Orderly.Models
     public class RecordEdit
     {
         //PERSONNEL
+        [Key]
         public int PersonnelId { get; set; }
         public virtual Personnel Personnel { get; set; }
         public Grade Rank { get; set; }

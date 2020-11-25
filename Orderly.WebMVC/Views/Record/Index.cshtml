@@ -6,7 +6,7 @@
 }
 
 <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-    <a class="navbar-brand btn btn-sm btn-info text-white" href=@Url.Action("Create","Personnel")>Add New Record</a>
+    <a class="navbar-brand btn btn-sm btn-info text-white" href=@Url.Action("CreatePersonnelRecord","Record")>Add New Record</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,10 +40,10 @@
                     @Html.DisplayNameFor(model => model.Rank)
                 </th>
                 <th class="fit">
-                    @Html.DisplayNameFor(model => model.FirstName)
+                    @Html.DisplayNameFor(model => model.LastName)
                 </th>
                 <th class="fit">
-                    @Html.DisplayNameFor(model => model.LastName)
+                    @Html.DisplayNameFor(model => model.FirstName)
                 </th>
                 <th class="fit">
                     @Html.DisplayNameFor(model => model.MiddleName)
@@ -134,10 +134,10 @@
                     @Html.DisplayFor(modelItem => rank)
                 </td>
                 <td class="fit">
-                    @Html.DisplayFor(modelItem => item.FirstName)
+                    @Html.DisplayFor(modelItem => item.LastName)
                 </td>
                 <td class="fit">
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
                 <td class="fit">
                     @Html.DisplayFor(modelItem => item.MiddleName)

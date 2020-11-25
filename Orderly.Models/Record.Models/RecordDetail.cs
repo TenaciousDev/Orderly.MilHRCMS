@@ -17,6 +17,7 @@ namespace Orderly.Models
         //from within a single View.
 
         //PERSONNEL
+        [Key]
         public int PersonnelId { get; set; }
         public Grade Rank { get; set; }
         [Display(Name = "First Name")]

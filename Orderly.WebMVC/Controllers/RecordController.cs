@@ -10,7 +10,6 @@ using System.Web.Mvc;
 namespace Orderly.WebMVC.Controllers
 {
     [Authorize]
-    [RoutePrefix("/Record")]
     public class RecordController : Controller
     {
         // GET: Record
@@ -20,12 +19,41 @@ namespace Orderly.WebMVC.Controllers
             var model = service.GetRecords();
             return View(model);
         }
-        //GET: Record/Detail/id
-        public ActionResult Details(int id)
+
+        //GET: Record MAIN PAGE THIS IS A TEST
+        public ActionResult Dashboard()
+        {
+            var service = CreateRecordService();
+            var model = service.GetRecords();
+            return View(model);
+        }
+
+            //GET: Record/Detail/id
+            public ActionResult Details(int id)
         {
             var svc = CreateRecordService();
             var model = svc.GetRecordByPersonnelId(id);
             return View(model);
+        }
+        //GET: Record/CreatePersonnelRecord
+        public ActionResult CreatePersonnelRecord()
+        {
+            return View();
+        }
+        //GET: Record/CreateContactRecord
+        public ActionResult CreateContactRecord()
+        {
+            return View();
+        }
+        //GET: Record/CreateHousingRecord
+        public ActionResult CreateHousingRecord()
+        {
+            return View();
+        }
+        //GET: Record/Assign
+        public ActionResult Assign()
+        {
+            return View();
         }
         //GET: Record/UpdatePersonal/id
         public ActionResult UpdatePersonal(int id)

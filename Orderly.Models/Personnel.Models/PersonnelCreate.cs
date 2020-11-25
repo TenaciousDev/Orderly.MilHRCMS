@@ -10,6 +10,8 @@ namespace Orderly.Models
 {
     public class PersonnelCreate
     {
+        [Key]
+        public int PersonnelId { get; set; }
         [Required]
         public Grade Rank { get; set; }
         [Required]

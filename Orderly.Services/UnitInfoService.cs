@@ -120,9 +120,6 @@ namespace Orderly.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var linkedSquad = ctx.UnitInfoDbSet.Find(model.Team.Squad);
-                var sqd = ctx.SquadDbSet.Find(linkedSquad.Id);
-                var linkedPlatoon = ctx.UnitInfoDbSet.Find(model.Team.Squad.Platoon);
-                var plt = ctx.PlatoonDbSet.Find(linkedPlatoon.Id);
                 var user = ctx.Users.Find(_userId.ToString());
                 var userName = user.UserName;
                 var entity =
@@ -131,7 +128,6 @@ namespace Orderly.Services
                     .Single(e => e.Id == model.Id);
                 entity.PersonnelId = model.PersonnelId;
                 entity.Personnel = model.Personnel;
-
 
 
 

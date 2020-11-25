@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Orderly.Models.RecordListItem>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutData.cshtml";
+}
+
+<div class="table-outer">
+    <table class="table table-sm table-hover table-fixed"
+           id="table"
+           data-toggle="table"
+           data-height="600"
+           data-card-view="true">
+        <thead class="thead-dark overflow-auto">
+            <tr>
+                <th class="bg-transparent border-0"></th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.Rank)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <table class="table table-sm table-hover table-fixed"
+           id="table"
+           data-toggle="table"
+           data-height="600"
+           data-card-view="true">
+        <thead class="thead-dark overflow-auto">
+            <tr>
+                <th class="bg-transparent border-0"></th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.Rank)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <table class="table table-sm table-hover table-fixed"
+           id="table"
+           data-toggle="table"
+           data-height="600"
+           data-card-view="true">
+        <thead class="thead-dark overflow-auto">
+            <tr>
+                <th class="bg-transparent border-0"></th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.Rank)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>

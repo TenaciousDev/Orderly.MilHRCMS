@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Orderly.Models
 {
-    public class RecordListItem
+    public class RecordCreate
     {
         //Summary:
         //This item collects all properties related to personnel records.
         //It draws from the following classes: Personnel, Housing, Contact, and UnitInfo
-        //A RecordListItem will return an IEnumerable of these classes' properties when
-        //called as a the return type of a method.
+        //A RecordDetail is used to display all data associated with a human being
+        //from within a single View.
 
         //PERSONNEL
         [Key]
@@ -58,9 +58,9 @@ namespace Orderly.Models
         public string VehicleMake { get; set; }
         [Display(Name = "Vehicle Model")]
         public string VehicleModel { get; set; }
-        [Display(Name = "Vehicle Model")]
-        public string VehicleColor { get; set; }
         [Display(Name = "Vehicle Color")]
+        public string VehicleColor { get; set; }
+        [Display(Name = "Vehicle Plate")]
         public string VehiclePlate { get; set; }
         [Display(Name = "Vehicle Year")]
         public int VehicleYear { get; set; }
@@ -89,5 +89,15 @@ namespace Orderly.Models
         public DateTimeOffset? LossDate { get; set; }
         [Display(Name = "Duty Status")]
         public string DutyStatus { get; set; }
+        [Display(Name = "Created by")]
+        public string CreatedByUserName { get; set; }
+        public Guid CreatedBy { get; set; }
+        [Display(Name = "Last modified by")]
+        public string ModifiedByUserName { get; set; }
+        public Guid ModifiedLast { get; set; }
+        [Display(Name = "Created on")]
+        public DateTimeOffset CreatedUtc { get; set; }
+        [Display(Name = "Modified on")]
+        public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }
