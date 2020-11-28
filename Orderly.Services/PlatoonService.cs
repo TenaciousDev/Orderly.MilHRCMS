@@ -39,7 +39,7 @@ namespace Orderly.Services
                         e =>
                         new PlatoonListItem
                         {
-                            Id = e.Id,
+                            Id = e.PlatoonId,
                             Name = e.Name,
                             Familiar = e.Familiar,
                             Assigned = e.Assigned,
@@ -57,7 +57,7 @@ namespace Orderly.Services
                 var entity =
                     ctx
                     .PlatoonDbSet
-                    .Single(e => e.Id == id);
+                    .Single(e => e.PlatoonId == id);
                 return
                     new PlatoonDetail
                     {
@@ -76,7 +76,7 @@ namespace Orderly.Services
                 var entity =
                     ctx
                     .PlatoonDbSet
-                    .Single(e => e.Id == model.Id);
+                    .Single(e => e.PlatoonId == model.Id);
                 entity.Name = model.Name;
                 entity.Familiar = model.Familiar;
                 entity.Assigned = model.Assigned;

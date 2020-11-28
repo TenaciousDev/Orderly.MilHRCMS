@@ -28,21 +28,21 @@ namespace Orderly.WebMVC.Controllers
         //POST: Housing/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HousingCreate model, int id)
+        public ActionResult Create(HousingCreate model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             var service = CreateHousingService();
-            if (service.CreateHousing(model, id))
+            if (service.CreateHousing(model))
             {
                 using (var ctx = new ApplicationDbContext())
                 {
-                    var count = ctx.PersonnelDbSet.Count();
-                    //TempData["Key Value"] = count;
+                    var newEntry = ctx.PersonnelDbSet.OrderByDescending(o => o.PersonnelId).FirstOrDefault();
+                    TempData["Key Value"] = newEntry.PersonnelId;
                     TempData["Save Result"] = "Record created.";
-                    return RedirectToAction("Details", "Record", new { id = count});
+                    return RedirectToAction("Index", "Record");
                 }
             };
             ModelState.AddModelError("", "Unable to create record.");

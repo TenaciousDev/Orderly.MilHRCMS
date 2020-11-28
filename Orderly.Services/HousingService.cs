@@ -15,20 +15,22 @@ namespace Orderly.Services
         {
             _userId = userId;
         }
-        public bool CreateHousing(HousingCreate model, int id)
+        public bool CreateHousing(HousingCreate model)
         {
-            var entity = new Housing()
-            {
-                PersonnelId = id,
-                Personnel = model.Personnel,
-                Address = model.Address,
-                Room = model.Room,
-                CreatedBy = _userId,
-                CreatedUtc = DateTimeOffset.Now,
-                ModifiedLast = Guid.Empty
-            };
             using (var ctx = new ApplicationDbContext())
             {
+                var newEntry = ctx.PersonnelDbSet.OrderByDescending(o => o.PersonnelId).FirstOrDefault();
+                var newId = newEntry.PersonnelId;
+                var entity = new Housing()
+                {
+                    PersonnelId = newId,
+                    Personnel = model.Personnel,
+                    Address = model.Address,
+                    Room = model.Room,
+                    CreatedBy = _userId,
+                    CreatedUtc = DateTimeOffset.Now,
+                    ModifiedLast = Guid.Empty
+                };
                 ctx.HousingDbSet.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
@@ -42,7 +44,7 @@ namespace Orderly.Services
                     join u in ctx.Users on e.CreatedBy.ToString() equals u.Id
                     select new HousingListItem
                     {
-                        Id = e.Id,
+                        Id = e.HousingId,
                         PersonnelId = e.PersonnelId,
                         Personnel = e.Personnel,
                         Address = e.Address,
@@ -70,7 +72,7 @@ namespace Orderly.Services
                     where entity.PersonnelId == id
                     select new HousingDetail
                     {
-                        Id = entity.Id,
+                        Id = entity.HousingId,
                         PersonnelId = entity.PersonnelId,
                         Personnel = entity.Personnel,
                         Address = entity.Address,
@@ -93,7 +95,7 @@ namespace Orderly.Services
                 var entity =
                     ctx
                     .HousingDbSet
-                    .Single(e => e.Id == model.Id);
+                    .Single(e => e.HousingId == model.Id);
                 entity.PersonnelId = model.PersonnelId;
                 entity.Personnel = model.Personnel;
                 entity.Address = model.Address;

@@ -50,11 +50,11 @@ namespace Orderly.Services
                     on e.CreatedBy.ToString() equals u.Id
                     join m in ctx.Users
                     on e.ModifiedLast.ToString() equals m.Id
-                    join sq in ctx.UnitInfoDbSet on e.Team.Squad.Id equals sq.Id
-                    join plt in ctx.UnitInfoDbSet on e.Team.Squad.Platoon.Id equals plt.Id
+                    join sq in ctx.UnitInfoDbSet on e.Team.Squad.SquadId equals sq.Team.SquadId
+                    join plt in ctx.UnitInfoDbSet on e.Team.Squad.Platoon.PlatoonId equals plt.Team.Squad.PlatoonId
                     select new UnitInfoListItem
                     {
-                        Id = e.Id,
+                        Id = e.UnitInfoId,
                         PersonnelId = e.PersonnelId,
                         Personnel = e.Personnel,
                         TeamId = e.TeamId,
@@ -87,20 +87,20 @@ namespace Orderly.Services
 /*                    join m in ctx.Users
                     on entity.ModifiedLast.ToString()
                     equals m.Id
-*/                    join sq in ctx.UnitInfoDbSet on entity.Team.Squad.Id equals sq.Id
-                    join plt in ctx.UnitInfoDbSet on entity.Team.Squad.Platoon.Id equals plt.Id
+*/                    join sq in ctx.UnitInfoDbSet on entity.Team.Squad.SquadId equals sq.Team.SquadId
+                    join plt in ctx.UnitInfoDbSet on entity.Team.Squad.Platoon.PlatoonId equals plt.Team.Squad.PlatoonId
                     where entity.PersonnelId == id
                     select new UnitInfoDetail
                     {
-                        Id = entity.Id,
+                        Id = entity.UnitInfoId,
                         PersonnelId = entity.PersonnelId,
                         Personnel = entity.Personnel,
                         TeamId = entity.TeamId,
                         Team = entity.Team,
                         Squad = entity.Team.Squad,
-                        SquadId = entity.Team.Squad.Id,
+                        SquadId = entity.Team.Squad.SquadId,
                         Platoon = entity.Team.Squad.Platoon,
-                        PlatoonId = entity.Team.Squad.Platoon.Id,
+                        PlatoonId = entity.Team.Squad.Platoon.PlatoonId,
                         Role = entity.Role,
                         Arrived = entity.Arrived,
                         LossDate = entity.LossDate,
@@ -125,7 +125,7 @@ namespace Orderly.Services
                 var entity =
                     ctx
                     .UnitInfoDbSet
-                    .Single(e => e.Id == model.Id);
+                    .Single(e => e.UnitInfoId == model.Id);
                 entity.PersonnelId = model.PersonnelId;
                 entity.Personnel = model.Personnel;
 

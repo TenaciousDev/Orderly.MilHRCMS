@@ -11,7 +11,7 @@ namespace Orderly.Data
     public class Contact
     {
         [Key]
-        public int Id { get; set; }
+        public int ContactId { get; set; }
         public int PersonnelId { get; set; }
         [ForeignKey(nameof(PersonnelId))]
         public virtual Personnel Personnel { get; set; }

@@ -41,7 +41,7 @@ namespace Orderly.Services
                         e =>
                         new SquadListItem
                         {
-                            Id = e.Id,
+                            Id = e.SquadId,
                             PlatoonId = e.PlatoonId,
                             Platoon = e.Platoon,
                             Name = e.Name,
@@ -60,7 +60,7 @@ namespace Orderly.Services
                 var entity =
                     ctx
                     .SquadDbSet
-                    .Single(e => e.Id == id);
+                    .Single(e => e.SquadId == id);
                 return
                     new SquadDetail
                     {
@@ -80,7 +80,7 @@ namespace Orderly.Services
                 var entity =
                     ctx
                     .SquadDbSet
-                    .Single(e => e.Id == model.Id);
+                    .Single(e => e.SquadId == model.Id);
                 entity.PlatoonId = model.PlatoonId;
                 entity.Platoon = model.Platoon;
                 entity.Name = model.Name;

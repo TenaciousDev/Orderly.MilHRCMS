@@ -11,7 +11,7 @@ namespace Orderly.Data
     public class Squad
     {
         [Key]
-        public int Id { get; set; }
+        public int SquadId { get; set; }
         public int PlatoonId { get; set; }
         [ForeignKey(nameof(PlatoonId))]
         public virtual Platoon Platoon { get; set; }

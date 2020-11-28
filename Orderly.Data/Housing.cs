@@ -11,7 +11,7 @@ namespace Orderly.Data
     public class Housing
     {
         [Key]
-        public int Id { get; set; }
+        public int HousingId { get; set; }
         public int PersonnelId { get; set; }
         [ForeignKey(nameof(PersonnelId))]
         public virtual Personnel Personnel { get; set; }

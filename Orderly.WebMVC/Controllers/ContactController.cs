@@ -39,8 +39,8 @@ namespace Orderly.WebMVC.Controllers
             {
                 using (var ctx = new ApplicationDbContext())
                 {
-                    var lastInsert = ctx.PersonnelDbSet.Last();
-                    TempData["Key Value"] = lastInsert.PersonnelId;
+                    var newEntry = ctx.PersonnelDbSet.OrderByDescending(o => o.PersonnelId).FirstOrDefault();
+                    TempData["Key Value"] = newEntry.PersonnelId;
                     TempData["Save Result"] = "Record created.";
                     return RedirectToAction("CreateHousingRecord", "Record");
                 }

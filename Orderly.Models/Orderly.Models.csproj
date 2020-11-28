@@ -79,6 +79,7 @@
     <Compile Include="Record.Models\RecordEdit.cs" />
     <Compile Include="Record.Models\RecordListItem.cs" />
     <Compile Include="Record.Models\RecordDetail.cs" />
+    <Compile Include="Record.Models\RecordView.cs" />
     <Compile Include="Squad.Models\SquadCreate.cs" />
     <Compile Include="Squad.Models\SquadDetail.cs" />
     <Compile Include="Squad.Models\SquadEdit.cs" />

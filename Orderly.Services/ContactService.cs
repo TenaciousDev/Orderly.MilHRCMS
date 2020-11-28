@@ -17,26 +17,29 @@ namespace Orderly.Services
         }
         public bool CreateContact(ContactCreate model)
         {
-            var entity = new Contact()
-            {
-                PersonnelId = model.PersonnelId,
-                Personnel = model.Personnel,
-                PhoneNumber = model.PhoneNumber,
-                PersonalEmail = model.PersonalEmail,
-                MilEmail = model.MilEmail,
-                HasDriversLicense = model.HasDriversLicense,
-                VehicleMake = model.VehicleMake,
-                VehicleModel = model.VehicleModel,
-                VehicleColor = model.VehicleColor,
-                VehiclePlate = model.VehiclePlate,
-                VehicleYear = model.VehicleYear,
-                VehicleInspected = model.VehicleInspected,
-                CreatedBy = _userId,
-                CreatedUtc = DateTimeOffset.Now,
-                ModifiedLast = Guid.Empty
-            };
             using (var ctx = new ApplicationDbContext())
             {
+                var newEntry = ctx.PersonnelDbSet.OrderByDescending(o => o.PersonnelId).FirstOrDefault();
+                var newId = newEntry.PersonnelId;
+
+                var entity = new Contact()
+                {
+                    PersonnelId = newId,
+                    Personnel = model.Personnel,
+                    PhoneNumber = model.PhoneNumber,
+                    PersonalEmail = model.PersonalEmail,
+                    MilEmail = model.MilEmail,
+                    HasDriversLicense = model.HasDriversLicense,
+                    VehicleMake = model.VehicleMake,
+                    VehicleModel = model.VehicleModel,
+                    VehicleColor = model.VehicleColor,
+                    VehiclePlate = model.VehiclePlate,
+                    VehicleYear = model.VehicleYear,
+                    VehicleInspected = model.VehicleInspected,
+                    CreatedBy = _userId,
+                    CreatedUtc = DateTimeOffset.Now,
+                    ModifiedLast = Guid.Empty
+                };
                 ctx.ContactDbSet.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
@@ -53,7 +56,7 @@ namespace Orderly.Services
                     //.ContactDbSet
                     select new ContactListItem
                     {
-                        Id = e.Id,
+                        Id = e.ContactId,
                         PersonnelId = e.PersonnelId,
                         Personnel = e.Personnel,
                         PhoneNumber = e.PhoneNumber,
@@ -92,7 +95,7 @@ namespace Orderly.Services
                     //return
                     select new ContactDetail
                     {
-                        Id = entity.Id,
+                        Id = entity.ContactId,
                         PersonnelId = entity.PersonnelId,
                         Personnel = entity.Personnel,
                         PhoneNumber = entity.PhoneNumber,
@@ -123,7 +126,7 @@ namespace Orderly.Services
                 var entity =
                     ctx
                     .ContactDbSet
-                    .Single(e => e.Id == model.Id);
+                    .Single(e => e.ContactId == model.Id);
                 entity.PersonnelId = model.PersonnelId;
                 entity.Personnel = model.Personnel;
                 entity.PhoneNumber = model.PhoneNumber;

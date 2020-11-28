@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-@using (Html.BeginForm("CreateHousingRecord", "Record"))
+@using (Html.BeginForm("Create", "Housing", new { id = Model.PersonnelId }))
 {
     @Html.AntiForgeryToken()
 
