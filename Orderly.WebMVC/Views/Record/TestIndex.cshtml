@@ -1,0 +1,47 @@
+﻿@using Orderly.Data
+@using Orderly.Models
+@model dynamic
+@{
+    ViewBag.Title = "TestIndex";
+}
+
+<h2>TestIndex</h2>
+
+<p class="h4">Personnel</p>
+<div class="row">
+    <div class="col">
+        <table>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>DOD ID</th>
+            </tr>
+            @foreach (PersonnelListItem personnel in Model.Personnel)
+            {
+                <tr>
+                    <td>@personnel.LastName</td>
+                    <td>@personnel.FirstName</td>
+                    <td>@personnel.DOD</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col">
+        <table>
+            <tr>
+                <th>Phone</th>
+                <th>email</th>
+                <th>.mil email</th>
+            </tr>
+            @foreach (ContactListItem contact in Model.Contact)
+            {
+                <tr>
+                    <td>@contact.PhoneNumber</td>
+                    <td>@contact.PersonalEmail</td>
+                    <td>@contact.MilEmail</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</div>

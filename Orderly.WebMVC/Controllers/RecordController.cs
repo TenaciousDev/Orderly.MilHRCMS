@@ -3,6 +3,7 @@ using Orderly.Models;
 using Orderly.Services;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +13,21 @@ namespace Orderly.WebMVC.Controllers
     [Authorize]
     public class RecordController : Controller
     {
+        //GET: Record TEST INDEX
+        public ActionResult TestIndex()
+        {
+            var personnelSvc = CreatePersonnelService();
+            var contactSvc = CreateContactService();
+            var housingSvc = CreateHousingService();
+            var unitInfoSvc = CreateUnitInfoService();
+            dynamic testModel = new ExpandoObject();
+            testModel.Personnel = personnelSvc.GetPersonnel();
+            testModel.Contact = contactSvc.GetContacts();
+            testModel.Housing = housingSvc.GetHousing();
+            testModel.UnitInfo = unitInfoSvc.GetUnitInfo();
+            return View(testModel);
+        }
+
         // GET: Record
         public ActionResult Index()
         {
