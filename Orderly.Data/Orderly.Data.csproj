@@ -60,41 +60,9 @@
     <Compile Include="Contact.cs" />
     <Compile Include="Housing.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202011131657259_Initial.cs" />
-    <Compile Include="Migrations\202011131657259_Initial.Designer.cs">
-      <DependentUpon>202011131657259_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011161455578_Second.cs" />
-    <Compile Include="Migrations\202011161455578_Second.designer.cs">
-      <DependentUpon>202011161455578_Second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011161927229_FixedAgeProperty.cs" />
-    <Compile Include="Migrations\202011161927229_FixedAgeProperty.designer.cs">
-      <DependentUpon>202011161927229_FixedAgeProperty.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011171529061_AddedAnnotations.cs" />
-    <Compile Include="Migrations\202011171529061_AddedAnnotations.designer.cs">
-      <DependentUpon>202011171529061_AddedAnnotations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011171639465_AddedAnnotationsToUnitInfo.cs" />
-    <Compile Include="Migrations\202011171639465_AddedAnnotationsToUnitInfo.designer.cs">
-      <DependentUpon>202011171639465_AddedAnnotationsToUnitInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011182029595_MessedAroundWithRankInPersonnel.cs" />
-    <Compile Include="Migrations\202011182029595_MessedAroundWithRankInPersonnel.designer.cs">
-      <DependentUpon>202011182029595_MessedAroundWithRankInPersonnel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011191643120_AddedStringsToHoldApplicationUserName.cs" />
-    <Compile Include="Migrations\202011191643120_AddedStringsToHoldApplicationUserName.designer.cs">
-      <DependentUpon>202011191643120_AddedStringsToHoldApplicationUserName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011221416136_AlteredMathOnBirthdaysAndAge.cs" />
-    <Compile Include="Migrations\202011221416136_AlteredMathOnBirthdaysAndAge.designer.cs">
-      <DependentUpon>202011221416136_AlteredMathOnBirthdaysAndAge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011281900052_ChangedNamesOfIdProperties.cs" />
-    <Compile Include="Migrations\202011281900052_ChangedNamesOfIdProperties.designer.cs">
-      <DependentUpon>202011281900052_ChangedNamesOfIdProperties.cs</DependentUpon>
+    <Compile Include="Migrations\202011281912104_NewFirst.cs" />
+    <Compile Include="Migrations\202011281912104_NewFirst.designer.cs">
+      <DependentUpon>202011281912104_NewFirst.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Personnel.cs" />
@@ -109,32 +77,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011131657259_Initial.resx">
-      <DependentUpon>202011131657259_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011161455578_Second.resx">
-      <DependentUpon>202011161455578_Second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011161927229_FixedAgeProperty.resx">
-      <DependentUpon>202011161927229_FixedAgeProperty.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011171529061_AddedAnnotations.resx">
-      <DependentUpon>202011171529061_AddedAnnotations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011171639465_AddedAnnotationsToUnitInfo.resx">
-      <DependentUpon>202011171639465_AddedAnnotationsToUnitInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011182029595_MessedAroundWithRankInPersonnel.resx">
-      <DependentUpon>202011182029595_MessedAroundWithRankInPersonnel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011191643120_AddedStringsToHoldApplicationUserName.resx">
-      <DependentUpon>202011191643120_AddedStringsToHoldApplicationUserName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011221416136_AlteredMathOnBirthdaysAndAge.resx">
-      <DependentUpon>202011221416136_AlteredMathOnBirthdaysAndAge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011281900052_ChangedNamesOfIdProperties.resx">
-      <DependentUpon>202011281900052_ChangedNamesOfIdProperties.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011281912104_NewFirst.resx">
+      <DependentUpon>202011281912104_NewFirst.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
