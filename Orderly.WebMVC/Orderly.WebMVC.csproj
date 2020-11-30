@@ -454,6 +454,7 @@
     <Content Include="Views\Record\CreateHousingRecord.cshtml" />
     <Content Include="Views\Record\Dashboard.cshtml" />
     <Content Include="Views\Record\TestIndex.cshtml" />
+    <Content Include="Views\Record\CreateUnitInfoRecord.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
