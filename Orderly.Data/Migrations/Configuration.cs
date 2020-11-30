@@ -147,144 +147,144 @@ namespace Orderly.Data.Migrations
                 {
                     TeamId = 1,
                     SquadId = 1,
-                    Name = "Team A"
+                    Name = "1st Plt, 1st Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 2,
                     SquadId = 1,
-                    Name = "Team B"
+                    Name = "1st Plt, 1st Sqd, Team B"
                 },
                 new Team()
                 {
                     TeamId = 3,
                     SquadId = 2,
-                    Name = "Team A"
+                    Name = "1st Plt, 2nd Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 4,
                     SquadId = 2,
-                    Name = "Team B"
+                    Name = "1st Plt, 2nd Sqd, Team B"
                 },
                 new Team()
                 {
                     TeamId = 5,
                     SquadId = 3,
-                    Name = "Team A"
+                    Name = "1st Plt, 3rd Sqd,Team A"
                 },
                 new Team()
                 {
                     TeamId = 6,
                     SquadId = 3,
-                    Name = "Team B"
+                    Name = "1st Plt, 3rd Sqd, Team B"
                 },
                 new Team()
                 {
                     TeamId = 7,
                     SquadId = 4,
-                    Name = "Team A"
+                    Name = "1st Plt, Wpns Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 8,
                     SquadId = 4,
-                    Name = "Team B"
+                    Name = "1st Plt, Wpns Sqd, Team B"
                 }, new Team()
                 {
                     TeamId = 9,
                     SquadId = 5,
-                    Name = "Team A"
+                    Name = "2nd Plt, 1st Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 10,
                     SquadId = 5,
-                    Name = "Team B"
+                    Name = "2nd Plt, 1st Sqd, Team B"
                 },
                 new Team()
                 {
                     TeamId = 11,
                     SquadId = 6,
-                    Name = "Team A"
+                    Name = "2nd Plt, 2nd Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 12,
                     SquadId = 6,
-                    Name = "Team B"
+                    Name = "2nd Plt, 2nd Sqd, Team B"
                 },
                 new Team()
                 {
                     TeamId = 13,
                     SquadId = 7,
-                    Name = "Team A"
+                    Name = "2nd Plt, 3rd Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 14,
                     SquadId = 7,
-                    Name = "Team B"
+                    Name = "2nd Plt, 3rd Sqd, Team B"
                 },
                 new Team()
                 {
                     TeamId = 15,
                     SquadId = 8,
-                    Name = "Team A"
+                    Name = "2nd Plt, Wpns Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 16,
                     SquadId = 8,
-                    Name = "Team B"
+                    Name = "2nd Plt, Wpns Sqd, Team B"
                 },
                 new Team()
                 {
                     TeamId = 17,
                     SquadId = 9,
-                    Name = "Team A"
+                    Name = "3rd Plt, 1st Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 18,
                     SquadId = 9,
-                    Name = "Team B"
+                    Name = "3rd Plt, 1st Sqd, Team B"
                 },
                 new Team()
                 {
                     TeamId = 19,
                     SquadId = 10,
-                    Name = "Team A"
+                    Name = "3rd Plt, 2nd Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 20,
                     SquadId = 10,
-                    Name = "Team B"
+                    Name = "3rd Plt, 2nd Sqd, Team B"
                 },
                 new Team()
                 {
                     TeamId = 21,
                     SquadId = 11,
-                    Name = "Team A"
+                    Name = "3rd Plt, 3rd Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 22,
                     SquadId = 11,
-                    Name = "Team B"
+                    Name = "3rd Plt, 3rd Sqd, Team B"
                 },
                 new Team()
                 {
                     TeamId = 23,
                     SquadId = 12,
-                    Name = "Team A"
+                    Name = "3rd Plt, Wpns Sqd, Team A"
                 },
                 new Team()
                 {
                     TeamId = 24,
                     SquadId = 12,
-                    Name = "Team B"
+                    Name = "3rd Plt, Wpns Sqd, Team B"
                 },
                 new Team()
                 {

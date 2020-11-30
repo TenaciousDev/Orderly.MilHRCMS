@@ -15,27 +15,27 @@ namespace Orderly.Services
         {
             _userId = userId;
         }
-        public List<Platoon> Platoons = new List<Platoon>();
-        public List<Squad> Squads = new List<Squad>();
-        public List<Team> Teams = new List<Team>();
         public bool CreateUnitInfo(UnitInfoCreate model)
         {
-            var entity = new UnitInfo()
-            {
-                PersonnelId = model.PersonnelId,
-                Personnel = model.Personnel,
-                TeamId = model.TeamId,
-                Team = model.Team,
-                Role = model.Role,
-                Arrived = model.Arrived,
-                LossDate = model.LossDate,
-                DutyStatus = model.DutyStatus,
-                CreatedBy = _userId,
-                CreatedUtc = DateTimeOffset.Now,
-                ModifiedLast = Guid.Empty
-            };
             using (var ctx = new ApplicationDbContext())
             {
+                var newEntry = ctx.PersonnelDbSet.OrderByDescending(o => o.PersonnelId).FirstOrDefault();
+                var newId = newEntry.PersonnelId;
+
+                var entity = new UnitInfo()
+                {
+                    PersonnelId = newId,
+                    Personnel = model.Personnel,
+                    TeamId = model.SelectedTeam,
+                    //Team = model.Team,
+                    Role = model.Role,
+                    Arrived = model.Arrived,
+                    LossDate = model.LossDate,
+                    DutyStatus = model.DutyStatus,
+                    CreatedBy = _userId,
+                    CreatedUtc = DateTimeOffset.Now,
+                    ModifiedLast = Guid.Empty
+                };
                 ctx.UnitInfoDbSet.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
@@ -84,10 +84,7 @@ namespace Orderly.Services
                     join u in ctx.Users
                     on entity.CreatedBy.ToString()
                     equals u.Id
-/*                    join m in ctx.Users
-                    on entity.ModifiedLast.ToString()
-                    equals m.Id
-*/                    join sq in ctx.UnitInfoDbSet on entity.Team.Squad.SquadId equals sq.Team.SquadId
+                    join sq in ctx.UnitInfoDbSet on entity.Team.Squad.SquadId equals sq.Team.SquadId
                     join plt in ctx.UnitInfoDbSet on entity.Team.Squad.Platoon.PlatoonId equals plt.Team.Squad.PlatoonId
                     where entity.PersonnelId == id
                     select new UnitInfoDetail

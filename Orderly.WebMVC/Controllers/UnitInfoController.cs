@@ -37,7 +37,7 @@ namespace Orderly.WebMVC.Controllers
             if (service.CreateUnitInfo(model))
             {
                 TempData["Save Result"] = "Record created.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Record");
             };
             ModelState.AddModelError("", "Unable to create record.");
             return View(model);

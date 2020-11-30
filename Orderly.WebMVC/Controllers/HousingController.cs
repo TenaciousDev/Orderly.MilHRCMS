@@ -42,7 +42,7 @@ namespace Orderly.WebMVC.Controllers
                     var newEntry = ctx.PersonnelDbSet.OrderByDescending(o => o.PersonnelId).FirstOrDefault();
                     TempData["Key Value"] = newEntry.PersonnelId;
                     TempData["Save Result"] = "Record created.";
-                    return RedirectToAction("Index", "Record");
+                    return RedirectToAction("CreateUnitInfoRecord", "Record");
                 }
             };
             ModelState.AddModelError("", "Unable to create record.");

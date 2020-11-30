@@ -186,6 +186,11 @@ namespace Orderly.WebMVC.Controllers
         {
             return View();
         }
+        //GET: Record/CreateUnitInfoRecord
+        public ActionResult CreateUnitInfoRecord()
+        {
+            return View();
+        }
         //GET: Record/Assign
         public ActionResult Assign()
         {
