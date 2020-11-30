@@ -28,42 +28,72 @@
         </ul>
     </div>
 </nav>
-<div class="table-outer">
-    <table class="table table-sm table-hover table-fixed"
-           id="table"
-           data-toggle="table"
-           data-height="600"
-           data-card-view="true">
-        <thead class="thead-dark overflow-auto">
-            <tr>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>DOD ID</th>
-            </tr>
-            @foreach (PersonnelListItem personnel in Model.Personnel)
-            {
-                <tr>
-                    <td>@personnel.LastName</td>
-                    <td>@personnel.FirstName</td>
-                    <td>@personnel.DOD</td>
+<div class="row table-outer">
+    <div class="col">
+        <table class="table table-sm table-hover table-fixed"
+               id="table"
+               data-toggle="table"
+               data-height="600"
+               data-card-view="true">
+            <thead class="thead-dark overflow-auto">
+                <tr class="fit">
+                    <th class="fit">Last Name</th>
+                    <th class="fit">First Name</th>
+                    <th class="fit">DOD ID</th>
                 </tr>
-            }
-        </thead>
-        <thead class="thead-dark overflow-auto">
-            <tr>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>.mil Email</th>
-            </tr>
-            @foreach (ContactListItem contact in Model.Contact)
-            {
+                @foreach (PersonnelListItem personnel in Model.Personnel)
+                {
+                    <tr>
+                        <td class="fit">@personnel.LastName</td>
+                        <td class="fit">@personnel.FirstName</td>
+                        <td class="fit">@personnel.DOD</td>
+                    </tr>
+                }
+            </thead>
+        </table>
+    </div>
+    <div class="col">
+        <table class="table table-sm table-hover table-fixed"
+               id="table"
+               data-toggle="table"
+               data-height="600"
+               data-card-view="true">
+
+            <thead class="thead-dark overflow-auto">
                 <tr>
-                    <td>@contact.PhoneNumber</td>
-                    <td>@contact.PersonalEmail</td>
-                    <td>@contact.MilEmail</td>
+                    <th class="fit">Phone</th>
+                    <th class="fit">Email</th>
+                    <th class="fit">.mil Email</th>
                 </tr>
-            }
+                @foreach (ContactListItem contact in Model.Contact)
+                {
+                    <tr>
+                        <td class="fit">@contact.PhoneNumber</td>
+                        <td class="fit">@contact.PersonalEmail</td>
+                        <td class="fit">@contact.MilEmail</td>
+                    </tr>
+                }
+        </table>
+    </div>
+    <div class="col">
+        <table class="table table-sm table-hover table-fixed"
+               id="table"
+               data-toggle="table"
+               data-height="600"
+               data-card-view="true">
 
-
-    </table>
+            <thead class="thead-dark overflow-auto">
+                <tr>
+                    <th class="fit">Address</th>
+                    <th class="fit">Room</th>
+                </tr>
+                @foreach (HousingListItem housing in Model.Housing)
+                {
+                    <tr>
+                        <td class="fit">@housing.Address</td>
+                        <td class="fit">@housing.Room</td>
+                    </tr>
+                }
+        </table>
+    </div>
 </div>

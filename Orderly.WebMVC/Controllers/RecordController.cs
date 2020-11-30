@@ -152,7 +152,7 @@ namespace Orderly.WebMVC.Controllers
         public ActionResult Index()
         {
             var service = CreateRecordService();
-            var model = service.GetRecordsTest();
+            var model = service.GetRecords();
             return View(model);
         }
 
