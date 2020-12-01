@@ -15,10 +15,19 @@
     string loss = Model.LossDate.HasValue ? Model.LossDate.Value.ToString("MM/dd/yyyy") : "";
     string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
     string modified = Model.ModifiedUtc.HasValue ? Model.ModifiedUtc.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
-    string blank = "";
+}
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success alert-dismissible position-absolute" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
 }
 <div class="jumbotron jumbotron-fluid pl-4 bg-transparent mb-0 pb-1">
-    <a class="btn mb-2 text-primary text-decoration-none" href=@Url.Action("Index","Record")><i class="fa fa-2x fa-backward pt-2 fa-align-center"></i><span class="h4 font-weight-normal ml-3">Go Back</span></a>
+    <a class="btn mb-2 text-primary text-decoration-none" href=@Url.Action("/Index","Record")><i class="fa fa-2x fa-backward pt-2 fa-align-center"></i><span class="h4 font-weight-normal ml-3">Go Back</span></a>
     <br />
     <i class="fa fa-2x fa-address-card pr-2"></i><h2 class="pl-2 d-inline">@Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => rank)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => model.Role)</h2>
     <hr class="" />
@@ -182,12 +191,22 @@
                             @Html.DisplayFor(model => model.VehicleColor)
                         </p>
                     </div>
-                    <div class="col-md">
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
                         <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.VehiclePlate)
                         </h6>
                         <p>
                             @Html.DisplayFor(model => model.VehiclePlate)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.VehicleInspected)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.VehicleInspected)
                         </p>
                     </div>
                 </div>
@@ -265,11 +284,7 @@
                             @Html.DisplayNameFor(model => model.LossDate)
                         </h6>
                         <p>
-                            @if (Model.LossDate != null)
-                            {
-                                Html.DisplayFor(model => loss);
-                            }
-                            @Html.DisplayFor(model => blank)
+                            @Html.DisplayFor(model => loss)
                         </p>
                     </div>
                     <div class="col-md">

@@ -31,6 +31,7 @@ namespace Orderly.Models
         public string DOD { get; set; }
         [Required]
         [Display(Name = "Date of Birth")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTimeOffset DOB { get; set; }
         [Required]
         [Display(Name = "Marital Status")]

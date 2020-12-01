@@ -22,8 +22,10 @@ namespace Orderly.Models
         public virtual Platoon Platoon { get; set; }
         public string Role { get; set; }
         [Display(Name = "Arrival Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTimeOffset Arrived { get; set; }
         [Display(Name = "Loss Date")]
+        [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString = "{0:d}")]
         public DateTimeOffset? LossDate { get; set; }
         [Display(Name = "Duty Status")]
         public string DutyStatus { get; set; }
