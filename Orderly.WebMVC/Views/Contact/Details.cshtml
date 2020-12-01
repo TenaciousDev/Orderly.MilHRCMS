@@ -1,0 +1,138 @@
+﻿@model Orderly.Models.ContactDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ContactDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonnelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonnelId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonalEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonalEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MilEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MilEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasDriversLicense)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasDriversLicense)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleMake)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleMake)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehiclePlate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehiclePlate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleInspected)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleInspected)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedLast)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedLast)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedUtc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedUtc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

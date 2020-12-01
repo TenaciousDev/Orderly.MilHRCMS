@@ -1,0 +1,30 @@
+﻿@model Orderly.Models.RecordDetail
+
+@{
+    string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
+    string modified = Model.ModifiedUtc.HasValue ? Model.ModifiedUtc.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
+}
+<div class="row">
+    <div class="col-md">
+        <span class="small">
+            @Html.DisplayNameFor(model => model.CreatedByUserName)
+            :
+            @Html.DisplayFor(model => model.CreatedByUserName)
+            <br />
+            @Html.DisplayNameFor(model => model.CreatedUtc)
+            :
+            @Html.DisplayFor(model => created)
+        </span>
+    </div>
+    <div class="col-md">
+        <span class="small">
+            @Html.DisplayNameFor(model => model.ModifiedByUserName)
+            :
+            @Html.DisplayFor(model => model.ModifiedByUserName)
+            <br />
+            @Html.DisplayNameFor(model => model.ModifiedUtc)
+            :
+            @Html.DisplayFor(model => modified)
+        </span>
+    </div>
+</div>

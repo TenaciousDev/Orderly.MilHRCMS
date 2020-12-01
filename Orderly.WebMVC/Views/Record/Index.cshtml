@@ -1,0 +1,231 @@
+﻿@model IEnumerable<Orderly.Models.RecordListItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutData.cshtml";
+}
+
+@{
+    string slotHeader = "Organization Slot";
+}
+
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success alert-dismissible position-absolute" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <a class="navbar-brand btn btn-sm btn-info text-white" href=@Url.Action("CreatePersonnelRecord","Record")>Add New Record</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+<div class="table-outer">
+    <table class="table table-sm table-hover table-fixed"
+           id="table"
+           data-toggle="table"
+           data-height="600"
+           data-card-view="true">
+        <thead class="thead-dark overflow-auto">
+            <tr>
+                <th class="bg-transparent border-0"></th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.Rank)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.MiddleName)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(Model => Model.Sex)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.SSN)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.DOD)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.DOB)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.PersonalEmail)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.MilEmail)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.HasDriversLicense)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.VehicleMake)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.VehicleModel)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.VehicleColor)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.VehiclePlate)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.VehicleYear)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.VehicleInspected)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.Room)
+                </th>
+                @*                <th class="fit">
+                        @Html.DisplayNameFor(model => model.Platoon.Name)
+                    </th>
+                    <th class="fit">
+                        @Html.DisplayNameFor(model => model.Squad.Name)
+                    </th>
+                *@
+                <th class="fit">
+                    @Html.DisplayName(slotHeader)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.Arrived)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.LossDate)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(model => model.DutyStatus)
+                </th>
+                <th class="fit"></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="border-0 m-auto pr-2">
+                    <a href="@Url.Action("Details","Record", new { id = item.PersonnelId })" class="btn btn-sm btn-outline-dark">Details</a>
+                </td>
+                <td class="fit">
+                    @{
+                        string rank = item.Rank.ToString();
+                    }
+                    @Html.DisplayFor(modelItem => rank)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td class="fit">
+                    @{
+                        string sex = item.Sex.ToString();
+                    }
+                    @Html.DisplayFor(modelItem => sex)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.SSN)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.DOD)
+                </td>
+                <td class="fit">
+                    @{
+                        string dob = item.DOB.ToString("MM/dd/yyyy");
+                    }
+                    @Html.DisplayFor(modelItem => dob)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.PersonalEmail)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.MilEmail)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.HasDriversLicense)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.VehicleMake)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.VehicleModel)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.VehicleColor)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.VehiclePlate)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.VehicleYear)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.VehicleInspected)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.Room)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.Team.Name)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td class="fit">
+                    @{
+                        string arrival = item.Arrived.ToString("MM/dd/yyyy");
+                    }
+
+                    @Html.DisplayFor(modelItem => arrival)
+                </td>
+                <td class="fit">
+                    @{
+                        string loss = item.LossDate.HasValue ? item.LossDate.Value.ToString("MM/dd/yyyy") : "";
+                    }
+                    @Html.DisplayFor(modelItem => loss)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(modelItem => item.DutyStatus)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

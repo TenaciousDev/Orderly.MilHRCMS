@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 namespace Orderly.Data
 {
     public enum Grade { E1, E2, E3, E4, E5, E6, E7, E8, E9, O1, O2, O3, O4, O5, O6, O7, O8, O9, O10, W1, W2, W3, W4, W5 }
+
+    public enum BioSex { Male, Female, Other}
+    public enum Gender { }
+    public enum MaritalStatus { NeverMarried, Married, Divorced, Widowed, Estranged, Other}
     public class Personnel
     {
         [Key]
@@ -20,8 +24,10 @@ namespace Orderly.Data
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Display(Name = "Middle Name / MI")]
+        [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
+        [Required]
+        public BioSex Sex { get; set; }
         [Required]
         public string SSN { get; set; }
         [Required]
@@ -30,16 +36,23 @@ namespace Orderly.Data
         [Required]
         [Display(Name = "Date of Birth")]
         public DateTimeOffset DOB { get; set; }
-        public TimeSpan Age
+        public int Age
         {
             get
             {
-                return DOB - DateTime.Now;
+                var age = DateTime.Now.Year - DOB.Year;
+                if (DOB.Date > DateTime.Now.AddYears(-age)) age--;
+                return age;
             }
         }
+        [Required]
+        [Display(Name ="Marital Status")]
+        public MaritalStatus MaritalStatus { get; set; }
         [Display(Name = "Created by")]
+        public string CreatedByUserName { get; set; }
         public Guid CreatedBy { get; set; }
         [Display(Name = "Last modified by")]
+        public string ModifiedByUserName { get; set; }
         public Guid ModifiedLast { get; set; }
         [Display(Name = "Created on")]
         public DateTimeOffset CreatedUtc { get; set; }

@@ -1,0 +1,86 @@
+﻿@model Orderly.Models.UnitInfoCreate
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@{
+    string arrival = Model.Arrived.ToString("MM/dd/yyyy");
+    string loss = Model.LossDate.GetValueOrDefault().ToString("MM/dd/yyyy");
+}
+
+@using (Html.BeginForm("Create", "UnitInfo", new { id = Model.PersonnelId }))
+{
+    @Html.AntiForgeryToken()
+
+    <form>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+        </div>
+
+        <div class="container">
+            <div class="row my-3 ml-lg-2">
+            </div>
+            <div class="card col p-0 border-success">
+                <div class="card-header mb-3">
+                    <h4 class="card-title mb-1">
+                        Create UnitInfo Record
+                    </h4>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                        <div class="col">
+                            @Html.DropDownListFor(model => model.SelectedTeam, Model.GetTeamsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Team" } })
+                            @Html.ValidationMessageFor(model => model.Team, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.Arrived, htmlAttributes: new { @class = "control-label col-md font-weight-bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => arrival, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Arrived, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.LossDate, htmlAttributes: new { @class = "control-label col-md font-weight-bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LossDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LossDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.DutyStatus, htmlAttributes: new { @class = "control-label col-md font-weight-bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DutyStatus, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DutyStatus, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save Record" class="btn btn-outline-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval");
+}

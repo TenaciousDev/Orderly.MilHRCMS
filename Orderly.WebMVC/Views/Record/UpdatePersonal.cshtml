@@ -1,0 +1,42 @@
+﻿@Styles.Render("~/Content/Detail.css")
+@model Orderly.Models.RecordDetail
+
+@{
+    ViewBag.Title = "UpdatePersonal";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+
+<a class="btn mb-2 text-primary text-decoration-none" href="@Url.Action("Details","Record",new { id = Model.PersonnelId })"><i class="fa fa-2x fa-backward pt-2 fa-align-center"></i><span class="h4 font-weight-normal ml-3">Go Back</span></a>
+
+@{
+    Html.RenderPartial("_HeaderPartial", new Orderly.Models.RecordDetail()
+    {
+        Rank = Model.Rank,
+        FirstName = Model.FirstName,
+        LastName = Model.LastName,
+        Role = Model.Role
+    }
+);
+}
+@{
+    Html.RenderPartial("_EditPersonnel", new Orderly.Models.PersonnelEdit()
+    {
+        PersonnelId = Model.PersonnelId,
+        Rank = Model.Rank,
+        FirstName = Model.FirstName,
+        LastName = Model.LastName,
+        MiddleName = Model.MiddleName,
+        Sex = Model.Sex,
+        SSN = Model.SSN,
+        DOD = Model.DOD,
+        DOB = Model.DOB,
+        MaritalStatus = Model.MaritalStatus,
+        CreatedBy = Model.CreatedBy,
+        CreatedUtc = Model.CreatedUtc,
+        CreatedByUserName = Model.CreatedByUserName,
+        ModifiedLast = Model.ModifiedLast,
+        ModifiedUtc = Model.ModifiedUtc,
+        ModifiedByUserName = Model.ModifiedByUserName
+    }
+);
+}

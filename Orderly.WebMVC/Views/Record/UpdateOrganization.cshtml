@@ -1,0 +1,47 @@
+﻿@Styles.Render("~/Content/Detail.css")
+@model Orderly.Models.RecordDetail
+
+@{
+    ViewBag.Title = "UpdateOrganization";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+
+<a class="btn mb-2 text-primary text-decoration-none" href="@Url.Action("Details","Record",new { id = Model.PersonnelId })"><i class="fa fa-2x fa-backward pt-2 fa-align-center"></i><span class="h4 font-weight-normal ml-3">Go Back</span></a>
+
+@{
+    Html.RenderPartial("_HeaderPartial", new Orderly.Models.RecordDetail()
+    {
+        Rank = Model.Rank,
+        FirstName = Model.FirstName,
+        LastName = Model.LastName,
+        Role = Model.Role
+    }
+        );
+}
+@{
+    Html.RenderPartial("_EditUnitInfo", new Orderly.Models.UnitInfoEdit()
+    {
+        Id = Model.ContactId,
+        PersonnelId = Model.PersonnelId,
+        TeamId = Model.TeamId,
+        Team = Model.Team,
+        SquadId = Model.SquadId,
+        Squad = Model.Squad,
+        PlatoonId = Model.PlatoonId,
+        Platoon = Model.Platoon,
+        Role = Model.Role,
+        Arrived = Model.Arrived,
+        LossDate = Model.LossDate,
+        DutyStatus = Model.DutyStatus,
+        CreatedBy = Model.CreatedBy,
+        CreatedUtc = Model.CreatedUtc,
+        CreatedByUserName = Model.CreatedByUserName,
+        ModifiedLast = Model.ModifiedLast,
+        ModifiedUtc = Model.ModifiedUtc,
+        ModifiedByUserName = Model.ModifiedByUserName
+    }
+);
+}
+
+
+

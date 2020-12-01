@@ -1,0 +1,65 @@
+﻿@model Orderly.Models.RecordEdit
+
+@{
+    ViewBag.Title = "EditPersonnel";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+@{
+    string rank = Model.Rank.ToString();
+    string dob = Model.DOB.ToString("MM/dd/yyyy");
+    string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
+    string modified = Model.ModifiedUtc.HasValue ? Model.ModifiedUtc.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
+    string blank = "";
+}
+@{
+    Html.RenderPartial("EditPersonnel", new Orderly.Models.PersonnelEdit()
+    {
+        PersonnelId = Model.PersonnelId,
+        Rank = Model.Rank,
+        FirstName = Model.FirstName,
+        LastName = Model.LastName,
+        MiddleName = Model.MiddleName,
+        Sex = Model.Sex,
+        SSN = Model.SSN,
+        DOD = Model.DOD,
+        DOB = Model.DOB,
+        MaritalStatus = Model.MaritalStatus,
+        CreatedBy = Model.CreatedBy,
+        CreatedUtc = Model.CreatedUtc,
+        CreatedByUserName = Model.CreatedByUserName,
+        ModifiedLast = Model.ModifiedLast,
+        ModifiedUtc = Model.ModifiedUtc,
+        ModifiedByUserName = Model.ModifiedByUserName
+    }
+);
+}
+
+@{
+    Html.RenderPartial("EditContact", new Orderly.Models.ContactEdit()
+    {
+        Id = Model.ContactId,
+        PersonnelId = Model.PersonnelId,
+        Personnel = Model.Personnel,
+        PhoneNumber = Model.PhoneNumber,
+        PersonalEmail = Model.PersonalEmail,
+        MilEmail = Model.MilEmail,
+        HasDriversLicense = Model.HasDriversLicense,
+        VehicleMake = Model.VehicleMake,
+        VehicleModel = Model.VehicleModel,
+        VehicleColor = Model.VehicleColor,
+        VehiclePlate = Model.VehiclePlate,
+        VehicleYear = Model.VehicleYear,
+        VehicleInspected = Model.VehicleInspected,
+        CreatedBy = Model.CreatedBy,
+        CreatedUtc = Model.CreatedUtc,
+        CreatedByUserName = Model.CreatedByUserName,
+        ModifiedLast = Model.ModifiedLast,
+        ModifiedUtc = Model.ModifiedUtc,
+        ModifiedByUserName = Model.ModifiedByUserName
+    }
+);
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -11,11 +11,12 @@ namespace Orderly.Data
     public class Team
     {
         [Key]
-        public int Id { get; set; }
+        public int TeamId { get; set; }
         public int SquadId { get; set; }
         [ForeignKey(nameof(SquadId))]
         public virtual Squad Squad { get; set; }
         [Required]
+        [Display(Name = "Team")]
         public string Name { get; set; }
         public string Familiar { get; set; }
         public List<Personnel> Assigned { get; set; } = new List<Personnel>();

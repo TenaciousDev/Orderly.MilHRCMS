@@ -1,0 +1,326 @@
+﻿@Styles.Render("~/Content/Detail.css")
+@model Orderly.Models.RecordDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+@{
+    string rank = Model.Rank.ToString();
+    string sex = Model.Sex.ToString();
+    string slotHeader = "Organization Slot";
+    string dob = Model.DOB.ToString("MM/dd/yyyy");
+    string license = Model.HasDriversLicense ? "Yes" : "No";
+    string arrival = Model.Arrived.ToString("MM/dd/yyyy");
+    string loss = Model.LossDate.HasValue ? Model.LossDate.Value.ToString("MM/dd/yyyy") : "";
+    string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
+    string modified = Model.ModifiedUtc.HasValue ? Model.ModifiedUtc.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
+}
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success alert-dismissible position-absolute" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+<div class="jumbotron jumbotron-fluid pl-4 bg-transparent mb-0 pb-1">
+    <a class="btn mb-2 text-primary text-decoration-none" href=@Url.Action("/Index","Record")><i class="fa fa-2x fa-backward pt-2 fa-align-center"></i><span class="h4 font-weight-normal ml-3">Go Back</span></a>
+    <br />
+    <i class="fa fa-2x fa-address-card pr-2"></i><h2 class="pl-2 d-inline">@Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => rank)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => model.Role)</h2>
+    <hr class="" />
+</div>
+<div class="container">
+    <div class="row my-3 ml-lg-2">
+        <div class="card col p-0">
+            <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
+                <a class="btn btn-sm" href="@Url.Action("UpdatePersonal","Record", new { id = Model.PersonnelId })">
+                    <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
+                </a>
+            </div>
+            <div class="card-header">
+                <h4 class="card-title mb-1">
+                    Personal
+                </h4>
+            </div>
+            <div class="col card-body py-1">
+                <div class="row">
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.Rank)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => rank)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.LastName)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.FirstName)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.MiddleName)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.MiddleName)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.Sex)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => sex)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.SSN)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.SSN)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.DOD)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.DOD)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.DOB)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => dob)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.Age)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.Age)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 ml-lg-2">
+        <div class="card col p-0">
+            <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
+                <a class="btn btn-sm" href="@Url.Action("UpdateContact","Record", new { id = Model.PersonnelId })">
+                    <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
+                </a>
+            </div>
+            <div class="card-header">
+                <h4 class="card-title mb-1">Contact</h4>
+            </div>
+            <div class="col card-body py-1">
+                <div class="row">
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.MilEmail)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.MilEmail)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.PersonalEmail)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.PersonalEmail)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.HasDriversLicense)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => license)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.VehicleMake)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.VehicleMake)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.VehicleModel)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.VehicleModel)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.VehicleColor)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.VehicleColor)
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.VehiclePlate)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.VehiclePlate)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.VehicleInspected)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.VehicleInspected)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 ml-lg-2">
+        <div class="card col-4 p-0">
+            <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
+                <a class="btn btn-sm" href="@Url.Action("UpdateHousing","Record", new { id = Model.PersonnelId })">
+                    <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
+                </a>
+            </div>
+            <div class="card-header">
+                <h4 class="card-title mb-1">Housing</h4>
+            </div>
+            <div class="card-body py-1">
+                <div class="row">
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.Address)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.Address)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.Room)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.Room)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card col ml-2 p-0">
+            <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
+                <a class="btn btn-sm" href="@Url.Action("UpdateOrganization","Record", new { id = Model.PersonnelId })">
+                    <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
+                </a>
+            </div>
+            <div class="card-header">
+                <h4 class="card-title mb-1">Organization</h4>
+            </div>
+            <div class="card-body py-1">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayName(slotHeader)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.Team.Name)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.Role)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.Role)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.Arrived)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => arrival)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.LossDate)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => loss)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.DutyStatus)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.DutyStatus)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <span class="small">
+                @Html.DisplayNameFor(model => model.CreatedByUserName)
+                :
+                @Html.DisplayFor(model => model.CreatedByUserName)
+                <br />
+                @Html.DisplayNameFor(model => model.CreatedUtc)
+                :
+                @Html.DisplayFor(model => created)
+            </span>
+        </div>
+        <div class="col-md">
+            <span class="small">
+                @Html.DisplayNameFor(model => model.ModifiedByUserName)
+                :
+                @Html.DisplayFor(model => model.ModifiedByUserName)
+                <br />
+                @Html.DisplayNameFor(model => model.ModifiedUtc)
+                :
+                @Html.DisplayFor(model => modified)
+            </span>
+        </div>
+    </div>
+</div>

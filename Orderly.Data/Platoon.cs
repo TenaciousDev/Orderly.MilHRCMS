@@ -10,8 +10,9 @@ namespace Orderly.Data
     public class Platoon
     {
         [Key]
-        public int Id { get; set; }
+        public int PlatoonId { get; set; }
         [Required]
+        [Display(Name = "Platoon")]
         public string Name { get; set; }
         public string Familiar { get; set; }
         [Display(Name = "Personnel Assigned")]

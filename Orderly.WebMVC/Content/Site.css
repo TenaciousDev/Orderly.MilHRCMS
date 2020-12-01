@@ -1,12 +1,33 @@
-﻿body {
+﻿html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
+/* Layout for standard View content */
 .body-content {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 15vh;
+    margin: auto;
+}
+
+/* Layout for data-oriented View content */
+.body-content-data {
     padding-left: 15px;
     padding-right: 15px;
+    margin: inherit;
+}
+
+/* Layout for detail-oriented View content */
+.body-content-detail {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    margin: auto;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,4 +42,29 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+/*tr:nth-child(n + 6) {
+    visibility: hidden;
+}*/
+
+.table-outer {
+    height: 80vh;
+    width: 98vw;
+    overflow: auto;
+}
+
+.table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+    min-width: 7rem;
+}
+
+.go-back {
+    margin-left: -5vw;
 }
