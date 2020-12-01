@@ -1,20 +1,20 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
 @if (Request.IsAuthenticated)
 {
     ViewBag.Title = "Dashboard";
     <div class="container-fluid">
         <div class="row">
-            <div class="col d-flex justify-content-center">
+            <div class="col text-center">
                 <p class="display-3">Dashboard</p>
+                <p class="blockquote">@TempData["Tracking Message"]</p>
             </div>
         </div>
         <div class="row mt-4">
-            <div class="col d-flex justify-content-between">
-                <p>@Html.ActionLink("Data Model", "Index", "Personnel", null, new { @class = "btn btn-lg btn-outline-dark" })</p>
-                <p>@Html.ActionLink("View Model", "Index", "Record", null, new { @class = "btn btn-lg btn-outline-dark" })</p>
-                <p>@Html.ActionLink("Dynamic Model", "TestIndex", "Record", null, new { @class = "btn btn-lg btn-outline-dark" })</p>
+            <div class="col d-flex justify-content-center">
+                <p>@Html.ActionLink("View Records", "Index", "Record", null, new { @class = "btn btn-lg btn-outline-dark" })</p>
             </div>
         </div>
     </div>

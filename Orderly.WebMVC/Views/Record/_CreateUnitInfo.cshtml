@@ -28,21 +28,21 @@
                     </h4>
                 </div>
                 <div class="form-row">
-@*                    <div class="form-group col-md mr-md-2 mr-lg-0">
-                        @Html.LabelFor(model => model.Platoon, htmlAttributes: new { @class = "control-label col font-weight-bold" })
-                        <div class="col">
-                            @Html.DropDownListFor(model => model.SelectedPlatoon, Model.GetPlatoonsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Platoon" } })
-                            @Html.ValidationMessageFor(model => model.Platoon, "", new { @class = "text-danger" })
+                    @*                    <div class="form-group col-md mr-md-2 mr-lg-0">
+                            @Html.LabelFor(model => model.Platoon, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                            <div class="col">
+                                @Html.DropDownListFor(model => model.SelectedPlatoon, Model.GetPlatoonsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Platoon" } })
+                                @Html.ValidationMessageFor(model => model.Platoon, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group col-md">
-                        @Html.LabelFor(model => model.Squad, htmlAttributes: new { @class = "control-label col font-weight-bold" })
-                        <div class="col">
-                            @Html.DropDownListFor(model => model.SelectedSquad, Model.GetSquadsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Squad" } })
-                            @Html.ValidationMessageFor(model => model.Squad, "", new { @class = "text-danger" })
+                        <div class="form-group col-md">
+                            @Html.LabelFor(model => model.Squad, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                            <div class="col">
+                                @Html.DropDownListFor(model => model.SelectedSquad, Model.GetSquadsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Squad" } })
+                                @Html.ValidationMessageFor(model => model.Squad, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-*@                    <div class="form-group col-md">
+                    *@                    <div class="form-group col-md">
                         @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col font-weight-bold" })
                         <div class="col">
                             @Html.DropDownListFor(model => model.SelectedTeam, Model.GetTeamsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Team" } })
@@ -85,7 +85,7 @@
                 <div class="card-footer bg-transparent border-0">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save & Continue" class="btn btn-outline-success" />
+                            <input type="submit" value="Save Record" class="btn btn-outline-success" />
                         </div>
                     </div>
                 </div>
@@ -96,29 +96,5 @@
 }
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    @*    <script type="text/javascript">
-            $('#Platoon').change(function ()
-            {
-                var selectedPlatoon = $("#Platoon").val();
-                var squadSelect = $('#Squad');
-                squadSelect.empty();
-                if (selectedPlatoon != null && selectedPlatoon != '') {
-                    $.getJSON('@Url.Action("GetSquadsSelectList")', { selectedPlatoon }, function (squads) {
-                        if (squads != null && !jQuery.isEmptyObject(squads)) {
-                            squadSelect.append($('<option/>', {
-                                value: null,
-                                text: ""
-                            }));
-                            $.each(squads, function (index, squad) {
-                                squadSelect.append($('<option/>', {
-                                    value: squad.value,
-                                    text: squad.text
-                                }));
-                            });
-                        };
-                    });
-                }
-            });
-        </script>
-    *@}
+    @Scripts.Render("~/bundles/jqueryval");
+}
