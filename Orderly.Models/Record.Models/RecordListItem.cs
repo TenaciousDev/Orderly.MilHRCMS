@@ -12,9 +12,9 @@ namespace Orderly.Models
     {
         //Summary:
         //This item collects all properties related to personnel records.
-        //It draws from the following classes: Personnel, Housing, Contact, and UnitInfo
-        //A RecordListItem will return an IEnumerable of these classes' properties when
-        //called as a the return type of a method.
+        //It draws from the following classes: Personnel, Housing, Contact, and UnitInfo.
+        //A RecordListItem should be called as 'IEnumerable<RecordListItem>', and will return a list
+        //of these classes' properties when designated as the return type of a method.
 
         //PERSONNEL
         public int PersonnelId { get; set; }
@@ -59,9 +59,9 @@ namespace Orderly.Models
         public string VehicleMake { get; set; }
         [Display(Name = "Vehicle Model")]
         public string VehicleModel { get; set; }
-        [Display(Name = "Vehicle Model")]
-        public string VehicleColor { get; set; }
         [Display(Name = "Vehicle Color")]
+        public string VehicleColor { get; set; }
+        [Display(Name = "Vehicle Plate")]
         public string VehiclePlate { get; set; }
         [Display(Name = "Vehicle Year")]
         public int VehicleYear { get; set; }

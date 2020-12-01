@@ -116,7 +116,6 @@ namespace Orderly.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var linkedSquad = ctx.UnitInfoDbSet.Find(model.Team.Squad);
                 var user = ctx.Users.Find(_userId.ToString());
                 var userName = user.UserName;
                 var entity =
@@ -125,9 +124,7 @@ namespace Orderly.Services
                     .Single(e => e.UnitInfoId == model.Id);
                 entity.PersonnelId = model.PersonnelId;
                 entity.Personnel = model.Personnel;
-
-
-
+                entity.TeamId = model.TeamId;
                 entity.Role = model.Role;
                 entity.Arrived = model.Arrived;
                 entity.LossDate = model.LossDate;

@@ -28,21 +28,7 @@
                     </h4>
                 </div>
                 <div class="form-row">
-                    @*                    <div class="form-group col-md mr-md-2 mr-lg-0">
-                            @Html.LabelFor(model => model.Platoon, htmlAttributes: new { @class = "control-label col font-weight-bold" })
-                            <div class="col">
-                                @Html.DropDownListFor(model => model.SelectedPlatoon, Model.GetPlatoonsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Platoon" } })
-                                @Html.ValidationMessageFor(model => model.Platoon, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group col-md">
-                            @Html.LabelFor(model => model.Squad, htmlAttributes: new { @class = "control-label col font-weight-bold" })
-                            <div class="col">
-                                @Html.DropDownListFor(model => model.SelectedSquad, Model.GetSquadsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Squad" } })
-                                @Html.ValidationMessageFor(model => model.Squad, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    *@                    <div class="form-group col-md">
+                    <div class="form-group col-md">
                         @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col font-weight-bold" })
                         <div class="col">
                             @Html.DropDownListFor(model => model.SelectedTeam, Model.GetTeamsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Team" } })

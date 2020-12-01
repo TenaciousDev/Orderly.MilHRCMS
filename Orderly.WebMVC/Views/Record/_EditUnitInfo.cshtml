@@ -34,7 +34,7 @@
                     </h4>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md mr-md-2 mr-lg-0">
+                    @*<div class="form-group col-md mr-md-2 mr-lg-0">
                         @Html.LabelFor(model => model.Team.Squad.Platoon, htmlAttributes: new { @class = "control-label col font-weight-bold" })
                         <div class="col">
                             @Html.EditorFor(model => platoon.Name, new { htmlAttributes = new { @class = "form-control" } })
@@ -47,11 +47,11 @@
                             @Html.EditorFor(model => squad.Name, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => squad.Name, "", new { @class = "text-danger" })
                         </div>
-                    </div>
+                    </div>*@
                     <div class="form-group col-md">
                         @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col font-weight-bold" })
                         <div class="col">
-                            @Html.EditorFor(model => model.Team.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownListFor(model => model.TeamId, Model.GetTeamsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Team" } })
                             @Html.ValidationMessageFor(model => model.Team.Name, "", new { @class = "text-danger" })
                         </div>
                     </div>

@@ -34,38 +34,6 @@ namespace Orderly.Models
         public Guid ModifiedLast { get; set; }
         [Display(Name = "Created on")]
         public DateTimeOffset CreatedUtc { get; set; }
-/*        public int SelectedPlatoon { get; set; }
-        public IEnumerable<SelectListItem> GetPlatoonsSelectList()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var platoons = ctx.PlatoonDbSet.ToList();
-                foreach (var item in platoons)
-                {
-                    yield return new SelectListItem
-                    {
-                        Text = item.Name,
-                        Value = item.PlatoonId.ToString()
-                    };
-                }
-            }
-        }
-        public int SelectedSquad { get; set; }
-        public IEnumerable<SelectListItem> GetSquadsSelectList()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var squads = ctx.SquadDbSet.ToList();
-                foreach (var item in squads)
-                {
-                    yield return new SelectListItem
-                    {
-                        Text = item.Name,
-                        Value = item.SquadId.ToString()
-                    };
-                }
-            }
-        }*/
         public int SelectedTeam { get; set; }
         public IEnumerable<SelectListItem> GetTeamsSelectList()
         {

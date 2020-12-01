@@ -1,4 +1,4 @@
-﻿<link rel="stylesheet" href="@(Url.Content("~/Content/cLogin.css"))"/>
+﻿<link rel="stylesheet" href="@(Url.Content("~/Content/cLogin.css"))" />
 @using Orderly.WebMVC.Models
 @model LoginViewModel
 @{
@@ -38,9 +38,8 @@
                         </div>
                     </div>
                     <div class="form-signin">
-                        <div class="col-md-offset-2">
+                        <div class="col-md">
                             <input type="submit" value="Sign in" class="btn btn-outline-dark" />
-                            <button class="btn btn-info ml-4">@Html.ActionLink("Need an account?", "Register", null, new { @class = "text-white text-decoration-none" })</button>
                         </div>
                     </div>
                     @* Enable this once you have account confirmation enabled for password reset functionality
@@ -49,6 +48,9 @@
                         </p>*@
                 }
             </section>
+            <div class="col-md">
+                <button class="btn btn-info">@Html.ActionLink("Need an account?", "Register", null, new { @class = "text-white text-decoration-none" })</button>
+            </div>
         </div>
         @*    <div class="col-md-4">
                 <section id="socialLoginForm">

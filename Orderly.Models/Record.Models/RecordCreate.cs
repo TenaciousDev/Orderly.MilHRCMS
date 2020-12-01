@@ -10,12 +10,6 @@ namespace Orderly.Models
 {
     public class RecordCreate
     {
-        //Summary:
-        //This item collects all properties related to personnel records.
-        //It draws from the following classes: Personnel, Housing, Contact, and UnitInfo
-        //A RecordDetail is used to display all data associated with a human being
-        //from within a single View.
-
         //PERSONNEL
         public int PersonnelId { get; set; }
         public Grade Rank { get; set; }
