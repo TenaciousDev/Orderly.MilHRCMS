@@ -16,7 +16,7 @@ namespace Orderly.WebMVC.Controllers
     {
 
         //TEST
-        public ActionResult GetRecordsTest()
+/*        public ActionResult GetRecordsTest()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -140,7 +140,7 @@ namespace Orderly.WebMVC.Controllers
             testModel.UnitInfo = unitInfoSvc.GetUnitInfo();
             return View(testModel);
         }
-
+*/
         //POST Record/Create TEST
 /*        [HttpPost]
         [ValidateAntiForgeryToken]
@@ -156,14 +156,14 @@ namespace Orderly.WebMVC.Controllers
             return View(model);
         }
 
-        //GET: Record MAIN PAGE THIS IS A TEST
+/*        //GET: Record MAIN PAGE THIS IS A TEST
         public ActionResult Dashboard()
         {
             var service = CreateRecordService();
             var model = service.GetRecords();
             return View(model);
         }
-
+*/
         //GET: Record/Detail/id
         public ActionResult Details(int id)
         {

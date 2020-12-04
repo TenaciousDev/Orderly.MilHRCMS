@@ -22,8 +22,10 @@ namespace Orderly.Models
         public virtual Platoon Platoon { get; set; }
         public string Role { get; set; }
         [Display(Name = "Arrival Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTimeOffset Arrived { get; set; }
         [Display(Name = "Loss Date")]
+        [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString = "{0:d}")]
         public DateTimeOffset? LossDate { get; set; }
         [Display(Name = "Duty Status")]
         public string DutyStatus { get; set; }
@@ -37,38 +39,6 @@ namespace Orderly.Models
         public DateTimeOffset CreatedUtc { get; set; }
         [Display(Name = "Modified on")]
         public DateTimeOffset? ModifiedUtc { get; set; }
-        public int SelectedPlatoon { get; set; }
-        public IEnumerable<SelectListItem> GetPlatoonsSelectList()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var platoons = ctx.PlatoonDbSet.ToList();
-                foreach (var item in platoons)
-                {
-                    yield return new SelectListItem
-                    {
-                        Text = item.Name,
-                        Value = item.PlatoonId.ToString()
-                    };
-                }
-            }
-        }
-        public int SelectedSquad { get; set; }
-        public IEnumerable<SelectListItem> GetSquadsSelectList()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var squads = ctx.SquadDbSet.ToList();
-                foreach (var item in squads)
-                {
-                    yield return new SelectListItem
-                    {
-                        Text = item.Name,
-                        Value = item.SquadId.ToString()
-                    };
-                }
-            }
-        }
         public int SelectedTeam { get; set; }
         public IEnumerable<SelectListItem> GetTeamsSelectList()
         {

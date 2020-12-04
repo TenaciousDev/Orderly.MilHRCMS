@@ -32,6 +32,7 @@ namespace Orderly.Models
         [Display(Name = "Vehicle Year")]
         public int VehicleYear { get; set; }
         [Display(Name = "Last Vehicle Inspection")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTimeOffset? VehicleInspected { get; set; }
         [Display(Name = "Created by")]
         public string CreatedByUserName { get; set; }

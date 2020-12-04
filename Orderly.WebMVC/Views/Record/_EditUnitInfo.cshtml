@@ -7,8 +7,6 @@
 @{
     string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
     string modified = Model.ModifiedUtc.HasValue ? Model.ModifiedUtc.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
-    string arrived = Model.Arrived.ToString("MM/dd/yyyy");
-    string loss = Model.LossDate.HasValue ? Model.LossDate.Value.ToString("MM/dd/yyyy") : "";
     var platoon = Model.Team.Squad.Platoon;
     var squad = Model.Team.Squad;
 }
@@ -34,28 +32,28 @@
                     </h4>
                 </div>
                 <div class="form-row">
-                                        <div class="form-group col-md mr-md-2 mr-lg-0">
-                            @Html.LabelFor(model => model.Team.Squad.Platoon, htmlAttributes: new { @class = "control-label col font-weight-bold" })
-                            <div class="col">
-                                @Html.EditorFor(model => platoon.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => platoon.Name, "", new { @class = "text-danger" })
-                            </div>
+                    @*<div class="form-group col-md mr-md-2 mr-lg-0">
+                        @Html.LabelFor(model => model.Team.Squad.Platoon, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                        <div class="col">
+                            @Html.EditorFor(model => platoon.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => platoon.Name, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group col-md">
-                            @Html.LabelFor(model => model.Team.Squad, htmlAttributes: new { @class = "control-label col font-weight-bold" })
-                            <div class="col">
-                                @Html.EditorFor(model => squad.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => squad.Name, "", new { @class = "text-danger" })
-                            </div>
+                    </div>
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.Team.Squad, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                        <div class="col">
+                            @Html.EditorFor(model => squad.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => squad.Name, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group col-md">
-                            @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col font-weight-bold" })
-                            <div class="col">
-                                @Html.EditorFor(model => model.Team.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Team.Name, "", new { @class = "text-danger" })
-                            </div>
+                    </div>*@
+                    <div class="form-group col-md">
+                        @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col font-weight-bold" })
+                        <div class="col">
+                            @Html.DropDownListFor(model => model.TeamId, Model.GetTeamsSelectList(), new { htmlAttributes = new { @class = "form-control", id = "Team" } })
+                            @Html.ValidationMessageFor(model => model.Team.Name, "", new { @class = "text-danger" })
                         </div>
-                                        <div class="form-group col-md">
+                    </div>
+                    <div class="form-group col-md">
                         @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col font-weight-bold" })
                         <div class="col">
                             @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
@@ -67,8 +65,8 @@
                     <div class="form-group col-md">
                         @Html.LabelFor(model => model.Arrived, htmlAttributes: new { @class = "control-label col-md font-weight-bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => arrived, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => arrived, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Arrived, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Arrived, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
@@ -95,32 +93,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md">
-                        <span class="small">
-                            @Html.DisplayNameFor(model => model.CreatedByUserName)
-                            :
-                            @Html.DisplayFor(model => model.CreatedByUserName)
-                            <br />
-                            @Html.DisplayNameFor(model => model.CreatedUtc)
-                            :
-                            @Html.DisplayFor(model => created)
-                        </span>
-                    </div>
-                    <div class="col-md">
-                        <span class="small">
-                            @Html.DisplayNameFor(model => model.ModifiedByUserName)
-                            :
-                            @Html.DisplayFor(model => model.ModifiedByUserName)
-                            <br />
-                            @Html.DisplayNameFor(model => model.ModifiedUtc)
-                            :
-                            @Html.DisplayFor(model => modified)
-                        </span>
-                    </div>
-                </div>
-
             </div>
+            <div class="row">
+                <div class="col-md">
+                    <span class="small">
+                        @Html.DisplayNameFor(model => model.CreatedByUserName)
+                        :
+                        @Html.DisplayFor(model => model.CreatedByUserName)
+                        <br />
+                        @Html.DisplayNameFor(model => model.CreatedUtc)
+                        :
+                        @Html.DisplayFor(model => created)
+                    </span>
+                </div>
+                <div class="col-md">
+                    <span class="small">
+                        @Html.DisplayNameFor(model => model.ModifiedByUserName)
+                        :
+                        @Html.DisplayFor(model => model.ModifiedByUserName)
+                        <br />
+                        @Html.DisplayNameFor(model => model.ModifiedUtc)
+                        :
+                        @Html.DisplayFor(model => modified)
+                    </span>
+                </div>
+            </div>
+
         </div>
     </form>
 

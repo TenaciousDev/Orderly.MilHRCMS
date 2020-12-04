@@ -60,7 +60,8 @@ namespace Orderly.WebMVC.Controllers
                     Id = detail.Id,
                     PersonnelId = detail.PersonnelId,
                     Personnel = detail.Personnel,
-                    TeamId = detail.TeamId,
+                    //TeamId = detail.TeamId,
+                    SelectedTeam = detail.TeamId,
                     Team = detail.Team,
                     Role = detail.Role,
                     Arrived = detail.Arrived,
@@ -91,7 +92,7 @@ namespace Orderly.WebMVC.Controllers
             if (svc.UpdateUnitInfo(model))
             {
                 TempData["SaveResult"] = "Record updated.";
-                return RedirectToAction("Details", new { id = model.PersonnelId });
+                return RedirectToAction("Index","Record");
             }
             ModelState.AddModelError("", "Unable to update record.");
             return View();

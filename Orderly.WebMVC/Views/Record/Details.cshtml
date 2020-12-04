@@ -7,16 +7,27 @@
 }
 @{
     string rank = Model.Rank.ToString();
+    string sex = Model.Sex.ToString();
+    string slotHeader = "Organization Slot";
     string dob = Model.DOB.ToString("MM/dd/yyyy");
     string license = Model.HasDriversLicense ? "Yes" : "No";
     string arrival = Model.Arrived.ToString("MM/dd/yyyy");
-    string loss = Model.LossDate.GetValueOrDefault().ToString("MM/dd/yyyy");
+    string loss = Model.LossDate.HasValue ? Model.LossDate.Value.ToString("MM/dd/yyyy") : "";
     string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
     string modified = Model.ModifiedUtc.HasValue ? Model.ModifiedUtc.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
-    string blank = "";
+}
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success alert-dismissible position-absolute" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
 }
 <div class="jumbotron jumbotron-fluid pl-4 bg-transparent mb-0 pb-1">
-    <a class="btn mb-2 text-primary text-decoration-none" href=@Url.Action("Index","Record")><i class="fa fa-2x fa-backward pt-2 fa-align-center"></i><span class="h4 font-weight-normal ml-3">Go Back</span></a>
+    <a class="btn mb-2 text-primary text-decoration-none" href=@Url.Action("/Index","Record")><i class="fa fa-2x fa-backward pt-2 fa-align-center"></i><span class="h4 font-weight-normal ml-3">Go Back</span></a>
     <br />
     <i class="fa fa-2x fa-address-card pr-2"></i><h2 class="pl-2 d-inline">@Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => rank)&nbsp;<span class="d-none d-sm-inline px-2">|</span>&nbsp;@Html.DisplayFor(model => model.Role)</h2>
     <hr class="" />
@@ -66,6 +77,14 @@
                         </h6>
                         <p>
                             @Html.DisplayFor(model => model.MiddleName)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.Sex)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => sex)
                         </p>
                     </div>
                     <div class="col-md">
@@ -172,12 +191,22 @@
                             @Html.DisplayFor(model => model.VehicleColor)
                         </p>
                     </div>
-                    <div class="col-md">
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
                         <h6 class="font-weight-bold mb-0">
                             @Html.DisplayNameFor(model => model.VehiclePlate)
                         </h6>
                         <p>
                             @Html.DisplayFor(model => model.VehiclePlate)
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <h6 class="font-weight-bold mb-0">
+                            @Html.DisplayNameFor(model => model.VehicleInspected)
+                        </h6>
+                        <p>
+                            @Html.DisplayFor(model => model.VehicleInspected)
                         </p>
                     </div>
                 </div>
@@ -186,7 +215,7 @@
     </div>
     <div class="row my-3 ml-lg-2">
         <div class="card col-4 p-0">
-            <div class="btn-group d-none d-md-flex align-self-end position-absolute pt-2" role="group">
+            <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
                 <a class="btn btn-sm" href="@Url.Action("UpdateHousing","Record", new { id = Model.PersonnelId })">
                     <span class="text-muted" data-toggle="tooltip" data-placement="top" title="Edit Record"><i class="fa fa-2x fa-edit text-hover"></i></span>
                 </a>
@@ -214,11 +243,6 @@
                     </div>
                 </div>
             </div>
-            <div class="d-md-none pr-2 text-right">
-                <p class="m-0">
-                    <a class="card-link" href="@Url.Action("UpdateHousing","Record", new { id = Model.PersonnelId })">Edit</a>
-                </p>
-            </div>
         </div>
         <div class="card col ml-2 p-0">
             <div class="btn-group d-flex align-self-end position-absolute pt-2" role="group">
@@ -231,28 +255,9 @@
             </div>
             <div class="card-body py-1">
                 <div class="row">
-                    <div class="col-md">
+                    <div class="col-md-3">
                         <h6 class="font-weight-bold mb-0">
-                            @Html.DisplayNameFor(model => model.Platoon.Name)
-                        </h6>
-                        <p>
-                            @Html.DisplayFor(model => model.Platoon.Name)
-                            <span class="small text-muted font-weight-lighter">
-                                (@Html.DisplayFor(model => model.Platoon.Familiar))
-                            </span>
-                        </p>
-                    </div>
-                    <div class="col-md">
-                        <h6 class="font-weight-bold mb-0">
-                            @Html.DisplayNameFor(model => model.Squad.Name)
-                        </h6>
-                        <p>
-                            @Html.DisplayFor(model => model.Squad.Name)
-                        </p>
-                    </div>
-                    <div class="col-md">
-                        <h6 class="font-weight-bold mb-0">
-                            @Html.DisplayNameFor(model => model.Team.Name)
+                            @Html.DisplayName(slotHeader)
                         </h6>
                         <p>
                             @Html.DisplayFor(model => model.Team.Name)
@@ -279,11 +284,7 @@
                             @Html.DisplayNameFor(model => model.LossDate)
                         </h6>
                         <p>
-                            @if (Model.LossDate != null)
-                            {
-                                Html.DisplayFor(model => loss);
-                            }
-                            @Html.DisplayFor(model => blank)
+                            @Html.DisplayFor(model => loss)
                         </p>
                     </div>
                     <div class="col-md">

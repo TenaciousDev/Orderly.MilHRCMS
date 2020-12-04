@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Orderly.Models
 {
@@ -36,5 +37,22 @@ namespace Orderly.Models
         public DateTimeOffset CreatedUtc { get; set; }
         [Display(Name = "Modified on")]
         public DateTimeOffset? ModifiedUtc { get; set; }
+        public int SelectedTeam { get; set; }
+        public IEnumerable<SelectListItem> GetTeamsSelectList()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var teams = ctx.TeamDbSet.ToList();
+                foreach (var item in teams)
+                {
+                    yield return new SelectListItem
+                    {
+                        Text = item.Name,
+                        Value = item.TeamId.ToString()
+                    };
+                }
+            }
+        }
+
     }
 }

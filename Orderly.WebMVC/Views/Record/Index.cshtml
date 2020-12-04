@@ -5,9 +5,13 @@
     Layout = "~/Views/Shared/_LayoutData.cshtml";
 }
 
+@{
+    string slotHeader = "Organization Slot";
+}
+
 @if (TempData.ContainsKey("SaveResult"))
 {
-    <div class="alert alert-success fade in" role="alert">
+    <div class="alert alert-success alert-dismissible position-absolute" role="alert">
 
         <button type="button" class="close" data-dismiss="alert">
             <span>&times;</span>
@@ -21,22 +25,6 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Filter 1<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link" href="#">Platoon</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Filter 3</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Filter 4</a>
-            </li>
-        </ul>
-    </div>
 </nav>
 <div class="table-outer">
     <table class="table table-sm table-hover table-fixed"
@@ -58,6 +46,9 @@
                 </th>
                 <th class="fit">
                     @Html.DisplayNameFor(model => model.MiddleName)
+                </th>
+                <th class="fit">
+                    @Html.DisplayNameFor(Model => Model.Sex)
                 </th>
                 <th class="fit">
                     @Html.DisplayNameFor(model => model.SSN)
@@ -107,14 +98,15 @@
                 <th class="fit">
                     @Html.DisplayNameFor(model => model.Room)
                 </th>
+                @*                <th class="fit">
+                        @Html.DisplayNameFor(model => model.Platoon.Name)
+                    </th>
+                    <th class="fit">
+                        @Html.DisplayNameFor(model => model.Squad.Name)
+                    </th>
+                *@
                 <th class="fit">
-                    @Html.DisplayNameFor(model => model.Platoon.Name)
-                </th>
-                <th class="fit">
-                    @Html.DisplayNameFor(model => model.Squad.Name)
-                </th>
-                <th class="fit">
-                    @Html.DisplayNameFor(model => model.Team.Name)
+                    @Html.DisplayName(slotHeader)
                 </th>
                 <th class="fit">
                     @Html.DisplayNameFor(model => model.Role)
@@ -152,6 +144,12 @@
                 </td>
                 <td class="fit">
                     @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td class="fit">
+                    @{
+                        string sex = item.Sex.ToString();
+                    }
+                    @Html.DisplayFor(modelItem => sex)
                 </td>
                 <td class="fit">
                     @Html.DisplayFor(modelItem => item.SSN)
@@ -205,22 +203,23 @@
                     @Html.DisplayFor(modelItem => item.Room)
                 </td>
                 <td class="fit">
-                    @Html.DisplayFor(modelItem => item.Platoon.Name)
-                </td>
-                <td class="fit">
-                    @Html.DisplayFor(modelItem => item.Squad.Name)
-                </td>
-                <td class="fit">
                     @Html.DisplayFor(modelItem => item.Team.Name)
                 </td>
                 <td class="fit">
                     @Html.DisplayFor(modelItem => item.Role)
                 </td>
                 <td class="fit">
-                    @Html.DisplayFor(modelItem => item.Arrived.Date)
+                    @{
+                        string arrival = item.Arrived.ToString("MM/dd/yyyy");
+                    }
+
+                    @Html.DisplayFor(modelItem => arrival)
                 </td>
                 <td class="fit">
-                    @Html.DisplayFor(modelItem => item.LossDate)
+                    @{
+                        string loss = item.LossDate.HasValue ? item.LossDate.Value.ToString("MM/dd/yyyy") : "";
+                    }
+                    @Html.DisplayFor(modelItem => loss)
                 </td>
                 <td class="fit">
                     @Html.DisplayFor(modelItem => item.DutyStatus)

@@ -12,8 +12,7 @@
 
     <form>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.LabelFor(model => model.PersonnelId, htmlAttributes: new { @class = "control-label col font-weight-bold" })
-        @Html.DisplayFor(model => personnelId)
+        @Html.HiddenFor(model => personnelId)
 
         <div class="container">
             <div class="row my-3 ml-lg-2">
