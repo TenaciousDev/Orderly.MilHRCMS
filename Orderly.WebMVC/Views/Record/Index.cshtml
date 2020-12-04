@@ -22,9 +22,6 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
     <a class="navbar-brand btn btn-sm btn-info text-white" href=@Url.Action("CreatePersonnelRecord","Record")>Add New Record</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 </nav>
 <div class="table-outer">
     <table class="table table-sm table-hover table-fixed"
@@ -33,7 +30,7 @@
            data-height="600"
            data-card-view="true">
         <thead class="thead-dark overflow-auto">
-            <tr>
+            <tr class="">
                 <th class="bg-transparent border-0"></th>
                 <th class="fit">
                     @Html.DisplayNameFor(model => model.Rank)
@@ -98,13 +95,6 @@
                 <th class="fit">
                     @Html.DisplayNameFor(model => model.Room)
                 </th>
-                @*                <th class="fit">
-                        @Html.DisplayNameFor(model => model.Platoon.Name)
-                    </th>
-                    <th class="fit">
-                        @Html.DisplayNameFor(model => model.Squad.Name)
-                    </th>
-                *@
                 <th class="fit">
                     @Html.DisplayName(slotHeader)
                 </th>
