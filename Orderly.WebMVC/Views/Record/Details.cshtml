@@ -1,5 +1,6 @@
 ﻿@Styles.Render("~/Content/Detail.css")
 @model Orderly.Models.RecordDetail
+@using Orderly.Data
 
 @{
     ViewBag.Title = "Details";
@@ -13,8 +14,6 @@
     string license = Model.HasDriversLicense ? "Yes" : "No";
     string arrival = Model.Arrived.ToString("MM/dd/yyyy");
     string loss = Model.LossDate.HasValue ? Model.LossDate.Value.ToString("MM/dd/yyyy") : "";
-    string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
-    string modified = Model.ModifiedUtc.HasValue ? Model.ModifiedUtc.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
 }
 @if (TempData.ContainsKey("SaveResult"))
 {
@@ -298,6 +297,43 @@
             </div>
         </div>
     </div>
+    @{
+        var ctx = new ApplicationDbContext();
+        IDictionary<string, DateTimeOffset?> versionDictionary = new Dictionary<string, DateTimeOffset?>();
+
+        if (ctx.PersonnelDbSet.Find(Model.PersonnelId).ModifiedUtc.HasValue)
+        {
+            versionDictionary.Add((ctx.PersonnelDbSet.Find(Model.PersonnelId).ModifiedByUserName + Guid.NewGuid().ToString()), ctx.PersonnelDbSet.Find(Model.PersonnelId).ModifiedUtc);
+        };
+
+        if (ctx.ContactDbSet.Find(Model.ContactId).ModifiedUtc.HasValue)
+        {
+            versionDictionary.Add((ctx.ContactDbSet.Find(Model.ContactId).ModifiedByUserName + Guid.NewGuid().ToString()), ctx.ContactDbSet.Find(Model.ContactId).ModifiedUtc);
+        }
+
+        if (ctx.HousingDbSet.Find(Model.HousingId).ModifiedUtc.HasValue)
+        {
+            versionDictionary.Add((ctx.HousingDbSet.Find(Model.HousingId).ModifiedByUserName + Guid.NewGuid().ToString()), ctx.HousingDbSet.Find(Model.HousingId).ModifiedUtc);
+        }
+
+        if (ctx.UnitInfoDbSet.Find(Model.UnitInfoId).ModifiedUtc.HasValue)
+        {
+            versionDictionary.Add((ctx.UnitInfoDbSet.Find(Model.UnitInfoId).ModifiedByUserName + Guid.NewGuid().ToString()), ctx.UnitInfoDbSet.Find(Model.UnitInfoId).ModifiedUtc);
+        }
+
+        //var version = versionDictionary.Max();
+
+        var user = versionDictionary.Max(e => e.Key).Substring(0, versionDictionary.Max(e => e.Key).Length - 36);
+        var date = versionDictionary.Max(e => e.Value);
+
+        //var recentModUser = version.Key.Substring(0, version.Key.Length - 36);
+        //var recentModDate = version.Value;
+
+        string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
+        string modified = date.HasValue ? date.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
+
+
+    }
     <div class="row">
         <div class="col-md">
             <span class="small">
@@ -314,7 +350,7 @@
             <span class="small">
                 @Html.DisplayNameFor(model => model.ModifiedByUserName)
                 :
-                @Html.DisplayFor(model => model.ModifiedByUserName)
+                @Html.DisplayFor(model => user)
                 <br />
                 @Html.DisplayNameFor(model => model.ModifiedUtc)
                 :

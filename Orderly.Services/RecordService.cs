@@ -213,9 +213,11 @@ namespace Orderly.Services
                         VehicleYear = c.VehicleYear,
                         VehicleInspected = c.VehicleInspected,
                         //Housing
+                        HousingId = h.HousingId,
                         Address = h.Address,
                         Room = h.Room,
                         //UnitInfo
+                        UnitInfoId =ui.UnitInfoId,
                         TeamId = ui.TeamId,
                         Team = ui.Team,
                         SquadId = sqd.SquadId,

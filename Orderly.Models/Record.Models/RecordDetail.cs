@@ -86,6 +86,7 @@ namespace Orderly.Models
         [Display(Name = "Arrival Date")]
         public DateTimeOffset Arrived { get; set; }
         [Display(Name = "Loss Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTimeOffset? LossDate { get; set; }
         [Display(Name = "Duty Status")]
         public string DutyStatus { get; set; }
@@ -96,8 +97,10 @@ namespace Orderly.Models
         public string ModifiedByUserName { get; set; }
         public Guid ModifiedLast { get; set; }
         [Display(Name = "Created on")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTimeOffset CreatedUtc { get; set; }
         [Display(Name = "Modified on")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }
