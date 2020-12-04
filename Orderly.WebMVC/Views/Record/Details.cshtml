@@ -325,15 +325,16 @@
 
         //var version = versionDictionary.Max();
 
-        var user = versionDictionary.Any() ? versionDictionary.Max(e => e.Key).Substring(0, versionDictionary.Max(e => e.Key).Length - 36) : "" ;
         var date = versionDictionary.Max(e => e.Value);
+        //var userOld = versionDictionary.Any() ? versionDictionary.Max(e => e.Key).Substring(0, versionDictionary.Max(e => e.Key).Length - 36) : "" ;
+        var user = versionDictionary.Where(e => e.Value == date).Select(e => e.Key.Substring(0, versionDictionary.Max(m => m.Key).Length - 36));
 
         //var recentModUser = version.Key.Substring(0, version.Key.Length - 36);
         //var recentModDate = version.Value;
 
         string created = Model.PersonnelCreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
         string modified = date.HasValue ? date.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
-
+        string test = "test";
 
     }
     <div class="row">
