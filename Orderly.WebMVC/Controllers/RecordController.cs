@@ -103,8 +103,8 @@ namespace Orderly.WebMVC.Controllers
                     DOD = detail.DOD,
                     DOB = detail.DOB,
                     MaritalStatus = detail.MaritalStatus,
-                    ModifiedLast = detail.ModifiedLast,
-                    ModifiedUtc = detail.ModifiedUtc,
+                    ModifiedLast = detail.PersonnelModifiedLast,
+                    ModifiedUtc = detail.PersonnelModifiedUtc,
                     //Contact
                     ContactId = detail.ContactId,
                     PhoneNumber = detail.PhoneNumber,

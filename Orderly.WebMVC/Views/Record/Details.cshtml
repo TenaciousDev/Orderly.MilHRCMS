@@ -323,13 +323,13 @@
 
         //var version = versionDictionary.Max();
 
-        var user = versionDictionary.Max(e => e.Key).Substring(0, versionDictionary.Max(e => e.Key).Length - 36);
+        var user = versionDictionary.Any() ? versionDictionary.Max(e => e.Key).Substring(0, versionDictionary.Max(e => e.Key).Length - 36) : "" ;
         var date = versionDictionary.Max(e => e.Value);
 
         //var recentModUser = version.Key.Substring(0, version.Key.Length - 36);
         //var recentModDate = version.Value;
 
-        string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
+        string created = Model.PersonnelCreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
         string modified = date.HasValue ? date.Value.ToString("MM/dd/yyyy, HH:mm:ss") : "";
 
 
@@ -337,22 +337,22 @@
     <div class="row">
         <div class="col-md">
             <span class="small">
-                @Html.DisplayNameFor(model => model.CreatedByUserName)
+                @Html.DisplayNameFor(model => model.PersonnelCreatedByUserName)
                 :
-                @Html.DisplayFor(model => model.CreatedByUserName)
+                @Html.DisplayFor(model => model.PersonnelCreatedByUserName)
                 <br />
-                @Html.DisplayNameFor(model => model.CreatedUtc)
+                @Html.DisplayNameFor(model => model.PersonnelCreatedUtc)
                 :
                 @Html.DisplayFor(model => created)
             </span>
         </div>
         <div class="col-md">
             <span class="small">
-                @Html.DisplayNameFor(model => model.ModifiedByUserName)
+                @Html.DisplayNameFor(model => model.PersonnelModifiedByUserName)
                 :
                 @Html.DisplayFor(model => user)
                 <br />
-                @Html.DisplayNameFor(model => model.ModifiedUtc)
+                @Html.DisplayNameFor(model => model.PersonnelModifiedUtc)
                 :
                 @Html.DisplayFor(model => modified)
             </span>
