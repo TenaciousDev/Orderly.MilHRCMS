@@ -10,7 +10,8 @@ Deletion of records is disabled by design; all personnel records should be maint
 
 ## Registration
 
-Using your preferred web-browser, navigate to [https://orderly.azurewebsites.net/](https://orderly.azurewebsites.net/).  From there, click the `Register` link in the navbar.  Register as you normally would.
+Using your preferred web-browser, navigate to [https://orderly.azurewebsites.net/](https://orderly.azurewebsites.net/).
+From there, click the `Register` link in the navbar.  Register as you normally would.
 
 ## How to use
 

@@ -55,7 +55,6 @@ namespace Orderly.Models
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTimeOffset? PersonnelModifiedUtc { get; set; }
 
-
         //CONTACT
         public int ContactId { get; set; }
         [Display(Name = "Phone Number")]
@@ -92,7 +91,6 @@ namespace Orderly.Models
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTimeOffset? ContactModifiedUtc { get; set; }
 
-
         //HOUSING
         public int HousingId { get; set; }
         [Display(Name = "Street Address")]
@@ -111,7 +109,6 @@ namespace Orderly.Models
         [Display(Name = "Modified on")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTimeOffset? HousingModifiedUtc { get; set; }
-
 
         //UNITINFO
         public int UnitInfoId { get; set; }

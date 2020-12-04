@@ -205,6 +205,7 @@ namespace Orderly.Services
                         PersonnelModifiedByUserName = p.ModifiedByUserName,
                         PersonnelModifiedLast = p.ModifiedLast,
                         PersonnelModifiedUtc = p.ModifiedUtc,
+
                         //Contact
                         ContactId = c.ContactId,
                         //Personnel = c.Personnel,
@@ -218,6 +219,7 @@ namespace Orderly.Services
                         VehiclePlate = c.VehiclePlate,
                         VehicleYear = c.VehicleYear,
                         VehicleInspected = c.VehicleInspected,
+
                         ContactCreatedBy = c.CreatedBy,
                         ContactCreatedByUserName = u.UserName,
                         ContactCreatedUtc = c.CreatedUtc,
