@@ -23,15 +23,15 @@ So I think yes, I was prepared, because I had a vision in my head that I laid ou
 ---
 ## What was the coolest functionality you got to work in your opinion?
 
-Okay, I'm pretty excited about this question.  I just got a feature working on Friday that, while seemingly small, took a lot of effort.
+Okay, I'm pretty excited about this question.  I just got a feature working at the last minute that, while seemingly small, took a lot of effort.
 
 If we open a detailed view of a record, you'll notice that at the bottom of the view is a section that displays information about the creation of the record, and information about the most recent time someone has edited the record. This is a very important feature, because accountability is key when dealing with Human Resources records. If a user makes a change, like promoting the servicemember from E4 to E5, for example, it's important for others to know who made this change.
 
 In this version of the project, this is limited to the most recent modification; future versions will incorporate a complete changelog, but that wasn't feasible given the scope and time alloted for this assignment. I think I've figured out how to implement it now, but I had no idea how it might work when I designed the project at the beginning.
 
-So anyway, until Friday this feature only drew from the ModifiedUtc property of the Personnel class. This is because the Record models don't exist at the data layer, but instead draw from the data held in properties by the four primary classes. Because each of these four main classes contains a ModifiedUtc property (which is a nullable `DateTimeOffset` type), I basically boxed myself into a corner and had to pick which primary class this feature would draw from. So initially, that was the Personnel class.
+So anyway, until *very* recently* this feature only drew from the `ModifiedUtc` property of the Personnel class. This is because the Record models are View Models - they don't exist at the data layer, but instead draw from the data held in properties by the four primary classes. Because each of these four main classes contains a ModifiedUtc property (which is a nullable `DateTimeOffset` type), I basically boxed myself into a corner and had to pick which primary class this feature would draw from. So initially, that was the Personnel class.
 
-But Friday, I decided to take another look at that. I needed to grab the value of the ModifiedUtc property in each main class, associate that with the ModifiedByUsername property of each class respectively, and pass those values into a list of some type that would hold them as Key-Value Pairs and then evaluate:
+But at the last minute, I decided to take another look at this feature. I needed to grab the value of the `ModifiedUtc` property in each main class, associate that with the `ModifiedByUsername` property of each class respectively, and pass those values into a list of some type that would hold them as Key-Value Pairs and then evaluate:
 
   1. Whether any of the `DateTimeOffset?` values held `null`
   2. Which of the `DateTimeOffset?` values that *weren't* `null`, were the greatest value in the list
@@ -80,7 +80,7 @@ Instead of working as I'd hoped, the first edit I made to test it threw an excep
 ```c#
 [An item with the same key has already been added.]
 ```
-Doh! As soon as I saw that, it made sense; I'd made the key `ctx.UnitInfoDbSet.Find(Model.UnitInfoId).ModifiedByUserName`, which would naturally be the same if the same user had made the most recent edits on two sections or more. So after a lot of trial and error, I altered my conditional to add  `Guid.NewGuid().ToString()` to the end of my Dictionary Keys:
+Doh! As soon as I saw that, it made sense; I'd made the key `ctx.UnitInfoDbSet.Find(Model.UnitInfoId).ModifiedByUserName`, which would naturally be the same if a single user had made the most recent edits on two sections or more. So after some trial and error, I altered my conditional to add  `Guid.NewGuid().ToString()` to the end of my Dictionary Keys:
 ```c#
 if (ctx.PersonnelDbSet.Find(Model.PersonnelId).ModifiedUtc.HasValue)
   {
@@ -107,7 +107,6 @@ Which meant I also needed to get rid of the extra `Guid` before I passed the val
 ```c#
 var recentModUser = version.Key.Substring(0, version.Key.Length - 36);
 ```
-
 Cool, I thought. This should work.
 
 Nope! I started getting an error I'd never seen and didn't understand:
@@ -130,7 +129,29 @@ var date = versionDictionary.Max(e => e.Value);
 ```
 This solved my issue, and enabled me to display the `ModifiedUtc` & `ModifiedByUsername` values associated with the most recent changes made to the record, regardless of which class contained the modified values.
 
-So the code for this simple little footer section ended up looking like this, inside the Razor block:
+Of course, a little while later, I ran into another issue while testing. When I created a brand new set of records and then navigated to a detailed view of the record set, I got the infamous NullReferenceException:
+
+```c#
+[Object reference not set to an instance of an object]
+```
+
+Uh-oh. This exception was thrown on the definition of my `user` variable, which I'd thought was just fine.  But thankfully, this was solved with an easy ternary evaluation of my `user` variable, which checks to see if there are *any* values other than `null` in the `versionDictionary` before deciding what to return:
+
+```c#
+var user = versionDictionary.Any() ? versionDictionary.Max(e => e.Key).Substring(0, versionDictionary.Max(e => e.Key).Length - 36) : "" ;
+```
+Cool, fixed.  But wait...see where this is going?
+
+Turns out, this definition of `user` was fundamentally flawed from the outset. It actually returns whichever `Key` in the `Dictionary` holds the maximum value, rather than returning the `Key` that *matches* the maximum-value `Value` (the corresponding `DateTimeOffset?`). So once I realized that, I actually had to wipe out my previous definition for `user` and do something more like:
+
+```c#
+var user = versionDictionary.Where(e => e.Value == date).Select(e => e.Key.Substring(0, versionDictionary.Max(m => m.Key).Length - 36));
+```
+This is ugly, but it works. It's ugly because what this actually does is measure the length of my selected `Key` based on the length of the maximum-value `Key` in the `Dictionary`, and then subtract 36 characters from my selection ***based on this other*** **`Key`**. But it works because each Model's `ModifiedByUsername` property returned from the `ctx.PersonnelDbSet.Find(Model.PersonnelId).ModifiedByUserName` instruction adds exactly 36 characters to the end of the original `ModifiedByUserName` property before adding it to the `versionDictionary`, and then subtracts those characters once it's been selected but before returning the remaining value to `user`.  And I'm not sure how else to write this at the moment, because the `Key` I'm actually selecting gets converted to Type `IEnumerable` during the comparison and selection phase, which means it won't take the `.Length()` extension.
+
+If it's ugly but it works, it's pretty enough.
+
+So that, thankfully, was the last bit I had to fix before I had a working product again.  So the code for this simple little footer section ended up looking like this, inside the Razor block:
 
 ```c#
 var ctx = new ApplicationDbContext();
@@ -156,7 +177,7 @@ if (ctx.UnitInfoDbSet.Find(Model.UnitInfoId).ModifiedUtc.HasValue)
       versionDictionary.Add((ctx.UnitInfoDbSet.Find(Model.UnitInfoId).ModifiedByUserName + Guid.NewGuid().ToString()), ctx.UnitInfoDbSet.Find(Model.UnitInfoId).ModifiedUtc);
   }
 
-var user = versionDictionary.Max(e => e.Key).Substring(0, versionDictionary.Max(e => e.Key).Length - 36);
+var user = versionDictionary.Any() ? versionDictionary.Max(e => e.Key).Substring(0, versionDictionary.Max(e => e.Key).Length - 36) : ""
 var date = versionDictionary.Max(e => e.Value);
 
 string created = Model.CreatedUtc.ToString("MM/dd/yyyy, HH:mm:ss");
@@ -211,6 +232,8 @@ Honestly, just my own lack of knowledge & experience. Which is easy to overcome 
 
 Sue me, I like acronyms. But I came up with this one several years back to make a specific point: 
 
+```
 It takes all these things to excel within your circumstances, and each item is related: the more motivated you are to pursue something, the more aptitude you'll develop; the greater your knowledge grows, the better you'll be able to manipulate your environment to pursue greater experience.
+```
 
 In closing, this was a challenging project, which means it was a fun project! I'm super excited to keep learning. Thanks for your time.
