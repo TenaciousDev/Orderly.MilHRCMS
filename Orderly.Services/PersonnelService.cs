@@ -17,23 +17,26 @@ namespace Orderly.Services
         }
         public bool CreatePersonnel(PersonnelCreate model)
         {
-            var entity = new Personnel()
-            {
-                Rank = model.Rank,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                MiddleName = model.MiddleName,
-                Sex = model.Sex,
-                SSN = model.SSN,
-                DOD = model.DOD,
-                DOB = model.DOB,
-                MaritalStatus = model.MaritalStatus,
-                CreatedBy = _userId,
-                CreatedUtc = DateTimeOffset.Now,
-                ModifiedLast = Guid.Empty
-            };
             using (var ctx = new ApplicationDbContext())
             {
+                var user = ctx.Users.Find(_userId.ToString());
+                var userName = user.UserName;
+                var entity = new Personnel()
+                {
+                    Rank = model.Rank,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    MiddleName = model.MiddleName,
+                    Sex = model.Sex,
+                    SSN = model.SSN,
+                    DOD = model.DOD,
+                    DOB = model.DOB,
+                    MaritalStatus = model.MaritalStatus,
+                    CreatedBy = _userId,
+                    CreatedByUserName = userName,
+                    CreatedUtc = DateTimeOffset.Now,
+                    ModifiedLast = Guid.Empty
+                };
                 ctx.PersonnelDbSet.Add(entity);
                 return ctx.SaveChanges() == 1;
             }

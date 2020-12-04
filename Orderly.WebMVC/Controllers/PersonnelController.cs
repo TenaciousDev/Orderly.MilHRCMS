@@ -73,6 +73,8 @@ namespace Orderly.WebMVC.Controllers
                     DOD = detail.DOD,
                     DOB = detail.DOB,
                     MaritalStatus = detail.MaritalStatus,
+                    CreatedBy = detail.CreatedBy,
+                    CreatedUtc = detail.CreatedUtc,
                     ModifiedLast = detail.ModifiedLast,
                     ModifiedUtc = detail.ModifiedUtc
                 };
