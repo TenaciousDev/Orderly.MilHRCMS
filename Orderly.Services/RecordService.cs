@@ -16,102 +16,102 @@ namespace Orderly.Services
             _userId = userId;
         }
         //TEST
-        public IEnumerable<RecordListItem> GetRecordsTest()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                List<RecordListItem> Records = new List<RecordListItem>();
-
-                var recordList = (
-                    from p in ctx.PersonnelDbSet
-                    join u in ctx.Users on p.CreatedBy.ToString() equals u.Id
-                    join c in ctx.ContactDbSet on p.PersonnelId equals c.PersonnelId
-                    join ui in ctx.UnitInfoDbSet on p.PersonnelId equals ui.PersonnelId
-                    join h in ctx.HousingDbSet on p.PersonnelId equals h.PersonnelId
-                    //join sqd in ctx.SquadDbSet on ui.Team.Squad.SquadId equals sqd.Id
-                    //join plt in ctx.PlatoonDbSet on ui.Team.Squad.Platoon.PlatoonId equals plt.Id
-                    select new
-                    {
-                        //Personnel
-                        p.PersonnelId,
-                        p.Rank,
-                        p.FirstName,
-                        p.LastName,
-                        p.MiddleName,
-                        p.Sex,
-                        p.SSN,
-                        p.DOD,
-                        p.DOB,
-                        p.MaritalStatus,
-                        //Contact
-                        c.ContactId,
-                        c.PhoneNumber,
-                        c.PersonalEmail,
-                        c.MilEmail,
-                        c.HasDriversLicense,
-                        c.VehicleMake,
-                        c.VehicleModel,
-                        c.VehicleColor,
-                        c.VehiclePlate,
-                        c.VehicleYear,
-                        c.VehicleInspected,
-                        //Housing
-                        h.HousingId,
-                        h.Address,
-                        h.Room,
-                        //UnitInfo
-                        ui.UnitInfoId,
-                        ui.TeamId,
-                        //sqd.SquadId,
-                        //plt.PlatoonId,
-                        ui.Role,
-                        ui.Arrived,
-                        ui.LossDate,
-                        ui.DutyStatus
-                    }).ToList();
-                foreach (var model in recordList)
+        /*        public IEnumerable<RecordListItem> GetRecordsTest()
                 {
-                    RecordListItem record = new RecordListItem();
-                    //Personnel
-                    record.PersonnelId = model.PersonnelId;
-                    record.Rank = model.Rank;
-                    record.FirstName = model.FirstName;
-                    record.LastName = model.LastName;
-                    record.MiddleName = model.MiddleName;
-                    record.Sex = model.Sex;
-                    record.SSN = model.SSN;
-                    record.DOD = model.DOD;
-                    record.DOB = model.DOB;
-                    record.MaritalStatus = model.MaritalStatus;
-                    //Contact
-                    record.PersonnelId = model.PersonnelId;
-                    record.PhoneNumber = model.PhoneNumber;
-                    record.PersonalEmail = model.PersonalEmail;
-                    record.MilEmail = model.MilEmail;
-                    record.HasDriversLicense = model.HasDriversLicense;
-                    record.VehicleMake = model.VehicleMake;
-                    record.VehicleModel = model.VehicleModel;
-                    record.VehicleColor = model.VehicleColor;
-                    record.VehicleYear = model.VehicleYear;
-                    record.VehicleInspected = model.VehicleInspected;
-                    //Housing
-                    record.PersonnelId = model.PersonnelId;
-                    record.Address = model.Address;
-                    record.Room = model.Room;
-                    //UnitInfo
-                    record.PersonnelId = model.PersonnelId;
-                    record.TeamId = model.TeamId;
-                    record.Role = model.Role;
-                    record.Arrived = model.Arrived;
-                    record.LossDate = model.LossDate;
-                    record.DutyStatus = model.DutyStatus;
+                    using (var ctx = new ApplicationDbContext())
+                    {
+                        List<RecordListItem> Records = new List<RecordListItem>();
 
-                    Records.Add(record);
+                        var recordList = (
+                            from p in ctx.PersonnelDbSet
+                            join u in ctx.Users on p.CreatedBy.ToString() equals u.Id
+                            join c in ctx.ContactDbSet on p.PersonnelId equals c.PersonnelId
+                            join ui in ctx.UnitInfoDbSet on p.PersonnelId equals ui.PersonnelId
+                            join h in ctx.HousingDbSet on p.PersonnelId equals h.PersonnelId
+                            //join sqd in ctx.SquadDbSet on ui.Team.Squad.SquadId equals sqd.Id
+                            //join plt in ctx.PlatoonDbSet on ui.Team.Squad.Platoon.PlatoonId equals plt.Id
+                            select new
+                            {
+                                //Personnel
+                                p.PersonnelId,
+                                p.Rank,
+                                p.FirstName,
+                                p.LastName,
+                                p.MiddleName,
+                                p.Sex,
+                                p.SSN,
+                                p.DOD,
+                                p.DOB,
+                                p.MaritalStatus,
+                                //Contact
+                                c.ContactId,
+                                c.PhoneNumber,
+                                c.PersonalEmail,
+                                c.MilEmail,
+                                c.HasDriversLicense,
+                                c.VehicleMake,
+                                c.VehicleModel,
+                                c.VehicleColor,
+                                c.VehiclePlate,
+                                c.VehicleYear,
+                                c.VehicleInspected,
+                                //Housing
+                                h.HousingId,
+                                h.Address,
+                                h.Room,
+                                //UnitInfo
+                                ui.UnitInfoId,
+                                ui.TeamId,
+                                //sqd.SquadId,
+                                //plt.PlatoonId,
+                                ui.Role,
+                                ui.Arrived,
+                                ui.LossDate,
+                                ui.DutyStatus
+                            }).ToList();
+                        foreach (var model in recordList)
+                        {
+                            RecordListItem record = new RecordListItem();
+                            //Personnel
+                            record.PersonnelId = model.PersonnelId;
+                            record.Rank = model.Rank;
+                            record.FirstName = model.FirstName;
+                            record.LastName = model.LastName;
+                            record.MiddleName = model.MiddleName;
+                            record.Sex = model.Sex;
+                            record.SSN = model.SSN;
+                            record.DOD = model.DOD;
+                            record.DOB = model.DOB;
+                            record.MaritalStatus = model.MaritalStatus;
+                            //Contact
+                            record.PersonnelId = model.PersonnelId;
+                            record.PhoneNumber = model.PhoneNumber;
+                            record.PersonalEmail = model.PersonalEmail;
+                            record.MilEmail = model.MilEmail;
+                            record.HasDriversLicense = model.HasDriversLicense;
+                            record.VehicleMake = model.VehicleMake;
+                            record.VehicleModel = model.VehicleModel;
+                            record.VehicleColor = model.VehicleColor;
+                            record.VehicleYear = model.VehicleYear;
+                            record.VehicleInspected = model.VehicleInspected;
+                            //Housing
+                            record.PersonnelId = model.PersonnelId;
+                            record.Address = model.Address;
+                            record.Room = model.Room;
+                            //UnitInfo
+                            record.PersonnelId = model.PersonnelId;
+                            record.TeamId = model.TeamId;
+                            record.Role = model.Role;
+                            record.Arrived = model.Arrived;
+                            record.LossDate = model.LossDate;
+                            record.DutyStatus = model.DutyStatus;
+
+                            Records.Add(record);
+                        }
+                        return Records;
+                    }
                 }
-                return Records;
-            }
-        }
-
+        */
         public IEnumerable<RecordListItem> GetRecords()
         {
             using (var ctx = new ApplicationDbContext())
@@ -199,6 +199,13 @@ namespace Orderly.Services
                         DOD = p.DOD,
                         DOB = p.DOB,
                         MaritalStatus = p.MaritalStatus,
+                        PersonnelCreatedBy = p.CreatedBy,
+                        PersonnelCreatedByUserName = u.UserName,
+                        PersonnelCreatedUtc = p.CreatedUtc,
+                        PersonnelModifiedByUserName = p.ModifiedByUserName,
+                        PersonnelModifiedLast = p.ModifiedLast,
+                        PersonnelModifiedUtc = p.ModifiedUtc,
+
                         //Contact
                         ContactId = c.ContactId,
                         //Personnel = c.Personnel,
@@ -212,10 +219,25 @@ namespace Orderly.Services
                         VehiclePlate = c.VehiclePlate,
                         VehicleYear = c.VehicleYear,
                         VehicleInspected = c.VehicleInspected,
+
+                        ContactCreatedBy = c.CreatedBy,
+                        ContactCreatedByUserName = u.UserName,
+                        ContactCreatedUtc = c.CreatedUtc,
+                        ContactModifiedByUserName = c.ModifiedByUserName,
+                        ContactModifiedLast = c.ModifiedLast,
+                        ContactModifiedUtc = c.ModifiedUtc,
                         //Housing
+                        HousingId = h.HousingId,
                         Address = h.Address,
                         Room = h.Room,
+                        HousingCreatedBy = h.CreatedBy,
+                        HousingCreatedByUserName = u.UserName,
+                        HousingCreatedUtc = h.CreatedUtc,
+                        HousingModifiedByUserName = h.ModifiedByUserName,
+                        HousingModifiedLast = h.ModifiedLast,
+                        HousingModifiedUtc = h.ModifiedUtc,
                         //UnitInfo
+                        UnitInfoId =ui.UnitInfoId,
                         TeamId = ui.TeamId,
                         Team = ui.Team,
                         SquadId = sqd.SquadId,
@@ -226,12 +248,12 @@ namespace Orderly.Services
                         Arrived = ui.Arrived,
                         LossDate = ui.LossDate,
                         DutyStatus = ui.DutyStatus,
-                        CreatedBy = p.CreatedBy,
-                        CreatedByUserName = u.UserName,
-                        CreatedUtc = p.CreatedUtc,
-                        ModifiedLast = p.ModifiedLast,
-                        ModifiedByUserName = p.ModifiedByUserName,
-                        ModifiedUtc = p.ModifiedUtc
+                        UnitInfoCreatedBy = ui.CreatedBy,
+                        UnitInfoCreatedByUserName = u.UserName,
+                        UnitInfoCreatedUtc = ui.CreatedUtc,
+                        UnitInfoModifiedLast = ui.ModifiedLast,
+                        UnitInfoModifiedByUserName = ui.ModifiedByUserName,
+                        UnitInfoModifiedUtc = ui.ModifiedUtc
                     }
                     ).SingleOrDefault();
                 return record;

@@ -42,6 +42,18 @@ namespace Orderly.Models
         }
         [Display(Name = "Marital Status")]
         public MaritalStatus MaritalStatus { get; set; }
+        [Display(Name = "Created by")]
+        public string PersonnelCreatedByUserName { get; set; }
+        public Guid PersonnelCreatedBy { get; set; }
+        [Display(Name = "Last modified by")]
+        public string PersonnelModifiedByUserName { get; set; }
+        public Guid PersonnelModifiedLast { get; set; }
+        [Display(Name = "Created on")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTimeOffset PersonnelCreatedUtc { get; set; }
+        [Display(Name = "Modified on")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTimeOffset? PersonnelModifiedUtc { get; set; }
 
         //CONTACT
         public int ContactId { get; set; }
@@ -66,6 +78,18 @@ namespace Orderly.Models
         [Display(Name = "Last Vehicle Inspection")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTimeOffset? VehicleInspected { get; set; }
+        [Display(Name = "Created by")]
+        public string ContactCreatedByUserName { get; set; }
+        public Guid ContactCreatedBy { get; set; }
+        [Display(Name = "Last modified by")]
+        public string ContactModifiedByUserName { get; set; }
+        public Guid ContactModifiedLast { get; set; }
+        [Display(Name = "Created on")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTimeOffset ContactCreatedUtc { get; set; }
+        [Display(Name = "Modified on")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTimeOffset? ContactModifiedUtc { get; set; }
 
         //HOUSING
         public int HousingId { get; set; }
@@ -73,6 +97,18 @@ namespace Orderly.Models
         public string Address { get; set; }
         [Display(Name = "Room #")]
         public string Room { get; set; }
+        [Display(Name = "Created by")]
+        public string HousingCreatedByUserName { get; set; }
+        public Guid HousingCreatedBy { get; set; }
+        [Display(Name = "Last modified by")]
+        public string HousingModifiedByUserName { get; set; }
+        public Guid HousingModifiedLast { get; set; }
+        [Display(Name = "Created on")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTimeOffset HousingCreatedUtc { get; set; }
+        [Display(Name = "Modified on")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTimeOffset? HousingModifiedUtc { get; set; }
 
         //UNITINFO
         public int UnitInfoId { get; set; }
@@ -86,18 +122,21 @@ namespace Orderly.Models
         [Display(Name = "Arrival Date")]
         public DateTimeOffset Arrived { get; set; }
         [Display(Name = "Loss Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTimeOffset? LossDate { get; set; }
         [Display(Name = "Duty Status")]
         public string DutyStatus { get; set; }
         [Display(Name = "Created by")]
-        public string CreatedByUserName { get; set; }
-        public Guid CreatedBy { get; set; }
+        public string UnitInfoCreatedByUserName { get; set; }
+        public Guid UnitInfoCreatedBy { get; set; }
         [Display(Name = "Last modified by")]
-        public string ModifiedByUserName { get; set; }
-        public Guid ModifiedLast { get; set; }
+        public string UnitInfoModifiedByUserName { get; set; }
+        public Guid UnitInfoModifiedLast { get; set; }
         [Display(Name = "Created on")]
-        public DateTimeOffset CreatedUtc { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTimeOffset UnitInfoCreatedUtc { get; set; }
         [Display(Name = "Modified on")]
-        public DateTimeOffset? ModifiedUtc { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTimeOffset? UnitInfoModifiedUtc { get; set; }
     }
 }
