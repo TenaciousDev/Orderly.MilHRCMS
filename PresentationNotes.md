@@ -232,8 +232,6 @@ Honestly, just my own lack of knowledge & experience. Which is easy to overcome 
 
 Sue me, I like acronyms. But I came up with this one several years back to make a specific point: 
 
-```
 It takes all these things to excel within your circumstances, and each item is related: the more motivated you are to pursue something, the more aptitude you'll develop; the greater your knowledge grows, the better you'll be able to manipulate your environment to pursue greater experience.
-```
 
 In closing, this was a challenging project, which means it was a fun project! I'm super excited to keep learning. Thanks for your time.
