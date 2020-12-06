@@ -1,11 +1,12 @@
-# Notes for Presentation
+# Q & A: [Eleven Fifty Academy](https://elevenfifty.org/)
 ## What would you put in version 2.0?
 
 I have big plans for 2.0! I'd like to add:
 
-  - User Permissions Management to allow admins to allow general users to access certain views or features, but not others
-  - A complete ChangeLog feature for 100% accountability of records modifications
-  - Something called a Unit Manning Report, or UMR. This is a document the Army uses to visually represent the role assignments of each servicemember, as well as the servicemembers' qualifications in things like medical training, marksmanship, and schools like Ranger or Air Assault.
+  - **User Permissions Management** to allow admins to allow general users to access certain views or features, but not others.
+  - A complete **ChangeLog** feature for 100% accountability of records modifications.
+  - Something called a **Unit Manning Report**, or **UMR**. This is a document the Army uses to visually represent the role assignments of each servicemember, as well as the servicemembers' qualifications in things like medical training, marksmanship, and schools like Ranger or Air Assault.
+  - Built-in **Sorting & Filtering** in the *Record/Index* view. This will require at minimum JavaScript, and maybe more stuff I don't know yet. But I'll be learning JavaScript next, plus lots of other things, so these features will be added to the next version!
 
 I'm sure there are lots of other features I haven't had time to think of yet, too.
 
@@ -14,11 +15,11 @@ I'm sure there are lots of other features I haven't had time to think of yet, to
 
 I think I was prepared enough, within the limitations of my knowledge at the beginning of the project.
 
-I didn't know what a View Model was when I started this project, but I came up with the idea for it on my own and only later found out it was a well-known technique for pushing specific sets of data to the View.
+I didn't know what a View Model was when I started this project, but I came up with the idea for it on my own and only later found out it was a well-known technique for pushing specific sets of data to the View. So once I understood how it was *supposed* to work, I was able to refine my own implementation.
 
-I didn't know anything about `ActionLink` or `UrlHelper` when I started, but I had to learn in order to make my project work the way I'd visualized.
+I didn't know anything about `ActionLink` or `UrlHelper` when I started, but I had to learn in order to make my project work the way I'd visualized. In the process, I got a better handle on how polymorphism works with multiple overloads affecting method signatures.
 
-So I think yes, I was prepared, because I had a vision in my head that I laid out in planning documents, despite not understanding what it would take to make the vision a reality.
+So I think yes, I was prepared, because I had a vision in my head that I laid out in planning documents, despite not understanding what it would take to make the vision a reality. And I kept learning throughout the process in order to get it to work the way I wanted.
 
 ---
 ## What was the coolest functionality you got to work in your opinion?
@@ -29,7 +30,7 @@ If we open a detailed view of a record, you'll notice that at the bottom of the 
 
 In this version of the project, this is limited to the most recent modification; future versions will incorporate a complete changelog, but that wasn't feasible given the scope and time alloted for this assignment. I think I've figured out how to implement it now, but I had no idea how it might work when I designed the project at the beginning.
 
-So anyway, until *very* recently* this feature only drew from the `ModifiedUtc` property of the Personnel class. This is because the Record models are View Models - they don't exist at the data layer, but instead draw from the data held in properties by the four primary classes. Because each of these four main classes contains a ModifiedUtc property (which is a nullable `DateTimeOffset` type), I basically boxed myself into a corner and had to pick which primary class this feature would draw from. So initially, that was the Personnel class.
+So anyway, until *very* recently this feature only drew from the `ModifiedUtc` property of the Personnel class. This is because the Record models are View Models - they don't exist at the data layer, but instead draw from the data held in properties by the four primary classes. Because each of these four main classes contains a ModifiedUtc property (which is a nullable `DateTimeOffset` type), I basically boxed myself into a corner and had to pick which primary class this feature would draw from. So initially, that was the Personnel class.
 
 But at the last minute, I decided to take another look at this feature. I needed to grab the value of the `ModifiedUtc` property in each main class, associate that with the `ModifiedByUsername` property of each class respectively, and pass those values into a list of some type that would hold them as Key-Value Pairs and then evaluate:
 
@@ -135,7 +136,7 @@ Of course, a little while later, I ran into another issue while testing. When I 
 [Object reference not set to an instance of an object]
 ```
 
-Uh-oh. This exception was thrown on the definition of my `user` variable, which I'd thought was just fine.  But thankfully, this was solved with an easy ternary evaluation of my `user` variable, which checks to see if there are *any* values other than `null` in the `versionDictionary` before deciding what to return:
+Uh-oh. This exception was thrown on the definition of my `user` variable, which I'd thought was just fine. But it wasn't fine, because in the event every `DateTimeOffset?` added to the `versionDictionary` held a value of `null`, this exception would be thrown. So I needed a way to check if there are *any* values other than `null` in the `versionDictionary` before deciding what to return. I solved this with a ternary operator on my `user` variable:
 
 ```c#
 var user = versionDictionary.Any() ? versionDictionary.Max(e => e.Key).Substring(0, versionDictionary.Max(e => e.Key).Length - 36) : "" ;
@@ -151,7 +152,7 @@ This is ugly, but it works. It's ugly because what this actually does is measure
 
 If it's ugly but it works, it's pretty enough.
 
-So that, thankfully, was the last bit I had to fix before I had a working product again.  So the code for this simple little footer section ended up looking like this, inside the Razor block:
+And that, thankfully, was the last bit I had to fix before I had a working product again.  So the code for this simple little footer section ended up looking like this, inside the Razor block:
 
 ```c#
 var ctx = new ApplicationDbContext();
@@ -232,8 +233,6 @@ Honestly, just my own lack of knowledge & experience. Which is easy to overcome 
 
 Sue me, I like acronyms. But I came up with this one several years back to make a specific point: 
 
-```
 It takes all these things to excel within your circumstances, and each item is related: the more motivated you are to pursue something, the more aptitude you'll develop; the greater your knowledge grows, the better you'll be able to manipulate your environment to pursue greater experience.
-```
 
 In closing, this was a challenging project, which means it was a fun project! I'm super excited to keep learning. Thanks for your time.
