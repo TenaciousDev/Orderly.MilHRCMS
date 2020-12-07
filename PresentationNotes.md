@@ -4,6 +4,7 @@
 I have big plans for 2.0! I'd like to add:
 
   - **User Permissions Management** to allow admins to allow general users to access certain views or features, but not others.
+  - More advanced **Organization Management** features.  Right now the only Platoons/Squads/Teams available are built in, but the next version will allow full CRUD of these unit types.
   - A complete **ChangeLog** feature for 100% accountability of records modifications.
   - Something called a **Unit Manning Report**, or **UMR**. This is a document the Army uses to visually represent the role assignments of each servicemember, as well as the servicemembers' qualifications in things like medical training, marksmanship, and schools like Ranger or Air Assault.
   - Built-in **Sorting & Filtering** in the *Record/Index* view. This will require at minimum JavaScript, and maybe more stuff I don't know yet. But I'll be learning JavaScript next, plus lots of other things, so these features will be added to the next version!
@@ -136,7 +137,7 @@ Of course, a little while later, I ran into another issue while testing. When I 
 [Object reference not set to an instance of an object]
 ```
 
-Uh-oh. This exception was thrown on the definition of my `user` variable, which I'd thought was just fine. But it wasn't fine, because in the event every `DateTimeOffset?` added to the `versionDictionary` held a value of `null`, this exception would be thrown. So I needed a way to check if there are *any* values other than `null` in the `versionDictionary` before deciding what to return. I solved this with a ternary operator on my `user` variable:
+Uh-oh. This exception was thrown on the definition of my `user` variable, which I'd thought was just fine. But it wasn't fine, because in the event every Key-Value Pair added to the `versionDictionary` was `null`, this exception would be thrown. So I needed a way to check if there are *any* values other than `null` in the `versionDictionary` before deciding what to return. I solved this with a ternary operator on my `user` variable:
 
 ```c#
 var user = versionDictionary.Any() ? versionDictionary.Max(e => e.Key).Substring(0, versionDictionary.Max(e => e.Key).Length - 36) : "" ;
