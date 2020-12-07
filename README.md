@@ -25,6 +25,10 @@ Once you've made the necessary changes, click the `Save` button at the bottom of
 
 Once you're satisfied with the changes you made, you can click the `Go Back` link near the top of the view to go back to the main view of all records.
 
+To create a new record, click the large `Add New Record` button near the top left of the all-records view.  You'll create the record in four phases, one for each of the primary record types: basic Personnel information, Contact information, Housing information, and Organizational information. After filling in the information for each of the first three sections, click the `Save & Continue` button at the bottom of the form to move on to the next phase. After the fourth and final phase, click the `Save` button to finalize the record, and you'll be redirected to the all-records view once more. Scroll down to the bottom of the table, and your newly created record is there.
+
+Please note **you must go through all four phases** when creating a new record. You cannot skip a phase or log off partway through creating a record, as this will result in a 'rogue record' that does not display in the all-records view. If you don't have some information and you'd like to enter it later, simply leave that field blank and edit the record after you've created it.
+
 ## Feedback
 I welcome feedback on this project, particularly from members of the military that have done the Training Room job.  I built this as the first draft of a tool I wished I'd had when I was doing the job, so if you have ideas or feature requests, don't hesitate to reach out.
 
